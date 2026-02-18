@@ -151,7 +151,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <div class="flex items-center">
-                    <a href="index.html" class="flex items-center church-name">
+                    <a href="index.html" class="flex items-center">
                         <img src="resources/church logo.jpeg" alt="STM Logo" class="h-12 w-auto">
                         <div class="ml-3">
                             <span
@@ -1616,69 +1616,98 @@
 
     <script src="stm-main.js"></script>
     <script>
-        // Consolidated mobile menu logic
+        // Fallback mobile menu script - ensures it works even if main script fails
         document.addEventListener('DOMContentLoaded', function () {
-            if (typeof initMobileMenu === 'function') {
-                initMobileMenu();
+            setTimeout(function () {
+                const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+                const mobileMenu = document.getElementById('mobile-menu');
+
+                if (mobileMenuBtn && mobileMenu) {
+                    // Remove existing listeners
+                    const newBtn = mobileMenuBtn.cloneNode(true);
+                    mobileMenuBtn.parentNode.replaceChild(newBtn, mobileMenuBtn);
+
+                    newBtn.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        mobileMenu.classList.toggle('hidden');
+
+                        const isOpen = !mobileMenu.classList.contains('hidden');
+                        newBtn.innerHTML = isOpen
+                            ? '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>'
+                            : '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>';
+                    });
+
+                    // Close menu on link click
+                    const links = mobileMenu.querySelectorAll('a');
+                    links.forEach(link => {
+                        link.addEventListener('click', function () {
+                            mobileMenu.classList.add('hidden');
+                            newBtn.innerHTML = '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>';
+                        });
+                    });
+                }
+            }, 200);
+        });
+
+        // Fellowship Tab Functionality
+        function showFellowship(fellowshipId) {
+            console.log('showFellowship called with:', fellowshipId);
+
+            // Hide all fellowship sections by removing active class
+            const allSections = document.querySelectorAll('.fellowship-section');
+            console.log('Found sections:', allSections.length);
+            allSections.forEach(section => {
+                console.log('Removing active from:', section.id);
+                section.classList.remove('active');
+            });
+
+            // Show selected fellowship section by adding active class
+            const selectedSection = document.getElementById(fellowshipId);
+            console.log('Selected section:', selectedSection);
+            if (selectedSection) {
+                console.log('Adding active to:', fellowshipId);
+                selectedSection.classList.add('active');
+                // Scroll to top of the section smoothly
+                selectedSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else {
+                console.error('Section not found:', fellowshipId);
             }
-        });
-    </script>
-    <script style="display: none;">
-        // Removing redundant fallback script block below
-    </script>
 
+            // Reset all buttons
+            const allButtons = document.querySelectorAll('.sticky-btn');
+            allButtons.forEach(button => {
+                button.classList.remove('active');
+            });
 
-    // Fellowship Tab Functionality
-    function showFellowship(fellowshipId) {
-    console.log('showFellowship called with:', fellowshipId);
+            // Highlight selected button
+            const selectedButton = document.getElementById('btn-' + fellowshipId);
+            if (selectedButton) {
+                selectedButton.classList.add('active');
 
-    // Hide all fellowship sections by removing active class
-    const allSections = document.querySelectorAll('.fellowship-section');
-    console.log('Found sections:', allSections.length);
-    allSections.forEach(section => {
-    console.log('Removing active from:', section.id);
-    section.classList.remove('active');
-    });
+                // On mobile, ensure the selected button is visible in the scroll container
+                if (window.innerWidth < 1024) {
+                    selectedButton.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                }
+            }
+        }
 
-    // Show selected fellowship section by adding active class
-    const selectedSection = document.getElementById(fellowshipId);
-    console.log('Selected section:', selectedSection);
-    if (selectedSection) {
-    console.log('Adding active to:', fellowshipId);
-    selectedSection.classList.add('active');
-    // Scroll to top of the section smoothly
-    selectedSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    } else {
-    console.error('Section not found:', fellowshipId);
-    }
+        // Test function for debugging
+        function testFellowshipSections() {
+            console.log('=== Testing Fellowship Sections ===');
+            const sections = document.querySelectorAll('.fellowship-section');
+            console.log('Total sections found:', sections.length);
 
-    // Reset all buttons
-    const allButtons = document.querySelectorAll('.sticky-btn');
-    allButtons.forEach(button => {
-    button.classList.remove('active');
-    });
+            sections.forEach(section => {
+                console.log('Section:', section.id, 'Display:', section.style.display, 'Visible:', section.offsetParent !== null);
+            });
 
-    // Highlight selected button
-    const selectedButton = document.getElementById('btn-' + fellowshipId);
-    if (selectedButton) {
-    selectedButton.classList.add('active');
-
-    // On mobile, ensure the selected button is visible in the scroll container
-    if (window.innerWidth < 1024) { selectedButton.scrollIntoView({ behavior: 'smooth' , block: 'nearest' ,
-        inline: 'center' }); } } } // Test function for debugging function testFellowshipSections() {
-        console.log('===Testing Fellowship Sections===');
-            const sections = document.querySelectorAll(' .fellowship-section'); console.log('Total sections found:',
-        sections.length); sections.forEach(section=> {
-        console.log('Section:', section.id, 'Display:', section.style.display, 'Visible:', section.offsetParent !==
-        null);
-        });
-
-        // Test specific sections
-        const testIds = ['children', 'music', 'media', 'evangelical', 'prayer'];
-        testIds.forEach(id => {
-        const element = document.getElementById(id);
-        console.log('Test ID:', id, 'Found:', !!element, 'Classes:', element ? element.className : 'N/A');
-        });
+            // Test specific sections
+            const testIds = ['children', 'music', 'media', 'evangelical', 'prayer'];
+            testIds.forEach(id => {
+                const element = document.getElementById(id);
+                console.log('Test ID:', id, 'Found:', !!element, 'Classes:', element ? element.className : 'N/A');
+            });
         }
 
         // Make it globally available
@@ -1686,304 +1715,379 @@
 
         // Direct test function - manually show a section
         function showSectionDirect(sectionId) {
-        console.log('=== Direct Show Section ===');
-        const section = document.getElementById(sectionId);
-        if (section) {
-        console.log('Section found:', sectionId);
-        section.classList.add('active');
-        section.style.display = 'block';
-        console.log('Section classes:', section.className);
-        console.log('Section display:', section.style.display);
-        } else {
-        console.error('Section NOT found:', sectionId);
-        }
+            console.log('=== Direct Show Section ===');
+            const section = document.getElementById(sectionId);
+            if (section) {
+                console.log('Section found:', sectionId);
+                section.classList.add('active');
+                section.style.display = 'block';
+                console.log('Section classes:', section.className);
+                console.log('Section display:', section.style.display);
+            } else {
+                console.error('Section NOT found:', sectionId);
+            }
         }
 
         window.showSectionDirect = showSectionDirect;
 
         // Initialize page - show only men's fellowship by default
         document.addEventListener('DOMContentLoaded', function () {
-        console.log('DOM Content Loaded - Initializing fellowship tabs');
+            console.log('DOM Content Loaded - Initializing fellowship tabs');
 
-        // Wait a bit for everything to be ready
-        setTimeout(() => {
-        // Remove active class from all fellowship sections first
-        const allSections = document.querySelectorAll('.fellowship-section');
-        console.log('Found fellowship sections on load:', allSections.length);
+            // Wait a bit for everything to be ready
+            setTimeout(() => {
+                // Remove active class from all fellowship sections first
+                const allSections = document.querySelectorAll('.fellowship-section');
+                console.log('Found fellowship sections on load:', allSections.length);
 
-        allSections.forEach(section => {
-        console.log('Removing active from section on load:', section.id);
-        section.classList.remove('active');
+                allSections.forEach(section => {
+                    console.log('Removing active from section on load:', section.id);
+                    section.classList.remove('active');
+                });
+
+                // Show only men's fellowship by default
+                console.log('Showing mens fellowship by default');
+                showFellowship('mens');
+            }, 500);
         });
+    </script>
+    <script>
+        // Mobile menu functionality - Direct implementation for fellowships page
+        (function () {
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
 
-        // Show only men's fellowship by default
-        console.log('Showing mens fellowship by default');
-        showFellowship('mens');
-        }, 500);
+            if (mobileMenuBtn && mobileMenu) {
+                // Remove any existing click handlers
+                mobileMenuBtn.onclick = null;
+
+                // Add fresh click handler
+                mobileMenuBtn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    // Toggle hidden class
+                    if (mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.remove('hidden');
+                        // Change to X icon
+                        mobileMenuBtn.innerHTML = '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>';
+                    } else {
+                        mobileMenu.classList.add('hidden');
+                        // Change back to hamburger icon
+                        mobileMenuBtn.innerHTML = '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>';
+                    }
+                });
+
+                // Close menu when clicking any link
+                const menuLinks = mobileMenu.querySelectorAll('a');
+                menuLinks.forEach(function (link) {
+                    link.addEventListener('click', function () {
+                        mobileMenu.classList.add('hidden');
+                        mobileMenuBtn.innerHTML = '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>';
+                    });
+                });
+
+                console.log('Mobile menu initialized successfully on fellowships page');
+            } else {
+                console.error('Mobile menu elements not found on fellowships page');
+            }
+        })();
+    </script>
+    <script>
+        // Fallback mobile menu script - ensures it works even if main script fails
+        document.addEventListener('DOMContentLoaded', function () {
+            setTimeout(function () {
+                const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+                const mobileMenu = document.getElementById('mobile-menu');
+
+                if (mobileMenuBtn && mobileMenu) {
+                    // Remove existing listeners
+                    const newBtn = mobileMenuBtn.cloneNode(true);
+                    mobileMenuBtn.parentNode.replaceChild(newBtn, mobileMenuBtn);
+
+                    newBtn.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        mobileMenu.classList.toggle('hidden');
+
+                        const isOpen = !mobileMenu.classList.contains('hidden');
+                        newBtn.innerHTML = isOpen
+                            ? '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>'
+                            : '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>';
+                    });
+
+                    // Close menu on link click
+                    const links = mobileMenu.querySelectorAll('a');
+                    links.forEach(link => {
+                        link.addEventListener('click', function () {
+                            mobileMenu.classList.add('hidden');
+                            newBtn.innerHTML = '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>';
+                        });
+                    });
+                }
+            }, 200);
         });
-        </script>
-
-        <!-- Fellowship Admin Verification Modal -->
-        <div id="fellowship-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center px-4">
-            <div class="absolute inset-0 bg-stm-navy/95 backdrop-blur-md" onclick="closeFellowshipModal()"></div>
-            <div class="relative bg-white rounded-3xl p-8 md:p-12 max-w-sm w-full shadow-3xl text-center border border-gray-100"
-                data-aos="zoom-up">
-                <div
-                    class="w-20 h-20 bg-stm-blue text-white rounded-2xl flex items-center justify-center mx-auto mb-8 shadow-xl shadow-stm-blue/20">
-                    <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z">
-                        </path>
-                    </svg>
-                </div>
-                <h3 class="font-display text-2xl font-bold text-stm-navy mb-2">Staff Verification</h3>
-                <p id="fellowship-modal-title" class="text-gray-400 text-sm mb-8 uppercase tracking-widest font-bold">
-                    Fellowship Access</p>
-
-                <input type="password" id="fellowship-pass" placeholder="••••••••"
-                    class="w-full bg-stm-gray border-none rounded-xl px-6 py-5 text-center text-2xl font-bold tracking-[0.5em] focus:ring-2 focus:ring-stm-blue mb-6">
-
-                <button onclick="verifyFellowshipAccess()"
-                    class="w-full bg-stm-navy text-white rounded-xl py-5 font-black uppercase tracking-widest hover:bg-stm-blue transition-all shadow-lg active:scale-95">Verify
-                    Access</button>
-                <p id="fellowship-error"
-                    class="hidden text-red-500 text-[10px] font-black mt-6 uppercase tracking-widest animate-pulse">
-                    Invalid
-                    Access Code</p>
+    </script>
+    <!-- Fellowship Admin Verification Modal -->
+    <div id="fellowship-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center px-4">
+        <div class="absolute inset-0 bg-stm-navy/95 backdrop-blur-md" onclick="closeFellowshipModal()"></div>
+        <div class="relative bg-white rounded-3xl p-8 md:p-12 max-w-sm w-full shadow-3xl text-center border border-gray-100"
+            data-aos="zoom-up">
+            <div
+                class="w-20 h-20 bg-stm-blue text-white rounded-2xl flex items-center justify-center mx-auto mb-8 shadow-xl shadow-stm-blue/20">
+                <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z">
+                    </path>
+                </svg>
             </div>
+            <h3 class="font-display text-2xl font-bold text-stm-navy mb-2">Staff Verification</h3>
+            <p id="fellowship-modal-title" class="text-gray-400 text-sm mb-8 uppercase tracking-widest font-bold">
+                Fellowship Access</p>
+
+            <input type="password" id="fellowship-pass" placeholder="••••••••"
+                class="w-full bg-stm-gray border-none rounded-xl px-6 py-5 text-center text-2xl font-bold tracking-[0.5em] focus:ring-2 focus:ring-stm-blue mb-6">
+
+            <button onclick="verifyFellowshipAccess()"
+                class="w-full bg-stm-navy text-white rounded-xl py-5 font-black uppercase tracking-widest hover:bg-stm-blue transition-all shadow-lg active:scale-95">Verify
+                Access</button>
+            <p id="fellowship-error"
+                class="hidden text-red-500 text-[10px] font-black mt-6 uppercase tracking-widest animate-pulse">Invalid
+                Access Code</p>
         </div>
+    </div>
 
-        <!-- Fellowship Resource Management Logic -->
-        <!-- Fellowship Resource Management Logic -->
-        <script>
-            const FELLOWSHIP_CODES = {
-                'mens': 'STMMEN2026',
-                'womens': 'STMWOMEN2026',
-                'youth': 'STMYOUTH2026',
-                'children': 'STMKIDS2026',
-                'music': 'STMMUSIC2026',
-                'media': 'STMMEDIA2026',
-                'evangelical': 'STMEVAN2026',
-                'prayer': 'STMPRAY2026'
-            };
+    <!-- Fellowship Resource Management Logic -->
+    <!-- Fellowship Resource Management Logic -->
+    <script>
+        const FELLOWSHIP_CODES = {
+            'mens': 'STMMEN2026',
+            'womens': 'STMWOMEN2026',
+            'youth': 'STMYOUTH2026',
+            'children': 'STMKIDS2026',
+            'music': 'STMMUSIC2026',
+            'media': 'STMMEDIA2026',
+            'evangelical': 'STMEVAN2026',
+            'prayer': 'STMPRAY2026'
+        };
 
-            // IndexedDB Manager for High-Capacity Storage
-            const STM_DB = {
-                name: 'STM_Fellowship_DB',
-                version: 1,
-                getDB() {
-                    return new Promise((resolve, reject) => {
-                        const request = indexedDB.open(this.name, this.version);
-                        request.onupgradeneeded = (e) => {
-                            const db = e.target.result;
-                            if (!db.objectStoreNames.contains('resources')) {
-                                db.createObjectStore('resources', { keyPath: 'id' });
+        // IndexedDB Manager for High-Capacity Storage
+        const STM_DB = {
+            name: 'STM_Fellowship_DB',
+            version: 1,
+            getDB() {
+                return new Promise((resolve, reject) => {
+                    const request = indexedDB.open(this.name, this.version);
+                    request.onupgradeneeded = (e) => {
+                        const db = e.target.result;
+                        if (!db.objectStoreNames.contains('resources')) {
+                            db.createObjectStore('resources', { keyPath: 'id' });
+                        }
+                    };
+                    request.onsuccess = (e) => resolve(e.target.result);
+                    request.onerror = (e) => reject(e.target.error);
+                });
+            },
+            async saveResource(fellowshipId, resource) {
+                const db = await this.getDB();
+                return new Promise((resolve, reject) => {
+                    const transaction = db.transaction('resources', 'readwrite');
+                    const store = transaction.objectStore('resources');
+                    resource.fellowshipId = fellowshipId;
+                    store.put(resource);
+                    transaction.oncomplete = () => resolve();
+                    transaction.onerror = (e) => reject(e.target.error);
+                });
+            },
+            async getResources(fellowshipId) {
+                const db = await this.getDB();
+                return new Promise((resolve, reject) => {
+                    const transaction = db.transaction('resources', 'readonly');
+                    const store = transaction.objectStore('resources');
+                    const request = store.getAll();
+                    request.onsuccess = () => {
+                        const all = request.result;
+                        const filtered = all.filter(r => r.fellowshipId === fellowshipId);
+                        resolve(filtered.sort((a, b) => b.id - a.id));
+                    };
+                    request.onerror = (e) => reject(e.target.error);
+                });
+            },
+            async deleteResource(resourceId) {
+                const db = await this.getDB();
+                return new Promise((resolve, reject) => {
+                    const transaction = db.transaction('resources', 'readwrite');
+                    const store = transaction.objectStore('resources');
+                    store.delete(resourceId);
+                    transaction.oncomplete = () => resolve();
+                    transaction.onerror = (e) => reject(e.target.error);
+                });
+            },
+            async migrateFromLocalStorage() {
+                const ids = ['mens', 'womens', 'youth', 'children', 'music', 'media', 'evangelical', 'prayer'];
+                for (const id of ids) {
+                    const key = 'stm_res_' + id;
+                    const data = localStorage.getItem(key);
+                    if (data) {
+                        try {
+                            const files = JSON.parse(data);
+                            for (const file of files) {
+                                await this.saveResource(id, file);
                             }
-                        };
-                        request.onsuccess = (e) => resolve(e.target.result);
-                        request.onerror = (e) => reject(e.target.error);
-                    });
-                },
-                async saveResource(fellowshipId, resource) {
-                    const db = await this.getDB();
-                    return new Promise((resolve, reject) => {
-                        const transaction = db.transaction('resources', 'readwrite');
-                        const store = transaction.objectStore('resources');
-                        resource.fellowshipId = fellowshipId;
-                        store.put(resource);
-                        transaction.oncomplete = () => resolve();
-                        transaction.onerror = (e) => reject(e.target.error);
-                    });
-                },
-                async getResources(fellowshipId) {
-                    const db = await this.getDB();
-                    return new Promise((resolve, reject) => {
-                        const transaction = db.transaction('resources', 'readonly');
-                        const store = transaction.objectStore('resources');
-                        const request = store.getAll();
-                        request.onsuccess = () => {
-                            const all = request.result;
-                            const filtered = all.filter(r => r.fellowshipId === fellowshipId);
-                            resolve(filtered.sort((a, b) => b.id - a.id));
-                        };
-                        request.onerror = (e) => reject(e.target.error);
-                    });
-                },
-                async deleteResource(resourceId) {
-                    const db = await this.getDB();
-                    return new Promise((resolve, reject) => {
-                        const transaction = db.transaction('resources', 'readwrite');
-                        const store = transaction.objectStore('resources');
-                        store.delete(resourceId);
-                        transaction.oncomplete = () => resolve();
-                        transaction.onerror = (e) => reject(e.target.error);
-                    });
-                },
-                async migrateFromLocalStorage() {
-                    const ids = ['mens', 'womens', 'youth', 'children', 'music', 'media', 'evangelical', 'prayer'];
-                    for (const id of ids) {
-                        const key = 'stm_res_' + id;
-                        const data = localStorage.getItem(key);
-                        if (data) {
-                            try {
-                                const files = JSON.parse(data);
-                                for (const file of files) {
-                                    await this.saveResource(id, file);
-                                }
-                                localStorage.removeItem(key); // Clear after migration
-                                console.log(`Migrated ${id} files to IndexedDB`);
-                            } catch (e) {
-                                console.error(`Migration failed for ${id}`, e);
-                            }
+                            localStorage.removeItem(key); // Clear after migration
+                            console.log(`Migrated ${id} files to IndexedDB`);
+                        } catch (e) {
+                            console.error(`Migration failed for ${id}`, e);
                         }
                     }
                 }
-            };
-
-            let activeFellowship = null;
-            const adminStates = {};
-
-            function openFellowshipAdmin(id) {
-                activeFellowship = id;
-                const titleElement = document.getElementById('fellowship-modal-title');
-                titleElement.innerText = id + ' fellowship';
-                document.getElementById('fellowship-modal').classList.remove('hidden');
-                document.getElementById('fellowship-pass').focus();
             }
+        };
 
-            function closeFellowshipModal() {
-                document.getElementById('fellowship-modal').classList.add('hidden');
+        let activeFellowship = null;
+        const adminStates = {};
+
+        function openFellowshipAdmin(id) {
+            activeFellowship = id;
+            const titleElement = document.getElementById('fellowship-modal-title');
+            titleElement.innerText = id + ' fellowship';
+            document.getElementById('fellowship-modal').classList.remove('hidden');
+            document.getElementById('fellowship-pass').focus();
+        }
+
+        function closeFellowshipModal() {
+            document.getElementById('fellowship-modal').classList.add('hidden');
+            document.getElementById('fellowship-pass').value = '';
+            document.getElementById('fellowship-error').classList.add('hidden');
+        }
+
+        async function verifyFellowshipAccess() {
+            const pass = document.getElementById('fellowship-pass').value;
+            const correct = FELLOWSHIP_CODES[activeFellowship];
+
+            if (pass === correct) {
+                adminStates[activeFellowship] = true;
+                document.getElementById('admin-' + activeFellowship).classList.remove('hidden');
+                document.getElementById('btn-admin-' + activeFellowship).classList.add('hidden');
+                closeFellowshipModal();
+                await renderFellowshipFiles(activeFellowship);
+
+                // Scroll to the admin zone
+                document.getElementById('admin-' + activeFellowship).scrollIntoView({ behavior: 'smooth' });
+            } else {
+                document.getElementById('fellowship-error').classList.remove('hidden');
                 document.getElementById('fellowship-pass').value = '';
-                document.getElementById('fellowship-error').classList.add('hidden');
+            }
+        }
+
+        async function logoutFellowshipAdmin(id) {
+            adminStates[id] = false;
+            document.getElementById('admin-' + id).classList.add('hidden');
+            document.getElementById('btn-admin-' + id).classList.remove('hidden');
+            await renderFellowshipFiles(id);
+        }
+
+        function updateFellowshipFileLabel(id) {
+            const input = document.getElementById('input-' + id);
+            const label = document.getElementById('label-' + id);
+            if (input.files.length > 0) {
+                label.innerText = input.files[0].name;
+                label.classList.remove('text-gray-400', 'text-pink-300', 'text-orange-300', 'text-cyan-300', 'text-purple-300', 'text-green-300', 'text-red-300', 'text-yellow-400');
+                label.classList.add('text-stm-navy', 'font-bold');
+            }
+        }
+
+        async function broadcastFellowshipFile(id) {
+            const title = document.getElementById('title-' + id).value;
+            const fileInput = document.getElementById('input-' + id);
+
+            if (!title || fileInput.files.length === 0) {
+                alert('Please provide a title and select a file.');
+                return;
             }
 
-            async function verifyFellowshipAccess() {
-                const pass = document.getElementById('fellowship-pass').value;
-                const correct = FELLOWSHIP_CODES[activeFellowship];
-
-                if (pass === correct) {
-                    adminStates[activeFellowship] = true;
-                    document.getElementById('admin-' + activeFellowship).classList.remove('hidden');
-                    document.getElementById('btn-admin-' + activeFellowship).classList.add('hidden');
-                    closeFellowshipModal();
-                    await renderFellowshipFiles(activeFellowship);
-
-                    // Scroll to the admin zone
-                    document.getElementById('admin-' + activeFellowship).scrollIntoView({ behavior: 'smooth' });
-                } else {
-                    document.getElementById('fellowship-error').classList.remove('hidden');
-                    document.getElementById('fellowship-pass').value = '';
-                }
+            const file = fileInput.files[0];
+            // Increased limit to 500MB
+            if (file.size > 500 * 1024 * 1024) {
+                alert('File is too large. Please keep it under 500MB for optimal performance.');
+                return;
             }
 
-            async function logoutFellowshipAdmin(id) {
-                adminStates[id] = false;
-                document.getElementById('admin-' + id).classList.add('hidden');
-                document.getElementById('btn-admin-' + id).classList.remove('hidden');
+            try {
+                const base64 = await toBase64(file);
+                const newResource = {
+                    id: Date.now(),
+                    title: title,
+                    fileName: file.name,
+                    fileType: file.type,
+                    data: base64,
+                    date: new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })
+                };
+
+                await STM_DB.saveResource(id, newResource);
+
+                // Reset form
+                document.getElementById('title-' + id).value = '';
+                fileInput.value = '';
+                document.getElementById('label-' + id).innerText = 'Choose File...';
+
                 await renderFellowshipFiles(id);
+            } catch (e) {
+                alert('Error processing file. Please try again.');
+                console.error(e);
             }
+        }
 
-            function updateFellowshipFileLabel(id) {
-                const input = document.getElementById('input-' + id);
-                const label = document.getElementById('label-' + id);
-                if (input.files.length > 0) {
-                    label.innerText = input.files[0].name;
-                    label.classList.remove('text-gray-400', 'text-pink-300', 'text-orange-300', 'text-cyan-300', 'text-purple-300', 'text-green-300', 'text-red-300', 'text-yellow-400');
-                    label.classList.add('text-stm-navy', 'font-bold');
-                }
-            }
+        function toBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = error => reject(error);
+            });
+        }
 
-            async function broadcastFellowshipFile(id) {
-                const title = document.getElementById('title-' + id).value;
-                const fileInput = document.getElementById('input-' + id);
+        async function deleteFellowshipResource(fellowshipId, resourceId) {
+            if (!confirm('Permanently remove this resource?')) return;
+            await STM_DB.deleteResource(resourceId);
+            await renderFellowshipFiles(fellowshipId);
+        }
 
-                if (!title || fileInput.files.length === 0) {
-                    alert('Please provide a title and select a file.');
-                    return;
-                }
+        async function renderFellowshipFiles(id) {
+            const grid = document.getElementById('grid-' + id);
+            const files = await STM_DB.getResources(id);
+            const isAdmin = adminStates[id] || false;
 
-                const file = fileInput.files[0];
-                // Increased limit to 500MB
-                if (file.size > 500 * 1024 * 1024) {
-                    alert('File is too large. Please keep it under 500MB for optimal performance.');
-                    return;
-                }
+            grid.innerHTML = '';
 
-                try {
-                    const base64 = await toBase64(file);
-                    const newResource = {
-                        id: Date.now(),
-                        title: title,
-                        fileName: file.name,
-                        fileType: file.type,
-                        data: base64,
-                        date: new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })
-                    };
-
-                    await STM_DB.saveResource(id, newResource);
-
-                    // Reset form
-                    document.getElementById('title-' + id).value = '';
-                    fileInput.value = '';
-                    document.getElementById('label-' + id).innerText = 'Choose File...';
-
-                    await renderFellowshipFiles(id);
-                } catch (e) {
-                    alert('Error processing file. Please try again.');
-                    console.error(e);
-                }
-            }
-
-            function toBase64(file) {
-                return new Promise((resolve, reject) => {
-                    const reader = new FileReader();
-                    reader.readAsDataURL(file);
-                    reader.onload = () => resolve(reader.result);
-                    reader.onerror = error => reject(error);
-                });
-            }
-
-            async function deleteFellowshipResource(fellowshipId, resourceId) {
-                if (!confirm('Permanently remove this resource?')) return;
-                await STM_DB.deleteResource(resourceId);
-                await renderFellowshipFiles(fellowshipId);
-            }
-
-            async function renderFellowshipFiles(id) {
-                const grid = document.getElementById('grid-' + id);
-                const files = await STM_DB.getResources(id);
-                const isAdmin = adminStates[id] || false;
-
-                grid.innerHTML = '';
-
-                if (files.length === 0) {
-                    grid.innerHTML = `
+            if (files.length === 0) {
+                grid.innerHTML = `
                     <div class="col-span-full py-12 text-center bg-gray-50 rounded-3xl border border-dashed border-gray-200">
                         <p class="text-gray-400 text-xs font-black uppercase tracking-widest">No resources broadcasted yet</p>
                     </div>
                 `;
-                    return;
-                }
+                return;
+            }
 
-                files.forEach(file => {
-                    const card = document.createElement('div');
-                    card.className = "group relative bg-white rounded-[2rem] p-4 md:p-8 border border-gray-100 shadow-xl transition-all hover:-translate-y-2 hover:shadow-2xl";
+            files.forEach(file => {
+                const card = document.createElement('div');
+                card.className = "group relative bg-white rounded-[2rem] p-4 md:p-8 border border-gray-100 shadow-xl transition-all hover:-translate-y-2 hover:shadow-2xl";
 
-                    const deleteBtn = isAdmin ? `
+                const deleteBtn = isAdmin ? `
                     <button onclick="deleteFellowshipResource('${id}', ${file.id})" class="absolute top-4 right-4 md:top-6 md:right-6 p-2 bg-red-50 text-red-500 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-500 hover:text-white z-10" title="Delete">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
                     </button>
                 ` : '';
 
-                    const canPreview = file.fileType && (file.fileType.startsWith('image/') || file.fileType === 'application/pdf');
-                    const viewBtn = canPreview ? `
+                const canPreview = file.fileType && (file.fileType.startsWith('image/') || file.fileType === 'application/pdf');
+                const viewBtn = canPreview ? `
                     <button onclick="viewFile('${file.id}', '${id}')" class="flex items-center text-stm-blue font-black text-[8px] md:text-[10px] uppercase tracking-widest hover:text-stm-navy transition-colors mr-2 md:mr-4">
                         <span class="hidden sm:inline">View</span>
                         <svg class="w-3 h-3 md:w-4 md:h-4 ml-1 sm:ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
                     </button>
                 ` : '';
 
-                    card.innerHTML = `
+                card.innerHTML = `
                     ${deleteBtn}
                     <div class="w-10 h-10 md:w-12 md:h-12 bg-stm-blue/5 text-stm-blue rounded-xl flex items-center justify-center mb-4 md:mb-6">
                         <svg class="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
@@ -2001,45 +2105,45 @@
                         </div>
                     </div>
                 `;
-                    grid.appendChild(card);
-                });
-            }
+                grid.appendChild(card);
+            });
+        }
 
-            async function viewFile(fileId, fellowshipId) {
-                const files = await STM_DB.getResources(fellowshipId);
-                const file = files.find(f => f.id.toString() === fileId.toString());
-                if (!file) return;
+        async function viewFile(fileId, fellowshipId) {
+            const files = await STM_DB.getResources(fellowshipId);
+            const file = files.find(f => f.id.toString() === fileId.toString());
+            if (!file) return;
 
-                const modal = document.getElementById('file-preview-modal');
-                const content = document.getElementById('preview-content');
-                const nameEl = document.getElementById('preview-filename');
-                const typeEl = document.getElementById('preview-type');
+            const modal = document.getElementById('file-preview-modal');
+            const content = document.getElementById('preview-content');
+            const nameEl = document.getElementById('preview-filename');
+            const typeEl = document.getElementById('preview-type');
 
-                nameEl.innerText = file.title;
-                typeEl.innerText = file.fileName;
-                content.innerHTML = '';
+            nameEl.innerText = file.title;
+            typeEl.innerText = file.fileName;
+            content.innerHTML = '';
 
-                // Check if mobile device
-                const isMobile = window.innerWidth < 768;
+            // Check if mobile device
+            const isMobile = window.innerWidth < 768;
 
-                if (file.fileType && file.fileType.startsWith('image/')) {
-                    const img = document.createElement('img');
-                    img.src = file.data;
-                    img.className = isMobile
-                        ? "max-w-full max-h-full rounded-2xl shadow-2xl object-contain"
-                        : "max-w-full max-h-full rounded-2xl shadow-2xl object-contain";
-                    img.style.maxHeight = isMobile ? '60vh' : '70vh';
-                    content.appendChild(img);
-                } else if (file.fileType === 'application/pdf') {
-                    const iframe = document.createElement('iframe');
-                    iframe.src = file.data;
-                    iframe.className = "w-full h-full rounded-xl border-none";
-                    content.appendChild(iframe);
-                } else {
-                    // For other file types, show download prompt
-                    const downloadDiv = document.createElement('div');
-                    downloadDiv.className = "text-center p-8";
-                    downloadDiv.innerHTML = `
+            if (file.fileType && file.fileType.startsWith('image/')) {
+                const img = document.createElement('img');
+                img.src = file.data;
+                img.className = isMobile
+                    ? "max-w-full max-h-full rounded-2xl shadow-2xl object-contain"
+                    : "max-w-full max-h-full rounded-2xl shadow-2xl object-contain";
+                img.style.maxHeight = isMobile ? '60vh' : '70vh';
+                content.appendChild(img);
+            } else if (file.fileType === 'application/pdf') {
+                const iframe = document.createElement('iframe');
+                iframe.src = file.data;
+                iframe.className = "w-full h-full rounded-xl border-none";
+                content.appendChild(iframe);
+            } else {
+                // For other file types, show download prompt
+                const downloadDiv = document.createElement('div');
+                downloadDiv.className = "text-center p-8";
+                downloadDiv.innerHTML = `
                     <div class="w-16 h-16 bg-stm-blue/10 rounded-xl flex items-center justify-center mx-auto mb-6">
                         <svg class="w-8 h-8 text-stm-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
@@ -2055,52 +2159,52 @@
                         Download File
                     </a>
                 `;
-                    content.appendChild(downloadDiv);
-                }
-
-                modal.classList.remove('hidden');
-                document.body.style.overflow = 'hidden';
-
-                // Add touch/swipe to close on mobile
-                if (isMobile) {
-                    let startY = 0;
-                    let endY = 0;
-
-                    modal.addEventListener('touchstart', (e) => {
-                        startY = e.touches[0].clientY;
-                    }, { once: true });
-
-                    modal.addEventListener('touchend', (e) => {
-                        endY = e.changedTouches[0].clientY;
-                        if (Math.abs(startY - endY) > 100) {
-                            closeFilePreview();
-                        }
-                    }, { once: true });
-                }
+                content.appendChild(downloadDiv);
             }
 
-            function closeFilePreview() {
-                document.getElementById('file-preview-modal').classList.add('hidden');
-                document.body.style.overflow = '';
-            }
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
 
-            // Initialize all grids
-            document.addEventListener('DOMContentLoaded', async () => {
-                // First migrate existing data from localStorage if any
-                await STM_DB.migrateFromLocalStorage();
+            // Add touch/swipe to close on mobile
+            if (isMobile) {
+                let startY = 0;
+                let endY = 0;
 
-                ['mens', 'womens', 'youth', 'children', 'music', 'media', 'evangelical', 'prayer'].forEach(async (id) => {
-                    await renderFellowshipFiles(id);
-                });
+                modal.addEventListener('touchstart', (e) => {
+                    startY = e.touches[0].clientY;
+                }, { once: true });
 
-                // Enter key support for login
-                document.getElementById('fellowship-pass').addEventListener('keypress', (e) => {
-                    if (e.key === 'Enter') {
-                        verifyFellowshipAccess();
+                modal.addEventListener('touchend', (e) => {
+                    endY = e.changedTouches[0].clientY;
+                    if (Math.abs(startY - endY) > 100) {
+                        closeFilePreview();
                     }
-                });
+                }, { once: true });
+            }
+        }
+
+        function closeFilePreview() {
+            document.getElementById('file-preview-modal').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        // Initialize all grids
+        document.addEventListener('DOMContentLoaded', async () => {
+            // First migrate existing data from localStorage if any
+            await STM_DB.migrateFromLocalStorage();
+
+            ['mens', 'womens', 'youth', 'children', 'music', 'media', 'evangelical', 'prayer'].forEach(async (id) => {
+                await renderFellowshipFiles(id);
             });
-        </script>
+
+            // Enter key support for login
+            document.getElementById('fellowship-pass').addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    verifyFellowshipAccess();
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
