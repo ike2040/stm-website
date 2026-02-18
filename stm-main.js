@@ -386,7 +386,7 @@ function initFloatingNav() {
     // Create floating navigation
     const floatingNav = document.createElement('div');
     floatingNav.id = 'floating-nav';
-    floatingNav.className = 'fixed bottom-24 right-8 z-40 bg-white rounded-2xl shadow-2xl p-4 transform translate-x-full transition-transform duration-300 max-w-xs';
+    floatingNav.className = 'fixed bottom-24 right-24 z-40 bg-white rounded-2xl shadow-2xl p-4 transform translate-x-full transition-transform duration-300 max-w-xs';
     floatingNav.innerHTML = `
         <div class="flex flex-col space-y-2">
             <div class="text-center mb-3">
@@ -459,7 +459,7 @@ function initFloatingNav() {
     // Create floating nav toggle button
     const floatingNavToggle = document.createElement('button');
     floatingNavToggle.id = 'floating-nav-toggle';
-    floatingNavToggle.className = 'fixed bottom-24 right-8 z-40 bg-stm-blue text-white w-14 h-14 rounded-full shadow-lg flex items-center justify-center transform transition-all duration-300 hover:bg-stm-navy hover:scale-110';
+    floatingNavToggle.className = 'fixed bottom-8 right-24 z-40 bg-stm-blue text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center transform transition-all duration-300 hover:bg-stm-navy hover:scale-110';
     floatingNavToggle.innerHTML = `
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>

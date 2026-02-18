@@ -29,9 +29,9 @@
 
 /* Improved Mobile Menu Animation */
 #mobile-menu {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.3s;
     transform-origin: top;
-    display: block !important;
+    /* NOTE: Do NOT add display:block here — Tailwind's 'hidden' class controls visibility */
     opacity: 0;
     visibility: hidden;
     transform: translateY(-10px) scale(0.95);
@@ -42,12 +42,15 @@
     bottom: 0;
     background: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
     z-index: 40;
     padding: 2rem 1rem;
     overflow-y: auto;
 }
 
+/* When menu is open (hidden class removed), animate in */
 #mobile-menu:not(.hidden) {
+    display: block !important;
     opacity: 1;
     visibility: visible;
     transform: translateY(0) scale(1);
@@ -69,9 +72,12 @@
     }
 }
 
-/* Touch Targets */
-a,
-button {
+/* Touch Targets - only for interactive controls, not inline text links */
+#mobile-menu-btn,
+.btn-primary,
+.btn-secondary,
+#scrollToTop,
+#floating-nav-toggle {
     min-height: 44px;
     min-width: 44px;
 }
@@ -90,6 +96,41 @@ button {
 
     .grid {
         gap: 1.5rem !important;
+    }
+}
+
+/* Mobile menu links - touch-friendly */
+#mobile-menu a {
+    display: block;
+    padding: 0.75rem 1rem;
+    font-size: 1.1rem;
+    border-radius: 0.5rem;
+    transition: background 0.2s;
+}
+
+#mobile-menu a:hover,
+#mobile-menu a:active {
+    background: rgba(30, 64, 175, 0.08);
+}
+
+/* Prevent images from overflowing on mobile */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Prevent horizontal scroll on mobile */
+body {
+    overflow-x: hidden;
+}
+
+/* Fix hero section on very small screens */
+@media (max-width: 380px) {
+
+    .hero-gradient+div,
+    section:first-of-type {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
     }
 }
 
