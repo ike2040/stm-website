@@ -34,49 +34,44 @@ function initAOS() {
 }
 
 /**
- * Mobile Menu Toggle
+ * Mobile Menu Toggle - Enhanced for Premium Experience
  */
 function initMobileMenu() {
-    // Wait a bit for DOM to be fully ready
     setTimeout(() => {
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
 
-        console.log('Mobile menu initialization:', {
-            button: mobileMenuBtn ? 'found' : 'not found',
-            menu: mobileMenu ? 'found' : 'not found'
-        });
-
         if (mobileMenuBtn && mobileMenu) {
-            // Remove any existing listeners to prevent duplicates
-            mobileMenuBtn.replaceWith(mobileMenuBtn.cloneNode(true));
-            const newBtn = document.getElementById('mobile-menu-btn');
+            // Re-initialize to ensure fresh listeners
+            const newBtn = mobileMenuBtn.cloneNode(true);
+            mobileMenuBtn.parentNode.replaceChild(newBtn, mobileMenuBtn);
 
+            // Handle the "hidden" class which acts as the toggle state
+            // But we use CSS transitions for opacity/transform
             newBtn.addEventListener('click', function (e) {
                 e.preventDefault();
-                console.log('Mobile menu button clicked');
-                mobileMenu.classList.toggle('hidden');
+                const isHidden = mobileMenu.classList.contains('hidden');
 
-                // Animate hamburger to X
-                const isOpen = !mobileMenu.classList.contains('hidden');
-                console.log('Menu is now:', isOpen ? 'open' : 'closed');
-                newBtn.innerHTML = isOpen
-                    ? '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>'
-                    : '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>';
+                if (isHidden) {
+                    mobileMenu.classList.remove('hidden');
+                    document.body.style.overflow = 'hidden'; // Prevent background scroll
+                    newBtn.innerHTML = '<svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>';
+                } else {
+                    mobileMenu.classList.add('hidden');
+                    document.body.style.overflow = ''; // Restore scroll
+                    newBtn.innerHTML = '<svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>';
+                }
             });
 
             // Close menu when clicking on a link
             const mobileLinks = mobileMenu.querySelectorAll('a');
-            console.log('Found mobile links:', mobileLinks.length);
             mobileLinks.forEach(link => {
                 link.addEventListener('click', () => {
-                    console.log('Mobile link clicked, closing menu');
                     mobileMenu.classList.add('hidden');
-                    newBtn.innerHTML = '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>';
+                    document.body.style.overflow = '';
+                    newBtn.innerHTML = '<svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>';
                 });
             });
-        } else {
-            console.warn('Mobile menu elements not found');
         }
     }, 100);
 }

@@ -20,6 +20,9 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
+    <!-- Global Responsive Fixes -->
+    <link rel="stylesheet" href="responsive-fix.css">
+
     <script>
         tailwind.config = {
             theme: {
@@ -150,10 +153,13 @@
                 <div class="flex items-center">
                     <a href="index.html" class="flex items-center">
                         <img src="resources/church logo.jpeg" alt="STM Logo" class="h-12 w-auto">
-                        <div class="ml-3 hidden sm:block">
-                            <span class="font-display text-lg font-bold text-stm-navy block leading-tight">Seekers of
+                        <div class="ml-3">
+                            <span
+                                class="font-display text-sm sm:text-lg font-bold text-stm-navy block leading-tight animate-pulse-slow">Seekers
+                                of
                                 the</span>
-                            <span class="font-display text-lg font-bold text-stm-blue block leading-tight">Truth
+                            <span
+                                class="font-display text-sm sm:text-lg font-bold text-stm-blue block leading-tight animate-gradient">Truth
                                 Ministries</span>
                         </div>
                     </a>
@@ -217,37 +223,31 @@
         </div>
     </section>
 
-    <!-- Fellowship Navigation -->
-    <section class="py-8 bg-white border-b sticky top-20 z-40">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-wrap justify-center gap-4">
-                <button onclick="showFellowship('mens')" id="btn-mens"
-                    class="fellowship-nav-btn px-6 py-2 bg-stm-blue text-white rounded-full font-semibold hover:bg-stm-navy transition-all duration-300 hover:scale-105 hover:shadow-lg">Men's
+    <!-- Fellowship Navigation Selector (Sticky) -->
+    <div class="sticky-selector-wrapper">
+        <div class="sticky-selector-container">
+            <div class="sticky-selector-inner">
+                <button onclick="showFellowship('mens')" id="btn-mens" class="sticky-btn active btn-mens">Men's
                     Fellowship</button>
-                <button onclick="showFellowship('womens')" id="btn-womens"
-                    class="fellowship-nav-btn px-6 py-2 bg-gray-400 text-white rounded-full font-semibold hover:bg-pink-600 transition-all duration-300 hover:scale-105 hover:shadow-lg">Women's
+                <button onclick="showFellowship('womens')" id="btn-womens" class="sticky-btn btn-womens">Women's
                     Fellowship</button>
-                <button onclick="showFellowship('youth')" id="btn-youth"
-                    class="fellowship-nav-btn px-6 py-2 bg-gray-400 text-white rounded-full font-semibold hover:bg-orange-600 transition-all duration-300 hover:scale-105 hover:shadow-lg">Youth
+                <button onclick="showFellowship('youth')" id="btn-youth" class="sticky-btn btn-youth">Youth
                     Fellowship</button>
                 <button onclick="showFellowship('children')" id="btn-children"
-                    class="fellowship-nav-btn px-6 py-2 bg-gray-400 text-white rounded-full font-semibold hover:bg-cyan-600 transition-all duration-300 hover:scale-105 hover:shadow-lg">Children's
+                    class="sticky-btn btn-children">Children's
                     Fellowship</button>
-                <button onclick="showFellowship('music')" id="btn-music"
-                    class="fellowship-nav-btn px-6 py-2 bg-gray-400 text-white rounded-full font-semibold hover:bg-purple-700 transition-all duration-300 hover:scale-105 hover:shadow-lg">Music
+                <button onclick="showFellowship('music')" id="btn-music" class="sticky-btn btn-music">Music
                     Ministry</button>
-                <button onclick="showFellowship('media')" id="btn-media"
-                    class="fellowship-nav-btn px-6 py-2 bg-gray-400 text-white rounded-full font-semibold hover:bg-green-700 transition-all duration-300 hover:scale-105 hover:shadow-lg">Media
+                <button onclick="showFellowship('media')" id="btn-media" class="sticky-btn btn-media">Media
                     Team</button>
                 <button onclick="showFellowship('evangelical')" id="btn-evangelical"
-                    class="fellowship-nav-btn px-6 py-2 bg-gray-400 text-white rounded-full font-semibold hover:bg-red-700 transition-all duration-300 hover:scale-105 hover:shadow-lg">Evangelical
+                    class="sticky-btn btn-evangelical">Evangelical
                     Committee</button>
-                <button onclick="showFellowship('prayer')" id="btn-prayer"
-                    class="fellowship-nav-btn px-6 py-2 bg-gray-400 text-white rounded-full font-semibold hover:bg-yellow-600 transition-all duration-300 hover:scale-105 hover:shadow-lg">Prayer
+                <button onclick="showFellowship('prayer')" id="btn-prayer" class="sticky-btn btn-prayer">Prayer
                     Team</button>
             </div>
         </div>
-    </section>
+    </div>
 
     <!-- Men's Fellowship -->
     <section id="mens" class="fellowship-section py-20 bg-white">
@@ -1674,45 +1674,20 @@
                 console.error('Section not found:', fellowshipId);
             }
 
-            // Reset all button colors
-            const allButtons = document.querySelectorAll('.fellowship-nav-btn');
+            // Reset all buttons
+            const allButtons = document.querySelectorAll('.sticky-btn');
             allButtons.forEach(button => {
-                button.classList.remove('bg-stm-blue', 'bg-pink-500', 'bg-orange-500', 'bg-cyan-500',
-                    'bg-purple-600', 'bg-green-600', 'bg-red-600', 'bg-stm-gold');
-                button.classList.add('bg-gray-400');
+                button.classList.remove('active');
             });
 
-            // Highlight selected button with its specific color
+            // Highlight selected button
             const selectedButton = document.getElementById('btn-' + fellowshipId);
             if (selectedButton) {
-                selectedButton.classList.remove('bg-gray-400');
+                selectedButton.classList.add('active');
 
-                // Add specific color based on fellowship
-                switch (fellowshipId) {
-                    case 'mens':
-                        selectedButton.classList.add('bg-stm-blue');
-                        break;
-                    case 'womens':
-                        selectedButton.classList.add('bg-pink-500');
-                        break;
-                    case 'youth':
-                        selectedButton.classList.add('bg-orange-500');
-                        break;
-                    case 'children':
-                        selectedButton.classList.add('bg-cyan-500');
-                        break;
-                    case 'music':
-                        selectedButton.classList.add('bg-purple-600');
-                        break;
-                    case 'media':
-                        selectedButton.classList.add('bg-green-600');
-                        break;
-                    case 'evangelical':
-                        selectedButton.classList.add('bg-red-600');
-                        break;
-                    case 'prayer':
-                        selectedButton.classList.add('bg-stm-gold');
-                        break;
+                // On mobile, ensure the selected button is visible in the scroll container
+                if (window.innerWidth < 1024) {
+                    selectedButton.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
                 }
             }
         }

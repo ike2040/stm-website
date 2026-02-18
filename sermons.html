@@ -16,9 +16,11 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- AOS Animation -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- Global Responsive Fixes -->
+    <link rel="stylesheet" href="responsive-fix.css">
 
     <script>
         tailwind.config = {
@@ -138,13 +140,13 @@
                 <div class="flex items-center">
                     <a href="index.html" class="flex items-center church-name">
                         <img src="resources/church logo.jpeg" alt="STM Logo" class="h-12 w-auto">
-                        <div class="ml-3 hidden sm:block">
+                        <div class="ml-3">
                             <span
-                                class="font-display text-lg font-bold text-stm-navy block leading-tight animate-pulse-slow">Seekers
+                                class="font-display text-sm sm:text-lg font-bold text-stm-navy block leading-tight animate-pulse-slow">Seekers
                                 of
                                 the</span>
                             <span
-                                class="font-display text-lg font-bold text-stm-blue block leading-tight animate-gradient">Truth
+                                class="font-display text-sm sm:text-lg font-bold text-stm-blue block leading-tight animate-gradient">Truth
                                 Ministries</span>
                         </div>
                     </a>
