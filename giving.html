@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giving - Seekers of the Truth Ministries</title>
+    <meta name="description"
+        content="Give tithes, offerings, and donations to support the work of Seekers of the Truth Ministries. Multiple payment options available including MTN Mobile Money.">
+
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'stm-blue': '#1E40AF',
+                        'stm-navy': '#1E3A8A',
+                        'stm-light': '#3B82F6',
+                        'stm-sky': '#60A5FA',
+                        'stm-gold': '#D4AF37',
+                        'stm-gray': '#F3F4F6',
+                    },
+                    fontFamily: {
+                        'display': ['Playfair Display', 'serif'],
+                        'body': ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .nav-blur {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #1E40AF 0%, #1E3A8A 100%);
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(30, 64, 175, 0.3);
+        }
+
+        .btn-secondary {
+            border: 2px solid #1E40AF;
+            color: #1E40AF;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: #1E40AF;
+            color: white;
+        }
+
+        .giving-card {
+            transition: all 0.3s ease;
+        }
+
+        .giving-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(30, 64, 175, 0.15);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #1E40AF;
+            box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.9) 0%, rgba(30, 64, 175, 0.8) 100%);
+        }
+
+        .mtn-gradient {
+            background: linear-gradient(135deg, #FFB900 0%, #FF6B35 100%);
+        }
+
+        /* Church Name Animations */
+        .animate-pulse-slow {
+            animation: pulse-slow 3s ease-in-out infinite;
+        }
+
+        .animate-gradient {
+            background: linear-gradient(90deg, #1e40af, #3b82f6, #1e40af);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-shift 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse-slow {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.8;
+                transform: scale(1.02);
+            }
+        }
+
+        @keyframes gradient-shift {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Hover effect for church name */
+        .church-name:hover .animate-pulse-slow {
+            animation-duration: 1.5s;
+        }
+
+        .church-name:hover .animate-gradient {
+            animation-duration: 2s;
+            background: linear-gradient(90deg, #1e40af, #60a5fa, #1e40af);
+            background-size: 200% auto;
+        }
+    </style>
+</head>
+
+<body class="font-body text-gray-700 bg-white">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 nav-blur border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center church-name">
+                        <img src="resources/church logo.jpeg" alt="STM Logo" class="h-12 w-auto">
+                        <div class="ml-3 hidden sm:block">
+                            <span
+                                class="font-display text-lg font-bold text-stm-navy block leading-tight animate-pulse-slow">Seekers
+                                of
+                                the</span>
+                            <span
+                                class="font-display text-lg font-bold text-stm-blue block leading-tight animate-gradient">Truth
+                                Ministries</span>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="hidden lg:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-600 hover:text-stm-blue transition-colors">Home</a>
+                    <a href="about.html" class="text-gray-600 hover:text-stm-blue transition-colors">About</a>
+                    <a href="services.html" class="text-gray-600 hover:text-stm-blue transition-colors">Services</a>
+                    <a href="program.html" class="text-gray-600 hover:text-stm-blue transition-colors">Program</a>
+                    <a href="testimonies.html"
+                        class="text-gray-600 hover:text-stm-blue transition-colors">Testimonies</a>
+                    <a href="giving.html"
+                        class="text-stm-navy font-semibold hover:text-stm-blue transition-colors">Giving</a>
+                    <a href="contact.html" class="text-gray-600 hover:text-stm-blue transition-colors">Contact</a>
+                </div>
+
+                <div class="hidden lg:block">
+                    <a href="#give-now"
+                        class="btn-primary text-white px-6 py-3 rounded-lg font-semibold inline-block">Give Now</a>
+                </div>
+
+                <button id="mobile-menu-btn" class="lg:hidden text-stm-navy p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t">
+            <div class="px-4 py-4 space-y-3">
+                <a href="index.html" class="block text-gray-600 py-2">Home</a>
+                <a href="about.html" class="block text-gray-600 py-2">About</a>
+                <a href="services.html" class="block text-gray-600 py-2">Services</a>
+                <a href="program.html" class="block text-gray-600 py-2">Program</a>
+                <a href="testimonies.html" class="block text-gray-600 py-2">Testimonies</a>
+                <a href="giving.html" class="block text-stm-navy font-semibold py-2">Giving</a>
+                <a href="contact.html" class="block text-gray-600 py-2">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="pt-32 pb-20 bg-gradient-to-br from-stm-navy to-stm-blue relative overflow-hidden">
+        <div class="absolute inset-0">
+            <div class="absolute inset-0 bg-black/20"></div>
+            <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-stm-blue/20 to-stm-navy/20"></div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <p class="text-white/70 uppercase tracking-wider mb-4" data-aos="fade-down">Support God's Work</p>
+            <h1 class="font-display text-4xl md:text-6xl font-bold text-white mb-6" data-aos="fade-up">
+                Give Cheerfully
+            </h1>
+            <p class="text-xl text-white/80 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                "Each of you should give what you have decided in your heart to give, not reluctantly or under
+                compulsion, for God loves a cheerful giver." - 2 Corinthians 9:7
+            </p>
+        </div>
+    </section>
+
+    <!-- Giving Options -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <p class="text-stm-blue font-semibold uppercase tracking-wider mb-4">Ways to Give</p>
+                <h2 class="font-display text-4xl md:text-5xl font-bold text-stm-navy mb-6">
+                    Choose Your Giving Type
+                </h2>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto">
+                    Your generous support helps us spread the gospel, support our communities, and advance God's
+                    kingdom.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Tithe -->
+                <div data-aos="fade-up" data-aos-delay="100"
+                    class="giving-card bg-white rounded-2xl p-8 shadow-lg border-t-4 border-stm-blue">
+                    <div class="w-16 h-16 bg-stm-blue/10 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-stm-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-2xl font-bold text-stm-navy mb-4">Tithe</h3>
+                    <p class="text-gray-600 mb-6">
+                        Return to God what belongs to Him. The tithe is 10% of your income, a biblical principle of
+                        honoring God with your firstfruits.
+                    </p>
+                    <a href="#give-form"
+                        class="btn-primary text-white px-6 py-3 rounded-lg font-semibold inline-flex items-center w-full justify-center">
+                        Give Tithe
+                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- Offering -->
+                <div data-aos="fade-up" data-aos-delay="200"
+                    class="giving-card bg-white rounded-2xl p-8 shadow-lg border-t-4 border-stm-gold">
+                    <div class="w-16 h-16 bg-stm-gold/10 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-stm-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-2xl font-bold text-stm-navy mb-4">Offering</h3>
+                    <p class="text-gray-600 mb-6">
+                        Give freely as God leads you. Offerings are gifts above the tithe that support special projects
+                        and ministry needs.
+                    </p>
+                    <a href="#give-form"
+                        class="btn-primary text-white px-6 py-3 rounded-lg font-semibold inline-flex items-center w-full justify-center">
+                        Give Offering
+                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- Special Donation -->
+                <div data-aos="fade-up" data-aos-delay="300"
+                    class="giving-card bg-white rounded-2xl p-8 shadow-lg border-t-4 border-stm-light">
+                    <div class="w-16 h-16 bg-stm-light/10 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-stm-light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-2xl font-bold text-stm-navy mb-4">Special Donation</h3>
+                    <p class="text-gray-600 mb-6">
+                        Support specific initiatives like building projects, missions, or benevolence funds. Every gift
+                        makes a difference.
+                    </p>
+                    <a href="#give-form"
+                        class="btn-primary text-white px-6 py-3 rounded-lg font-semibold inline-flex items-center w-full justify-center">
+                        Donate Now
+                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MTN Mobile Money Section -->
+    <section class="py-20 bg-gradient-to-b from-stm-gray to-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-3xl shadow-xl p-8 md:p-12" data-aos="fade-up" data-aos-delay="100">
+                <div class="text-center mb-8">
+                    <div class="mtn-gradient w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                        <span class="text-white font-bold text-2xl">MTN</span>
+                    </div>
+                    <h3 class="font-display text-3xl font-bold text-stm-navy mb-4">Quick Mobile Money Transfer</h3>
+                    <p class="text-gray-600 text-lg mb-6">
+                        Use MTN Mobile Money for instant and secure giving to support God's work through STM.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 mb-8">
+                    <div class="bg-stm-gray rounded-xl p-6">
+                        <h4 class="font-display text-xl font-bold text-stm-navy mb-3">STM MOMO NUMBER</h4>
+                        <div class="flex items-center justify-center">
+                            <svg class="w-8 h-8 text-stm-blue mr-3" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
+                                </path>
+                            </svg>
+                            <span class="text-3xl font-bold text-stm-blue">+233 55 276 0091</span>
+                        </div>
+                        <p class="text-gray-500 text-sm mt-3">Save this number for quick giving</p>
+                    </div>
+
+                    <div class="bg-stm-gray rounded-xl p-6">
+                        <h4 class="font-display text-xl font-bold text-stm-navy mb-3">How to Give</h4>
+                        <ol class="space-y-3 text-gray-600">
+                            <li class="flex items-start">
+                                <span class="font-semibold text-stm-blue mr-2">1.</span>
+                                <span>Dial *170# and select option 2 (Send Money)</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="font-semibold text-stm-blue mr-2">2.</span>
+                                <span>Enter STM MOMO NUMBER: +233 55 276 0091</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="font-semibold text-stm-blue mr-2">3.</span>
+                                <span>Enter amount and confirm with your PIN</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="font-semibold text-stm-blue mr-2">4.</span>
+                                <span>Reference: Use your name + purpose (e.g., "John Doe - Tithe")</span>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="bg-yellow-50 border-l-4 border-yellow-400 p-6 rounded-r-lg">
+                    <div class="flex items-start">
+                        <svg class="w-6 h-6 text-yellow-600 mr-3 mt-1" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z">
+                            </path>
+                        </svg>
+                        <div>
+                            <h4 class="font-semibold text-stm-navy mb-2">Important Note</h4>
+                            <p class="text-gray-600 text-sm">
+                                Always verify the STM MOMO NUMBER before sending. For security, never share your PIN
+                                with anyone.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Giving Form -->
+    <section id="give-form" class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <p class="text-stm-blue font-semibold uppercase tracking-wider mb-4">Give Online</p>
+                <h2 class="font-display text-4xl md:text-5xl font-bold text-stm-navy mb-6">
+                    Secure Online Giving
+                </h2>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto">
+                    Fill out the form below to make your secure donation. All transactions are encrypted and protected.
+                </p>
+            </div>
+
+            <div class="bg-white rounded-3xl shadow-xl p-8 md:p-12" data-aos="fade-up" data-aos-delay="100">
+                <form id="giving-form" class="space-y-6" action="https://formspree.io/f/mkovjzog" method="POST">
+                    <input type="hidden" name="form_type" value="Online Giving">
+                    <input type="hidden" name="subject" value="New Giving Intent - STM Website">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-stm-navy font-semibold mb-2">Full Name *</label>
+                            <input type="text" name="fullName" required
+                                class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-stm-blue/20 transition-colors"
+                                placeholder="Enter your full name">
+                        </div>
+                        <div>
+                            <label class="block text-stm-navy font-semibold mb-2">Email Address</label>
+                            <input type="email" name="email"
+                                class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-stm-blue/20 transition-colors"
+                                placeholder="your.email@example.com">
+                        </div>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-stm-navy font-semibold mb-2">Phone Number</label>
+                            <input type="tel" name="phone"
+                                class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-stm-blue/20 transition-colors"
+                                placeholder="+233 XX XXX XXXX">
+                        </div>
+                        <div>
+                            <label class="block text-stm-navy font-semibold mb-2">Branch/Location</label>
+                            <select name="branch"
+                                class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-stm-blue/20 transition-colors">
+                                <option value="">Select your branch</option>
+                                <option value="headquarters">Headquarters</option>
+                                <option value="kasoa">Kasoa</option>
+                                <option value="yeji">Yeji</option>
+                                <option value="nkwanta">Nkwanta</option>
+                                <option value="swedru">Swedru</option>
+                                <option value="atebubu">Atebubu</option>
+                                <option value="abetifi">Abetifi</option>
+                                <option value="kwadoagya">Kwadoagya</option>
+                                <option value="diaspora">Diaspora/Online</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-stm-navy font-semibold mb-2">Giving Type *</label>
+                        <select name="givingType" required
+                            class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-stm-blue/20 transition-colors">
+                            <option value="">Select giving type</option>
+                            <option value="tithe">Tithe</option>
+                            <option value="offering">Offering</option>
+                            <option value="donation">Special Donation</option>
+                            <option value="building">Building Fund</option>
+                            <option value="missions">Missions</option>
+                            <option value="benevolence">Benevolence</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-stm-navy font-semibold mb-2">Amount (GHS) *</label>
+                        <div class="relative">
+                            <input type="number" name="amount" required min="1" step="0.01"
+                                class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-stm-blue/20 transition-colors text-lg"
+                                placeholder="0.00">
+                            <div class="absolute inset-y-0 right-0 flex items-center pr-4">
+                                <span class="text-gray-500 font-semibold">GHS</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-stm-navy font-semibold mb-2">Payment Method *</label>
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                            <label
+                                class="flex items-center p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-stm-blue hover:bg-stm-blue/5 transition-colors">
+                                <input type="radio" name="payment" value="momo" class="sr-only" required>
+                                <div class="text-center">
+                                    <div
+                                        class="w-8 h-8 bg-yellow-100 rounded-lg flex items-center justify-center mx-auto mb-2">
+                                        <span class="text-yellow-600 font-bold text-sm">MTN</span>
+                                    </div>
+                                    <span class="text-sm font-medium">Mobile Money</span>
+                                </div>
+                            </label>
+                            <label
+                                class="flex items-center p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-stm-blue hover:bg-stm-blue/5 transition-colors">
+                                <input type="radio" name="payment" value="card" class="sr-only">
+                                <div class="text-center">
+                                    <div
+                                        class="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center mx-auto mb-2">
+                                        <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M3 10h18M7 15h1m4 0h1m-7 4h1m4 0h1m-7 4h1m4 0h1"></path>
+                                        </svg>
+                                    </div>
+                                    <span class="text-sm font-medium">Card</span>
+                                </div>
+                            </label>
+                            <label
+                                class="flex items-center p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-stm-blue hover:bg-stm-blue/5 transition-colors">
+                                <input type="radio" name="payment" value="bank" class="sr-only">
+                                <div class="text-center">
+                                    <div
+                                        class="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center mx-auto mb-2">
+                                        <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4">
+                                            </path>
+                                        </svg>
+                                    </div>
+                                    <span class="text-sm font-medium">Bank Transfer</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Mobile Money Instructions (Hidden by default) -->
+                    <div id="momo-instructions"
+                        class="hidden bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-r-lg">
+                        <div class="flex items-start">
+                            <svg class="w-6 h-6 text-yellow-600 mr-3 mt-1" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <div>
+                                <h4 class="font-semibold text-stm-navy mb-2">Mobile Money Instructions</h4>
+                                <ol class="text-sm text-gray-600 space-y-1">
+                                    <li>1. Dial <strong>*170#</strong> and select option 2 (Send Money)</li>
+                                    <li>2. Enter STM MOMO NUMBER: <strong>+233 55 276 0091</strong></li>
+                                    <li>3. Enter amount: <span id="momo-amount-display" class="font-bold">GHS
+                                            0.00</span></li>
+                                    <li>4. Reference: Use your name + giving type</li>
+                                    <li>5. Confirm with your PIN</li>
+                                </ol>
+                                <p class="text-xs text-gray-500 mt-2">After sending, submit this form to record your
+                                    giving.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-stm-navy font-semibold mb-2">Additional Notes (Optional)</label>
+                        <textarea name="notes" rows="3"
+                            class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-stm-blue/20 transition-colors resize-none"
+                            placeholder="Any special instructions or prayer requests..."></textarea>
+                    </div>
+
+                    <div>
+                        <label class="block text-stm-navy font-semibold mb-2">Anonymous Giving</label>
+                        <div class="flex items-center space-x-3">
+                            <input type="checkbox" name="anonymous" id="anonymous-giving"
+                                class="w-4 h-4 text-stm-blue border-gray-300 rounded focus:ring-stm-blue">
+                            <label for="anonymous-giving" class="text-gray-600">
+                                I prefer to give anonymously (name will not be shared)
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                        <button type="submit"
+                            class="btn-primary text-white px-8 py-4 rounded-lg font-semibold text-lg flex-1">
+                            Complete Donation
+                        </button>
+                        <button type="button" id="clear-form"
+                            class="btn-secondary px-8 py-4 rounded-lg font-semibold text-lg flex-1">
+                            Clear Form
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scripture Encouragement -->
+    <section class="py-20 bg-stm-navy text-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="bg-white/10 backdrop-blur rounded-3xl p-8 md:p-12" data-aos="fade-up">
+                <svg class="w-16 h-16 mx-auto mb-6 text-stm-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
+                    </path>
+                </svg>
+                <h3 class="font-display text-3xl font-bold mb-6">The Principle of Giving</h3>
+                <p class="text-xl text-white/90 mb-6 italic">
+                    "Bring the whole tithe into the storehouse, that there may be food in my house. Test me in this,"
+                    says the LORD Almighty, "and see if I will not throw open the floodgates of heaven and pour out so
+                    much blessing that there will not be room enough to store it."
+                </p>
+                <p class="text-lg text-white/80">- Malachi 3:10 (NIV)</p>
+                <p class="text-white/70 mt-8">
+                    God promises to bless those who honor Him with their finances. Your giving opens the door for divine
+                    provision and blessing in your life.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-stm-navy text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <div>
+                    <img src="resources/church logo.jpeg" alt="STM Logo" class="h-16 w-auto mb-6">
+                    <p class="text-white/70 mb-6">
+                        Seekers of the Truth Ministries is dedicated to spreading God's Word and building a community of
+                        believers.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="https://www.facebook.com/share/1De5bEGP2S/?mibextid=wwXIfr" target="_blank"
+                            class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-stm-blue transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                            </svg>
+                        </a>
+                        <a href="https://www.tiktok.com/@stmghana" target="_blank"
+                            class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-stm-blue transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                            </svg>
+                        </a>
+                        <a href="https://youtube.com/@apostlesammynkansah?si=eWnXuTrvj4nrMnlY" target="_blank"
+                            class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-stm-blue transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.071 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-display text-xl font-bold mb-6">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><a href="about.html" class="text-white/70 hover:text-white transition-colors">About Us</a>
+                        </li>
+                        <li><a href="services.html"
+                                class="text-white/70 hover:text-white transition-colors">Services</a></li>
+                        <li><a href="program.html" class="text-white/70 hover:text-white transition-colors">Program</a>
+                        </li>
+                        <li><a href="testimonies.html"
+                                class="text-white/70 hover:text-white transition-colors">Testimonies</a></li>
+                        <li><a href="giving.html" class="text-white/70 hover:text-white transition-colors">Giving</a>
+                        </li>
+                        <li><a href="branches.html"
+                                class="text-white/70 hover:text-white transition-colors">Branches</a></li>
+                        <li><a href="contact.html" class="text-white/70 hover:text-white transition-colors">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-display text-xl font-bold mb-6">Service Times</h4>
+                    <ul class="space-y-3 text-white/70">
+                        <li><span class="font-semibold text-white">Saturday:</span> Main Service - 9:30 AM</li>
+                        <li><span class="font-semibold text-white">Tuesday:</span> Counselling - 10:00 AM - 2:00 PM</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-display text-xl font-bold mb-6">Contact Us</h4>
+                    <ul class="space-y-3 text-white/70">
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 mr-3 mt-1 text-stm-blue" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                </path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            Tafo, Kumasi, Ghana
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 mr-3 text-stm-blue" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                                </path>
+                            </svg>
+                            <a href="mailto:info.stmghana@gmail.com"
+                                class="hover:text-white transition-colors">info.stmghana@gmail.com</a>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 mr-3 text-stm-blue" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
+                                </path>
+                            </svg>
+                            <a href="tel:+233244703250" class="hover:text-white transition-colors">+233 24 470 3250</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-white/10 pt-8 text-center">
+                <p class="text-white/50">
+                    © 2026 Seekers of the Truth Ministries. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="stm-main.js"></script>
+    <script>
+            // Direct mobile menu fix - ensures button works immediately
+            (function () {
+                const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+                const mobileMenu = document.getElementById('mobile-menu');
+
+                if (mobileMenuBtn && mobileMenu) {
+                    // Remove any existing click handlers
+                    mobileMenuBtn.onclick = null;
+
+                    // Add fresh click handler
+                    mobileMenuBtn.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+
+                        // Toggle hidden class
+                        if (mobileMenu.classList.contains('hidden')) {
+                            mobileMenu.classList.remove('hidden');
+                            // Change to X icon
+                            mobileMenuBtn.innerHTML = '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>';
+                        } else {
+                            mobileMenu.classList.add('hidden');
+                            // Change back to hamburger icon
+                            mobileMenuBtn.innerHTML = '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>';
+                        }
+                    });
+
+                    // Close menu when clicking any link
+                    const menuLinks = mobileMenu.querySelectorAll('a');
+                    menuLinks.forEach(function (link) {
+                        link.addEventListener('click', function () {
+                            mobileMenu.classList.add('hidden');
+                            mobileMenuBtn.innerHTML = '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>';
+                        });
+                    });
+
+                    console.log('Mobile menu initialized successfully on giving page');
+                } else {
+                    console.error('Mobile menu elements not found on giving page');
+                }
+            })();
+    </script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        // Giving form submission
+        document.getElementById('giving-form').addEventListener('submit', function (e) {
+            e.preventDefault(); // Prevent default form submission
+
+            // Show loading notification
+            showNotification('Your giving information is being submitted...', 'info');
+
+            // Get form data
+            const formData = new FormData(this);
+            const submitButton = this.querySelector('button[type="submit"]');
+            const originalButtonText = submitButton.innerHTML;
+
+            // Disable button and show loading state
+            submitButton.disabled = true;
+            submitButton.innerHTML = `
+                <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Processing...
+            `;
+
+            // Submit to Formspree
+            fetch(this.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+                .then(response => {
+                    if (response.ok) {
+                        // Success - show beautiful success message
+                        showGivingSuccessNotification();
+                        this.reset();
+
+                        // Hide mobile money instructions if visible
+                        document.getElementById('momo-instructions').classList.add('hidden');
+                        // Reset payment method styling
+                        document.querySelectorAll('input[name="payment"]').forEach(r => {
+                            r.closest('label').classList.remove('border-stm-blue', 'bg-stm-blue/10');
+                            r.closest('label').classList.add('border-gray-200');
+                        });
+
+                        // Scroll to top of giving section
+                        document.getElementById('giving').scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    } else {
+                        throw new Error('Form submission failed');
+                    }
+                })
+                .catch(error => {
+                    // Error handling
+                    showNotification('Oops! Something went wrong. Please try again.', 'error');
+                })
+                .finally(() => {
+                    // Restore button
+                    submitButton.disabled = false;
+                    submitButton.innerHTML = originalButtonText;
+                });
+        });
+
+        // Custom giving success notification
+        function showGivingSuccessNotification() {
+            // Remove existing notifications
+            const existingNotification = document.querySelector('.notification');
+            if (existingNotification) {
+                existingNotification.remove();
+            }
+
+            // Create beautiful success notification
+            const notification = document.createElement('div');
+            notification.className = 'notification fixed top-24 right-4 z-50 p-0 rounded-2xl shadow-2xl max-w-md transform transition-all duration-500 translate-x-full overflow-hidden';
+            notification.innerHTML = `
+                <div class="bg-gradient-to-r from-emerald-500 to-teal-600 p-6 text-white">
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0">
+                            <div class="flex items-center justify-center w-12 h-12 bg-white/20 rounded-full backdrop-blur-sm">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="ml-4 flex-1">
+                            <h3 class="text-lg font-bold mb-1">Thank You for Your Giving!</h3>
+                            <p class="text-white/90 text-sm leading-relaxed">
+                                Your generous offering has been received! Your partnership helps us advance God's kingdom and blesses countless lives. May God multiply your seed sown in faith.
+                            </p>
+                            <div class="mt-3 flex items-center text-white/80 text-xs">
+                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
+                                </svg>
+                                God loves a cheerful giver
+                            </div>
+                        </div>
+                        <button onclick="this.closest('.notification').remove()" class="ml-4 text-white/70 hover:text-white transition-colors">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="bg-white p-4 border-t border-emerald-100">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center text-gray-600 text-sm">
+                            <svg class="w-4 h-4 mr-2 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                            </svg>
+                            <span>Sowing into God's kingdom</span>
+                        </div>
+                        <div class="text-xs text-gray-500">
+                            STM Finance Team
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // Add to page
+            document.body.appendChild(notification);
+
+            // Animate in
+            setTimeout(() => {
+                notification.classList.remove('translate-x-full');
+                notification.classList.add('translate-x-0');
+            }, 100);
+
+            // Remove after 8 seconds and refresh page
+            setTimeout(() => {
+                notification.classList.add('translate-x-full');
+                setTimeout(() => {
+                    notification.remove();
+                    // Refresh page after notification disappears
+                    window.location.reload();
+                }, 500);
+            }, 8000);
+        }
+
+        // Payment method selection with mobile money integration
+        document.querySelectorAll('input[name="payment"]').forEach(radio => {
+            radio.addEventListener('change', function () {
+                // Reset all payment method styling
+                document.querySelectorAll('input[name="payment"]').forEach(r => {
+                    r.closest('label').classList.remove('border-stm-blue', 'bg-stm-blue/10');
+                    r.closest('label').classList.add('border-gray-200');
+                });
+
+                // Highlight selected payment method
+                if (this.checked) {
+                    this.closest('label').classList.remove('border-gray-200');
+                    this.closest('label').classList.add('border-stm-blue', 'bg-stm-blue/10');
+                }
+
+                // Show/hide mobile money instructions
+                const momoInstructions = document.getElementById('momo-instructions');
+                if (this.value === 'momo') {
+                    momoInstructions.classList.remove('hidden');
+                    updateMomoAmount();
+                } else {
+                    momoInstructions.classList.add('hidden');
+                }
+            });
+        });
+
+        // Update mobile money amount display
+        function updateMomoAmount() {
+            const amountInput = document.querySelector('input[name="amount"]');
+            const amountDisplay = document.getElementById('momo-amount-display');
+
+            if (amountInput && amountDisplay) {
+                amountInput.addEventListener('input', function () {
+                    const amount = parseFloat(this.value) || 0;
+                    amountDisplay.textContent = `GHS ${amount.toFixed(2)}`;
+                });
+            }
+        }
+
+        // Initialize amount display listener
+        updateMomoAmount();
+
+        // Notification function
+        function showNotification(message, type = 'info') {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.className = `notification fixed top-4 right-4 z-50 p-4 rounded-lg shadow-lg transform transition-all duration-300 translate-x-full`;
+
+            // Style based on type
+            const styles = {
+                success: 'bg-green-500 text-white',
+                error: 'bg-red-500 text-white',
+                info: 'bg-blue-500 text-white'
+            };
+
+            notification.classList.add(...styles[type].split(' '));
+            notification.innerHTML = `
+                <div class="flex items-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <span class="font-medium">${message}</span>
+                </div>
+            `;
+
+            // Add to page
+            document.body.appendChild(notification);
+
+            // Animate in
+            setTimeout(() => {
+                notification.classList.remove('translate-x-full');
+                notification.classList.add('translate-x-0');
+            }, 100);
+
+            // Remove after 5 seconds
+            setTimeout(() => {
+                notification.classList.add('translate-x-full');
+                setTimeout(() => {
+                    notification.remove();
+                }, 300);
+            }, 5000);
+        }
+
+        // Clear form button
+        document.getElementById('clear-form').addEventListener('click', function () {
+            document.getElementById('giving-form').reset();
+        });
+
+        // Payment method selection styling
+        document.querySelectorAll('input[name="payment"]').forEach(radio => {
+            radio.addEventListener('change', function () {
+                document.querySelectorAll('input[name="payment"]').forEach(r => {
+                    r.closest('label').classList.remove('border-stm-blue', 'bg-stm-blue/10');
+                    r.closest('label').classList.add('border-gray-200');
+                });
+                if (this.checked) {
+                    this.closest('label').classList.remove('border-gray-200');
+                    this.closest('label').classList.add('border-stm-blue', 'bg-stm-blue/10');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

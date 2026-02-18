@@ -1,0 +1,1497 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Branches - Seekers of the Truth Ministries</title>
+    <meta name="description"
+        content="Find a Seekers of the Truth Ministries branch near you. We have branches in Kasoa, Yeji, Nkwanta, Swedru, Atebubu, Abetifi, and a Diaspora branch.">
+
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- Google Maps API -->
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'stm-blue': '#1E40AF',
+                        'stm-navy': '#1E3A8A',
+                        'stm-light': '#3B82F6',
+                        'stm-sky': '#60A5FA',
+                        'stm-gold': '#D4AF37',
+                        'stm-gray': '#F3F4F6',
+                    },
+                    fontFamily: {
+                        'display': ['Playfair Display', 'serif'],
+                        'body': ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .nav-blur {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #1E40AF 0%, #1E3A8A 100%);
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(30, 64, 175, 0.3);
+        }
+
+        .btn-secondary {
+            border: 2px solid #1E40AF;
+            color: #1E40AF;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: #1E40AF;
+            color: white;
+        }
+
+        .branch-card {
+            transition: all 0.3s ease;
+        }
+
+        .branch-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(30, 64, 175, 0.15);
+        }
+
+        .map-container {
+            background: linear-gradient(135deg, #1E40AF 0%, #1E3A8A 100%);
+        }
+
+        #branch-map {
+            height: 500px;
+            width: 100%;
+            border-radius: 1rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        /* Church Name Animations */
+        .animate-pulse-slow {
+            animation: pulse-slow 3s ease-in-out infinite;
+        }
+
+        .animate-gradient {
+            background: linear-gradient(90deg, #1e40af, #3b82f6, #1e40af);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-shift 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse-slow {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.8;
+                transform: scale(1.02);
+            }
+        }
+
+        @keyframes gradient-shift {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Hover effect for church name */
+        .church-name:hover .animate-pulse-slow {
+            animation-duration: 1.5s;
+        }
+
+        .church-name:hover .animate-gradient {
+            animation-duration: 2s;
+            background: linear-gradient(90deg, #1e40af, #60a5fa, #1e40af);
+            background-size: 200% auto;
+        }
+    </style>
+</head>
+
+<body class="font-body text-gray-700 bg-white">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 nav-blur border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center church-name">
+                        <img src="resources/church logo.jpeg" alt="STM Logo" class="h-12 w-auto">
+                        <div class="ml-3 hidden sm:block">
+                            <span
+                                class="font-display text-lg font-bold text-stm-navy block leading-tight animate-pulse-slow">Seekers
+                                of
+                                the</span>
+                            <span
+                                class="font-display text-lg font-bold text-stm-blue block leading-tight animate-gradient">Truth
+                                Ministries</span>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="hidden lg:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-600 hover:text-stm-blue transition-colors">Home</a>
+                    <a href="about.html" class="text-gray-600 hover:text-stm-blue transition-colors">About</a>
+                    <a href="services.html" class="text-gray-600 hover:text-stm-blue transition-colors">Services</a>
+                    <a href="sermons.html" class="text-gray-600 hover:text-stm-blue transition-colors">Sermons</a>
+                    <a href="testimonies.html"
+                        class="text-gray-600 hover:text-stm-blue transition-colors">Testimonies</a>
+                    <a href="giving.html" class="text-gray-600 hover:text-stm-blue transition-colors">Giving</a>
+                    <a href="fellowships.html"
+                        class="text-gray-600 hover:text-stm-blue transition-colors">Fellowships</a>
+                    <a href="program.html" class="text-gray-600 hover:text-stm-blue transition-colors">Program</a>
+                    <a href="branches.html"
+                        class="text-stm-navy font-semibold hover:text-stm-blue transition-colors">Branches</a>
+                    <a href="contact.html" class="text-gray-600 hover:text-stm-blue transition-colors">Contact</a>
+                </div>
+
+                <div class="hidden lg:block">
+                    <a href="contact.html"
+                        class="btn-primary text-white px-6 py-3 rounded-lg font-semibold inline-block">Join Us</a>
+                </div>
+
+                <button id="mobile-menu-btn" class="lg:hidden text-stm-navy p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t">
+            <div class="px-4 py-4 space-y-3">
+                <a href="index.html" class="block text-gray-600 py-2">Home</a>
+                <a href="about.html" class="block text-gray-600 py-2">About</a>
+                <a href="services.html" class="block text-gray-600 py-2">Services</a>
+                <a href="sermons.html" class="block text-gray-600 py-2">Sermons</a>
+                <a href="testimonies.html" class="block text-gray-600 py-2">Testimonies</a>
+                <a href="giving.html" class="block text-gray-600 py-2">Giving</a>
+                <a href="fellowships.html" class="block text-gray-600 py-2">Fellowships</a>
+                <a href="program.html" class="block text-gray-600 py-2">Program</a>
+                <a href="branches.html" class="block text-stm-navy font-semibold py-2">Branches</a>
+                <a href="contact.html" class="block text-gray-600 py-2">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="pt-32 pb-20 bg-gradient-to-br from-stm-navy to-stm-blue">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-white/70 uppercase tracking-wider mb-4" data-aos="fade-down">Our Locations</p>
+            <h1 class="font-display text-4xl md:text-6xl font-bold text-white mb-6" data-aos="fade-up">
+                Church Branches
+            </h1>
+            <p class="text-xl text-white/80 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                Find a Seekers of the Truth Ministries branch near you. We're expanding to reach more communities with
+                God's truth.
+            </p>
+        </div>
+    </section>
+
+    <!-- Map Overview -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <p class="text-stm-blue font-semibold uppercase tracking-wider mb-4">Find Us</p>
+                <h2 class="font-display text-4xl md:text-5xl font-bold text-stm-navy mb-6">
+                    Our Locations Across Ghana
+                </h2>
+            </div>
+
+            <!-- Interactive Google Map -->
+            <div data-aos="fade-up" data-aos-delay="100" class="bg-white rounded-3xl p-8 shadow-2xl mb-12">
+                <div class="text-center mb-8">
+                    <h3 class="font-display text-3xl font-bold text-stm-navy mb-4">Our Branch Locations</h3>
+                    <p class="text-gray-600 text-lg">
+                        Click on any marker to see branch details and get directions
+                    </p>
+                </div>
+                <div id="branch-map" class="mb-6"></div>
+                <div class="flex flex-wrap justify-center gap-3">
+                    <button onclick="centerMap('kasoa')"
+                        class="px-4 py-2 bg-stm-blue text-white rounded-lg hover:bg-stm-navy transition-colors text-sm font-medium">
+                        Kasoa
+                    </button>
+                    <button onclick="centerMap('yeji')"
+                        class="px-4 py-2 bg-stm-light text-white rounded-lg hover:bg-stm-blue transition-colors text-sm font-medium">
+                        Yeji
+                    </button>
+                    <button onclick="centerMap('nkwanta')"
+                        class="px-4 py-2 bg-stm-navy text-white rounded-lg hover:bg-stm-blue transition-colors text-sm font-medium">
+                        Nkwanta
+                    </button>
+
+                    <button onclick="centerMap('swedru')"
+                        class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors text-sm font-medium">
+                        Swedru
+                    </button>
+                    <button onclick="centerMap('atebubu')"
+                        class="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors text-sm font-medium">
+                        Atebubu
+                    </button>
+                    <button onclick="centerMap('abetifi')"
+                        class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm font-medium">
+                        Abetifi
+                    </button>
+                    <button onclick="centerMap('tafo')"
+                        class="px-4 py-2 bg-stm-gold text-white rounded-lg hover:bg-yellow-600 transition-colors text-sm font-medium">
+                        Headquarters (Tafo)
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Branch Cards -->
+    <section class="py-20 bg-gradient-to-b from-stm-gray to-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Kasoa Branch -->
+                <div data-aos="fade-up" data-aos-delay="100"
+                    class="branch-card bg-white rounded-2xl overflow-hidden shadow-lg transform transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+                    <div
+                        class="h-48 bg-gradient-to-br from-stm-blue to-stm-navy flex items-center justify-center relative overflow-hidden group">
+                        <div
+                            class="absolute inset-0 bg-white/10 transform -skew-x-12 translate-x-full group-hover:translate-x-[-200%] transition-transform duration-1000">
+                        </div>
+                        <div class="text-center text-white relative z-10">
+                            <svg class="w-16 h-16 mx-auto mb-2 transform transition-transform duration-300 group-hover:scale-110"
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                    d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4">
+                                </path>
+                            </svg>
+                            <span class="text-2xl font-bold">Kasoa</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <span
+                                class="px-3 py-1 bg-stm-blue/10 text-stm-blue rounded-full text-sm font-semibold">Central
+                                Region</span>
+                        </div>
+                        <h3 class="font-display text-2xl font-bold text-stm-navy mb-4">Kasoa Branch</h3>
+                        <p class="text-stm-blue font-semibold mb-4">Pastor Augustine</p>
+
+                        <div class="space-y-3 mb-6">
+                            <div class="flex items-center text-gray-600">
+                                <svg class="w-5 h-5 mr-3 text-stm-blue" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                    </path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                                <span>Kasoa, Central Region</span>
+                            </div>
+                            <div class="flex items-center text-gray-600">
+                                <svg class="w-5 h-5 mr-3 text-stm-blue" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <span>Saturday: 9:30 AM - 1:30 PM</span>
+                            </div>
+                            <div class="flex items-center text-gray-600">
+                                <svg class="w-5 h-5 mr-3 text-stm-blue" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
+                                    </path>
+                                </svg>
+                                <span>+233 24 644 5696</span>
+                            </div>
+                        </div>
+
+                        <div class="space-y-3">
+                            <a href="tel:+233246445696"
+                                class="btn-primary text-white px-6 py-3 rounded-lg font-semibold inline-flex items-center w-full justify-center hover:scale-105 transition-transform duration-300">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
+                                    </path>
+                                </svg>
+                                Call Branch
+                            </a>
+                            <a href="https://maps.google.com/?q=Kasoa,Central+Region,Ghana" target="_blank"
+                                onclick="handleDirectionsClick('kasoa')"
+                                class="btn-secondary px-6 py-3 rounded-lg font-semibold inline-flex items-center w-full justify-center hover:scale-105 transition-transform duration-300">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                    </path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                                Get Directions
+                            </a>
+                            <a href="contact.html?branch=kasoa"
+                                class="btn-secondary px-6 py-3 rounded-lg font-semibold inline-flex items-center w-full justify-center hover:scale-105 transition-transform duration-300">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                                </svg>
+                                Send Message
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Yeji Branch -->
+                <div data-aos="fade-up" data-aos-delay="150"
+                    class="branch-card bg-white rounded-2xl overflow-hidden shadow-lg transform transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+                    <div
+                        class="h-48 bg-gradient-to-br from-stm-light to-stm-blue flex items-center justify-center relative overflow-hidden group">
+                        <div
+                            class="absolute inset-0 bg-white/10 transform -skew-x-12 translate-x-full group-hover:translate-x-[-200%] transition-transform duration-1000">
+                        </div>
+                        <div class="text-center text-white relative z-10">
+                            <svg class="w-16 h-16 mx-auto mb-2 transform transition-transform duration-300 group-hover:scale-110"
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                    d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4">
+                                </path>
+                            </svg>
+                            <span class="text-2xl font-bold">Yeji</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <span
+                                class="px-3 py-1 bg-stm-light/10 text-stm-light rounded-full text-sm font-semibold">Bono
+                                East Region</span>
+                        </div>
+                        <h3 class="font-display text-2xl font-bold text-stm-navy mb-4">Yeji Branch</h3>
+                        <p class="text-stm-blue font-semibold mb-4">Elder John</p>
+
+                        <div class="space-y-3 mb-6">
+                            <div class="flex items-center text-gray-600">
+                                <svg class="w-5 h-5 mr-3 text-stm-light" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                    </path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                                <span>Yeji, Bono East Region</span>
+                            </div>
+                            <div class="flex items-center text-gray-600">
+                                <svg class="w-5 h-5 mr-3 text-stm-light" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <span>Saturday: 9:30 AM - 1:30 PM</span>
+                            </div>
+                            <div class="flex items-center text-gray-600">
+                                <svg class="w-5 h-5 mr-3 text-stm-light" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
+                                    </path>
+                                </svg>
+                                <span>+233 24 319 2686</span>
+                            </div>
+                        </div>
+
+                        <div class="space-y-3">
+                            <a href="tel:+233243192686"
+                                class="btn-primary text-white px-6 py-3 rounded-lg font-semibold inline-flex items-center w-full justify-center hover:scale-105 transition-transform duration-300">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
+                                    </path>
+                                </svg>
+                                Call Branch
+                            </a>
+                            <a href="https://maps.google.com/?q=Yeji,Bono+East+Region,Ghana" target="_blank"
+                                onclick="handleDirectionsClick('yeji')"
+                                class="btn-secondary px-6 py-3 rounded-lg font-semibold inline-flex items-center w-full justify-center hover:scale-105 transition-transform duration-300">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                    </path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                                Get Directions
+                            </a>
+                            <a href="contact.html?branch=yeji"
+                                class="btn-secondary px-6 py-3 rounded-lg font-semibold inline-flex items-center w-full justify-center hover:scale-105 transition-transform duration-300">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                                </svg>
+                                Send Message
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Nkwanta Branch -->
+                <div data-aos="fade-up" data-aos-delay="200"
+                    class="branch-card bg-white rounded-2xl overflow-hidden shadow-lg transform transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+                    <div
+                        class="h-48 bg-gradient-to-br from-stm-navy to-stm-blue flex items-center justify-center relative overflow-hidden group">
+                        <div
+                            class="absolute inset-0 bg-white/10 transform -skew-x-12 translate-x-full group-hover:translate-x-[-200%] transition-transform duration-1000">
+                        </div>
+                        <div class="text-center text-white relative z-10">
+                            <svg class="w-16 h-16 mx-auto mb-2 transform transition-transform duration-300 group-hover:scale-110"
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                    d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4">
+                                </path>
+                            </svg>
+                            <span class="text-2xl font-bold">Nkwanta</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <span
+                                class="px-3 py-1 bg-stm-navy/10 text-stm-navy rounded-full text-sm font-semibold">Volta
+                                Region</span>
+                        </div>
+                        <h3 class="font-display text-2xl font-bold text-stm-navy mb-4">Nkwanta Branch</h3>
+                        <p class="text-stm-blue font-semibold mb-4">Evangelist John Tabiri</p>
+
+                        <div class="space-y-3 mb-6">
+                            <div class="flex items-center text-gray-600">
+                                <svg class="w-5 h-5 mr-3 text-stm-navy" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                    </path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                                <span>Nkwanta, Volta Region</span>
+                            </div>
+                            <div class="flex items-center text-gray-600">
+                                <svg class="w-5 h-5 mr-3 text-stm-navy" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <span>Saturday: 9:30 AM - 1:30 PM</span>
+                            </div>
+                            <div class="flex items-center text-gray-600">
+                                <svg class="w-5 h-5 mr-3 text-stm-navy" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
+                                    </path>
+                                </svg>
+                                <span>+233 54 686 4880</span>
+                            </div>
+                        </div>
+
+                        <div class="space-y-3">
+                            <a href="tel:+233546864880"
+                                class="btn-primary text-white px-6 py-3 rounded-lg font-semibold inline-flex items-center w-full justify-center hover:scale-105 transition-transform duration-300">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
+                                    </path>
+                                </svg>
+                                Call Branch
+                            </a>
+                            <a href="https://maps.google.com/?q=Nkwanta,Volta+Region,Ghana" target="_blank"
+                                onclick="handleDirectionsClick('nkwanta')"
+                                class="btn-secondary px-6 py-3 rounded-lg font-semibold inline-flex items-center w-full justify-center hover:scale-105 transition-transform duration-300">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                    </path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                                Get Directions
+                            </a>
+                            <a href="contact.html?branch=nkwanta"
+                                class="btn-secondary px-6 py-3 rounded-lg font-semibold inline-flex items-center w-full justify-center hover:scale-105 transition-transform duration-300">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                                </svg>
+                                Send Message
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div data-aos="fade-up" data-aos-delay="250"
+                    class="branch-card bg-white rounded-2xl overflow-hidden shadow-lg transform transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+                    <div
+                        class="h-48 bg-gradient-to-br from-teal-600 to-stm-blue flex items-center justify-center relative overflow-hidden group">
+                        <div
+                            class="absolute inset-0 bg-white/10 transform -skew-x-12 translate-x-full group-hover:translate-x-[-200%] transition-transform duration-1000">
+                        </div>
+                        <div class="text-center text-white relative z-10">
+                            <svg class="w-16 h-16 mx-auto mb-2 transform transition-transform duration-300 group-hover:scale-110"
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                    d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4">
+                                </path>
+                            </svg>
+                            <span class="text-2xl font-bold">Swedru</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <span class="px-3 py-1 bg-teal-100 text-teal-700 rounded-full text-sm font-semibold">Central
+                                Region</span>
+                        </div>
+                        <h3 class="font-display text-2xl font-bold text-stm-navy mb-4">Swedru Branch</h3>
+                        <p class="text-stm-blue font-semibold mb-4">Pastor Annan</p>
+
+                        <div class="space-y-3 mb-6">
+                            <div class="flex items-center text-gray-600">
+                                <svg class="w-5 h-5 mr-3 text-teal-600" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                    </path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                                <span>Swedru, Central Region</span>
+                            </div>
+                            <div class="flex items-center text-gray-600">
+                                <svg class="w-5 h-5 mr-3 text-teal-600" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <span>Saturday: 9:30 AM - 1:30 PM</span>
+                            </div>
+                            <div class="flex items-center text-gray-600">
+                                <svg class="w-5 h-5 mr-3 text-teal-600" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
+                                    </path>
+                                </svg>
+                                <span>+233 54 626 4729</span>
+                            </div>
+                        </div>
+
+                        <div class="space-y-3">
+                            <a href="tel:+233546264729"
+                                class="btn-primary text-white px-6 py-3 rounded-lg font-semibold inline-flex items-center w-full justify-center hover:scale-105 transition-transform duration-300">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
+                                    </path>
+                                </svg>
+                                Call Branch
+                            </a>
+                            <a href="https://maps.google.com/?q=Swedru,Central+Region,Ghana" target="_blank"
+                                onclick="handleDirectionsClick('swedru')"
+                                class="btn-secondary px-6 py-3 rounded-lg font-semibold inline-flex items-center w-full justify-center hover:scale-105 transition-transform duration-300">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                    </path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                                Get Directions
+                            </a>
+                            <a href="contact.html"
+                                class="btn-secondary px-6 py-3 rounded-lg font-semibold inline-flex items-center w-full justify-center hover:scale-105 transition-transform duration-300">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                                </svg>
+                                Send Message
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Atebubu Branch -->
+                <div data-aos="fade-up" data-aos-delay="300"
+                    class="branch-card bg-white rounded-2xl overflow-hidden shadow-lg transform transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+                    <div
+                        class="h-48 bg-gradient-to-br from-indigo-600 to-purple-600 flex items-center justify-center relative overflow-hidden group">
+                        <div
+                            class="absolute inset-0 bg-white/10 transform -skew-x-12 translate-x-full group-hover:translate-x-[-200%] transition-transform duration-1000">
+                        </div>
+                        <div class="text-center text-white relative z-10">
+                            <svg class="w-16 h-16 mx-auto mb-2 transform transition-transform duration-300 group-hover:scale-110"
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                    d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4">
+                                </path>
+                            </svg>
+                            <span class="text-2xl font-bold">Atebubu</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <span
+                                class="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-sm font-semibold">Bono
+                                East
+                                Region</span>
+                        </div>
+                        <h3 class="font-display text-2xl font-bold text-stm-navy mb-4">Atebubu Branch</h3>
+                        <p class="text-stm-blue font-semibold mb-4">Elder Harrison</p>
+
+                        <div class="space-y-3 mb-6">
+                            <div class="flex items-center text-gray-600">
+                                <svg class="w-5 h-5 mr-3 text-indigo-600" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                    </path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                                <span>Atebubu, Bono East Region</span>
+                            </div>
+                            <div class="flex items-center text-gray-600">
+                                <svg class="w-5 h-5 mr-3 text-indigo-600" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <span>Saturday: 9:30 AM - 1:30 PM</span>
+                            </div>
+                            <div class="flex items-center text-gray-600">
+                                <svg class="w-5 h-5 mr-3 text-indigo-600" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
+                                    </path>
+                                </svg>
+                                <span>+233 24 305 8639</span>
+                            </div>
+                        </div>
+
+                        <div class="space-y-3">
+                            <a href="tel:+233243058639"
+                                class="btn-primary text-white px-6 py-3 rounded-lg font-semibold inline-flex items-center w-full justify-center hover:scale-105 transition-transform duration-300">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
+                                    </path>
+                                </svg>
+                                Call Branch
+                            </a>
+                            <a href="https://maps.google.com/?q=Atebubu,Bono+East+Region,Ghana" target="_blank"
+                                onclick="handleDirectionsClick('atebubu')"
+                                class="btn-secondary px-6 py-3 rounded-lg font-semibold inline-flex items-center w-full justify-center hover:scale-105 transition-transform duration-300">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                    </path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                                Get Directions
+                            </a>
+                            <a href="contact.html"
+                                class="btn-secondary px-6 py-3 rounded-lg font-semibold inline-flex items-center w-full justify-center hover:scale-105 transition-transform duration-300">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                                </svg>
+                                Send Message
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Abetifi Branch -->
+                <div data-aos="fade-up" data-aos-delay="350"
+                    class="branch-card bg-white rounded-2xl overflow-hidden shadow-lg transform transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+                    <div
+                        class="h-48 bg-gradient-to-br from-green-600 to-stm-blue flex items-center justify-center relative overflow-hidden group">
+                        <div
+                            class="absolute inset-0 bg-white/10 transform -skew-x-12 translate-x-full group-hover:translate-x-[-200%] transition-transform duration-1000">
+                        </div>
+                        <div class="text-center text-white relative z-10">
+                            <svg class="w-16 h-16 mx-auto mb-2 transform transition-transform duration-300 group-hover:scale-110"
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                    d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4">
+                                </path>
+                            </svg>
+                            <span class="text-2xl font-bold">Abetifi</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <span
+                                class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-semibold">Eastern
+                                Region</span>
+                        </div>
+                        <h3 class="font-display text-2xl font-bold text-stm-navy mb-4">Abetifi Branch</h3>
+                        <p class="text-stm-blue font-semibold mb-4">Senior Pastor Kisseih</p>
+
+                        <div class="space-y-3 mb-6">
+                            <div class="flex items-center text-gray-600">
+                                <svg class="w-5 h-5 mr-3 text-green-600" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                    </path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                                <span>Abetifi, Eastern Region</span>
+                            </div>
+                            <div class="flex items-center text-gray-600">
+                                <svg class="w-5 h-5 mr-3 text-green-600" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <span>Saturday: 9:30 AM - 1:30 PM</span>
+                            </div>
+                            <div class="flex items-center text-gray-600">
+                                <svg class="w-5 h-5 mr-3 text-green-600" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
+                                    </path>
+                                </svg>
+                                <span>+233 20 831 1834</span>
+                            </div>
+                        </div>
+
+                        <div class="space-y-3">
+                            <a href="tel:+233208311834"
+                                class="btn-primary text-white px-6 py-3 rounded-lg font-semibold inline-flex items-center w-full justify-center hover:scale-105 transition-transform duration-300">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
+                                    </path>
+                                </svg>
+                                Call Branch
+                            </a>
+                            <a href="https://maps.google.com/?q=Abetifi,Eastern+Region,Ghana" target="_blank"
+                                onclick="handleDirectionsClick('abetifi')"
+                                class="btn-secondary px-6 py-3 rounded-lg font-semibold inline-flex items-center w-full justify-center hover:scale-105 transition-transform duration-300">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                    </path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                                Get Directions
+                            </a>
+                            <a href="contact.html"
+                                class="btn-secondary px-6 py-3 rounded-lg font-semibold inline-flex items-center w-full justify-center hover:scale-105 transition-transform duration-300">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                                </svg>
+                                Send Message
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Diaspora Branch -->
+                <div data-aos="fade-up" data-aos-delay="300"
+                    class="branch-card bg-white rounded-2xl overflow-hidden shadow-lg md:col-span-2 lg:col-span-1 transform transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+                    <div
+                        class="h-48 bg-gradient-to-br from-stm-gold to-yellow-500 flex items-center justify-center relative overflow-hidden group">
+                        <div
+                            class="absolute inset-0 bg-white/10 transform -skew-x-12 translate-x-full group-hover:translate-x-[-200%] transition-transform duration-1000">
+                        </div>
+                        <div class="text-center text-white relative z-10">
+                            <svg class="w-16 h-16 mx-auto mb-2 transform transition-transform duration-300 group-hover:scale-110"
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                    d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
+                                </path>
+                            </svg>
+                            <span class="text-2xl font-bold">Diaspora</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <span
+                                class="px-3 py-1 bg-stm-gold/10 text-stm-gold rounded-full text-sm font-semibold">Online
+                                / International</span>
+                        </div>
+                        <h3 class="font-display text-2xl font-bold text-stm-navy mb-4">Diaspora Branch</h3>
+
+                        <div class="space-y-3 mb-6">
+                            <div class="flex items-center text-gray-600">
+                                <svg class="w-5 h-5 mr-3 text-stm-gold" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                                    </path>
+                                </svg>
+                                <span>Online via Zoom / YouTube</span>
+                            </div>
+                            <div class="flex items-center text-gray-600">
+                                <svg class="w-5 h-5 mr-3 text-stm-gold" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <span>Saturday: 9:00 AM GMT</span>
+                            </div>
+                            <div class="flex items-center text-gray-600">
+                                <svg class="w-5 h-5 mr-3 text-stm-gold" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                                    </path>
+                                </svg>
+                                <span>info.stmghana@gmail.com</span>
+                            </div>
+                        </div>
+
+                        <a href="contact.html"
+                            class="bg-stm-gold text-white px-6 py-3 rounded-lg font-semibold inline-flex items-center w-full justify-center hover:bg-yellow-600 transition-colors">
+                            Join Online
+                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Headquarters Info -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <p class="text-stm-blue font-semibold uppercase tracking-wider mb-4">Main Campus</p>
+                    <h2 class="font-display text-4xl font-bold text-stm-navy mb-6">
+                        Tafo, Kumasi
+                    </h2>
+                    <p class="text-gray-600 text-lg leading-relaxed mb-6">
+                        Our headquarters is located in Tafo, Kumasi, in the Ashanti Region. This is where Apostle Sammy
+                        Nkansah ministers, and where our main services are held every Saturday.
+                    </p>
+                    <p class="text-gray-600 leading-relaxed mb-8">
+                        The Tafo campus serves as the central hub for all our branches, providing leadership, training,
+                        and support to ensure the consistent delivery of God's Word across all our locations.
+                    </p>
+
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-center text-gray-700">
+                            <svg class="w-6 h-6 mr-4 text-stm-blue" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                </path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            <span>Tafo, Kumasi, Ashanti Region, Ghana</span>
+                        </div>
+                        <div class="flex items-center text-gray-700">
+                            <svg class="w-6 h-6 mr-4 text-stm-blue" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
+                                </path>
+                            </svg>
+                            <a href="tel:+233244703250" class="hover:text-stm-blue transition-colors">+233 24 470
+                                3250</a>
+                        </div>
+                        <div class="flex items-center text-gray-700">
+                            <svg class="w-6 h-6 mr-4 text-stm-blue" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                                </path>
+                            </svg>
+                            <a href="mailto:info.stmghana@gmail.com"
+                                class="hover:text-stm-blue transition-colors">info.stmghana@gmail.com</a>
+                        </div>
+                    </div>
+
+                    <a href="https://maps.google.com/?q=Tafo+Adompom,Kumasi,Ghana" target="_blank"
+                        onclick="handleDirectionsClick('tafo')"
+                        class="btn-primary text-white px-8 py-4 rounded-lg font-semibold inline-flex items-center">
+                        Get Directions
+                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                        </svg>
+                    </a>
+                </div>
+
+                <div data-aos="fade-left" class="bg-stm-gray rounded-3xl p-8">
+                    <h3 class="font-display text-2xl font-bold text-stm-navy mb-6">Service Schedule</h3>
+                    <div class="space-y-4">
+                        <div class="bg-white rounded-xl p-4 flex items-center justify-between">
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 bg-stm-blue/10 rounded-lg flex items-center justify-center mr-4">
+                                    <svg class="w-6 h-6 text-stm-blue" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-stm-navy">Main Service</p>
+                                    <p class="text-gray-500 text-sm">Every Saturday</p>
+                                </div>
+                            </div>
+                            <span class="text-stm-blue font-semibold">9:30 AM</span>
+                        </div>
+
+                        <div class="bg-white rounded-xl p-4 flex items-center justify-between">
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 bg-stm-light/10 rounded-lg flex items-center justify-center mr-4">
+                                    <svg class="w-6 h-6 text-stm-light" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
+                                        </path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-stm-navy">Counselling</p>
+                                    <p class="text-gray-500 text-sm">Every Tuesday</p>
+                                </div>
+                            </div>
+                            <span class="text-stm-light font-semibold">10:00 AM - 2:00 PM</span>
+                        </div>
+
+                        <div class="bg-white rounded-xl p-4 flex items-center justify-between">
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 bg-stm-gold/10 rounded-lg flex items-center justify-center mr-4">
+                                    <svg class="w-6 h-6 text-stm-gold" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253">
+                                        </path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-stm-navy">Youth Service</p>
+                                    <p class="text-gray-500 text-sm">First Sunday of Every Month</p>
+                                </div>
+                            </div>
+                            <span class="text-stm-gold font-semibold">2:00 PM</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-gradient-to-r from-stm-navy to-stm-blue">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="font-display text-4xl md:text-5xl font-bold text-white mb-6" data-aos="fade-up">
+                Visit a Branch Near You
+            </h2>
+            <p class="text-xl text-white/80 mb-10" data-aos="fade-up" data-aos-delay="100">
+                We'd love to welcome you to any of our branches. Come and experience the power of God's truth.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center" data-aos="fade-up" data-aos-delay="200">
+                <a href="services.html"
+                    class="bg-white text-stm-navy px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors inline-flex items-center justify-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    Service Times
+                </a>
+                <a href="contact.html"
+                    class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white hover:text-stm-navy transition-colors inline-flex items-center justify-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                        </path>
+                    </svg>
+                    Contact Us
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-stm-navy text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <div>
+                    <img src="resources/church logo.jpeg" alt="STM Logo" class="h-16 w-auto mb-6">
+                    <p class="text-white/70 mb-6">
+                        Seekers of the Truth Ministries is dedicated to spreading God's Word and building a community of
+                        believers.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="https://www.facebook.com/share/1De5bEGP2S/?mibextid=wwXIfr" target="_blank"
+                            class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-stm-blue transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                            </svg>
+                        </a>
+                        <a href="https://www.tiktok.com/@stmghana" target="_blank"
+                            class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-stm-blue transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                            </svg>
+                        </a>
+                        <a href="https://youtube.com/@apostlesammynkansah?si=eWnXuTrvj4nrMnlY" target="_blank"
+                            class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-stm-blue transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.071 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-display text-xl font-bold mb-6">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><a href="about.html" class="text-white/70 hover:text-white transition-colors">About Us</a>
+                        </li>
+                        <li><a href="services.html"
+                                class="text-white/70 hover:text-white transition-colors">Services</a></li>
+                        <li><a href="sermons.html" class="text-white/70 hover:text-white transition-colors">Sermons</a>
+                        </li>
+                        <li><a href="testimonies.html"
+                                class="text-white/70 hover:text-white transition-colors">Testimonies</a></li>
+                        <li><a href="giving.html" class="text-white/70 hover:text-white transition-colors">Giving</a>
+                        </li>
+                        <li><a href="fellowships.html"
+                                class="text-white/70 hover:text-white transition-colors">Fellowships</a></li>
+                        <li><a href="program.html" class="text-white/70 hover:text-white transition-colors">Program</a>
+                        </li>
+                        <li><a href="branches.html" class="text-white hover:text-white transition-colors">Branches</a>
+                        </li>
+                        <li><a href="contact.html" class="text-white/70 hover:text-white transition-colors">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-display text-xl font-bold mb-6">Service Times</h4>
+                    <ul class="space-y-3 text-white/70">
+                        <li><span class="font-semibold text-white">Saturday:</span> Main Service - 9:30 AM</li>
+                        <li><span class="font-semibold text-white">Tuesday:</span> Counselling - 10:00 AM - 2:00 PM</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-display text-xl font-bold mb-6">Contact Us</h4>
+                    <ul class="space-y-3 text-white/70">
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 mr-3 mt-1 text-stm-blue" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                </path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            Tafo, Kumasi, Ghana
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 mr-3 text-stm-blue" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                                </path>
+                            </svg>
+                            <a href="mailto:info.stmghana@gmail.com"
+                                class="hover:text-white transition-colors">info.stmghana@gmail.com</a>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 mr-3 text-stm-blue" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
+                                </path>
+                            </svg>
+                            <a href="tel:+233244703250" class="hover:text-white transition-colors">+233 24 470 3250</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-white/10 pt-8 text-center">
+                <p class="text-white/50">
+                    © 2026 Seekers of the Truth Ministries. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="stm-main.js"></script>
+
+    <script>
+        // Google Maps functionality
+        let map;
+        let markers = {};
+        let currentBranch = null;
+        let isMapInitialized = false;
+
+        const branchLocations = {
+            kasoa: {
+                lat: 5.5315,
+                lng: -0.6370,
+                name: "Kasoa Branch",
+                pastor: "Pastor Augustine",
+                phone: "+233 24 644 5696",
+                address: "Kasoa, Central Region"
+            },
+            yeji: {
+                lat: 8.1833,
+                lng: -0.7333,
+                name: "Yeji Branch",
+                pastor: "Elder John",
+                phone: "+233 24 319 2686",
+                address: "Yeji, Bono East Region"
+            },
+            nkwanta: {
+                lat: 7.7167,
+                lng: 0.0833,
+                name: "Nkwanta Branch",
+                pastor: "Evangelist John Tabiri",
+                phone: "+233 54 686 4880",
+                address: "Nkwanta, Volta Region"
+            },
+
+            swedru: {
+                lat: 5.9000,
+                lng: -0.6000,
+                name: "Swedru Branch",
+                pastor: "Pastor Annan",
+                phone: "+233 54 626 4729",
+                address: "Swedru, Central Region"
+            },
+            atebubu: {
+                lat: 7.5833,
+                lng: -1.0167,
+                name: "Atebubu Branch",
+                pastor: "Elder Harrison",
+                phone: "+233 24 305 8639",
+                address: "Atebubu, Bono East Region"
+            },
+            abetifi: {
+                lat: 6.6333,
+                lng: -0.7500,
+                name: "Abetifi Branch",
+                pastor: "Senior Pastor Kisseih",
+                phone: "+233 20 831 1834",
+                address: "Abetifi, Eastern Region"
+            },
+            tafo: {
+                lat: 6.6833,
+                lng: -1.6167,
+                name: "Headquarters (Tafo)",
+                pastor: "Apostle Sammy Nkansah",
+                phone: "+233 24 470 3250",
+                address: "Tafo, Kumasi, Ashanti Region"
+            }
+        };
+
+        function initMap() {
+            // Initialize map centered on Ghana
+            map = new google.maps.Map(document.getElementById('branch-map'), {
+                zoom: 7,
+                center: { lat: 7.9465, lng: -1.0232 }, // Center of Ghana
+                styles: [
+                    {
+                        "featureType": "water",
+                        "elementType": "geometry",
+                        "stylers": [{ "color": "#e9e9e9" }, { "lightness": 17 }]
+                    },
+                    {
+                        "featureType": "landscape",
+                        "elementType": "geometry",
+                        "stylers": [{ "color": "#f5f5f5" }, { "lightness": 20 }]
+                    }
+                ]
+            });
+
+            // Add markers for each branch
+            Object.keys(branchLocations).forEach(branchKey => {
+                const branch = branchLocations[branchKey];
+
+                const marker = new google.maps.Marker({
+                    position: { lat: branch.lat, lng: branch.lng },
+                    map: map,
+                    title: branch.name,
+                    icon: {
+                        url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(`
+                            <svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="20" cy="20" r="18" fill="#1E40AF" stroke="#ffffff" stroke-width="2"/>
+                                <text x="20" y="25" text-anchor="middle" fill="white" font-family="Arial" font-size="12" font-weight="bold">
+                                    ${branchKey.charAt(0).toUpperCase()}
+                                </text>
+                            </svg>
+                        `),
+                        scaledSize: new google.maps.Size(40, 40)
+                    }
+                });
+
+                const infoWindow = new google.maps.InfoWindow({
+                    content: `
+                        <div style="padding: 10px; max-width: 250px;">
+                            <h3 style="margin: 0 0 10px 0; color: #1E40AF; font-size: 16px; font-weight: bold;">
+                                ${branch.name}
+                            </h3>
+                            <p style="margin: 5px 0; color: #666;">
+                                <strong>Pastor:</strong> ${branch.pastor}
+                            </p>
+                            <p style="margin: 5px 0; color: #666;">
+                                <strong>Phone:</strong> ${branch.phone}
+                            </p>
+                            <p style="margin: 5px 0; color: #666;">
+                                <strong>Address:</strong> ${branch.address}
+                            </p>
+                            <div style="margin-top: 10px;">
+                                <a href="https://maps.google.com/?q=${encodeURIComponent(branch.address + ', Ghana')}" 
+                                   target="_blank" 
+                                   onclick="handleDirectionsClick('${branchKey}')"
+                                   style="display: inline-block; background: #1E40AF; color: white; padding: 8px 12px; 
+                                          text-decoration: none; border-radius: 4px; font-size: 14px;">
+                                    Get Directions
+                                </a>
+                            </div>
+                        </div>
+                    `
+                });
+
+                marker.addListener('click', () => {
+                    // Close all other info windows
+                    Object.values(markers).forEach(({ infoWindow: iw }) => iw.close());
+                    infoWindow.open(map, marker);
+                    currentBranch = branchKey;
+                    updateButtonStates(branchKey);
+                });
+
+                markers[branchKey] = { marker, infoWindow };
+            });
+
+            isMapInitialized = true;
+
+            // Check if there's a stored branch to show when page loads
+            const urlParams = new URLSearchParams(window.location.search);
+            const branchParam = urlParams.get('branch');
+            if (branchParam && branchLocations[branchParam]) {
+                setTimeout(() => centerMapWithHistory(branchParam), 500);
+            }
+        }
+
+        function centerMap(branchKey) {
+            centerMapWithHistory(branchKey);
+        }
+
+        function updateButtonStates(activeBranch) {
+            // Remove active state from all buttons
+            document.querySelectorAll('[onclick^="centerMap"]').forEach(btn => {
+                btn.classList.remove('ring-2', 'ring-offset-2', 'ring-stm-blue');
+            });
+
+            // Add active state to the clicked button
+            const activeBtn = document.querySelector(`[onclick="centerMap('${activeBranch}')"]`);
+            if (activeBtn) {
+                activeBtn.classList.add('ring-2', 'ring-offset-2', 'ring-stm-blue');
+            }
+        }
+
+        function handleDirectionsClick(branchKey) {
+            // Store the current branch in sessionStorage
+            sessionStorage.setItem('lastViewedBranch', branchKey);
+            sessionStorage.setItem('returnTimestamp', Date.now().toString());
+        }
+
+        function restoreMapState() {
+            // Check if user is returning from Google Maps
+            const lastViewedBranch = sessionStorage.getItem('lastViewedBranch');
+            const returnTimestamp = sessionStorage.getItem('returnTimestamp');
+
+            if (lastViewedBranch && returnTimestamp) {
+                const timeDiff = Date.now() - parseInt(returnTimestamp);
+                // If user returned within 5 minutes, restore the map state
+                if (timeDiff < 300000 && isMapInitialized) {
+                    setTimeout(() => {
+                        centerMap(lastViewedBranch);
+                        // Clear the stored data
+                        sessionStorage.removeItem('lastViewedBranch');
+                        sessionStorage.removeItem('returnTimestamp');
+                    }, 1000);
+                }
+            }
+        }
+
+        // Handle page visibility changes (when user returns from Google Maps)
+        document.addEventListener('visibilitychange', function () {
+            if (!document.hidden && isMapInitialized) {
+                restoreMapState();
+            }
+        });
+
+        // Handle window focus (another way to detect return from Google Maps)
+        window.addEventListener('focus', function () {
+            if (isMapInitialized) {
+                restoreMapState();
+            }
+        });
+
+        // Handle browser back/forward navigation
+        window.addEventListener('popstate', function (event) {
+            if (isMapInitialized) {
+                // Get branch from URL parameters
+                const urlParams = new URLSearchParams(window.location.search);
+                const branchParam = urlParams.get('branch');
+
+                if (branchParam && branchLocations[branchParam]) {
+                    // Restore the branch from URL
+                    setTimeout(() => {
+                        centerMapWithHistory(branchParam);
+                    }, 100);
+                } else {
+                    // No branch parameter, reset to default view
+                    setTimeout(() => {
+                        map.setCenter({ lat: 7.9465, lng: -1.0232 });
+                        map.setZoom(7);
+
+                        // Close all info windows
+                        Object.values(markers).forEach(({ infoWindow }) => infoWindow.close());
+
+                        // Reset button states
+                        updateButtonStates(null);
+
+                        // Clear stored data
+                        sessionStorage.removeItem('lastViewedBranch');
+                        sessionStorage.removeItem('returnTimestamp');
+                    }, 100);
+                }
+            }
+        });
+
+        // Handle browser navigation entries
+        function pushBranchState(branchKey) {
+            if (branchKey && branchLocations[branchKey]) {
+                const url = new URL(window.location);
+                url.searchParams.set('branch', branchKey);
+                window.history.pushState({ branch: branchKey }, '', url);
+
+                // Store for back button restoration
+                sessionStorage.setItem('navigationBranch', branchKey);
+                sessionStorage.setItem('navigationTimestamp', Date.now().toString());
+            }
+        }
+
+        // Enhanced centerMap function with history management
+        function centerMapWithHistory(branchKey) {
+            if (!isMapInitialized) {
+                console.log('Map not yet initialized, please wait...');
+                return;
+            }
+
+            if (markers[branchKey]) {
+                map.setCenter(markers[branchKey].marker.getPosition());
+                map.setZoom(12);
+
+                // Close all info windows first
+                Object.values(markers).forEach(({ infoWindow }) => infoWindow.close());
+
+                // Open the selected branch info window
+                markers[branchKey].infoWindow.open(map, markers[branchKey].marker);
+                currentBranch = branchKey;
+                updateButtonStates(branchKey);
+
+                // Scroll map into view
+                document.getElementById('branch-map').scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+
+                // Update URL with history entry
+                pushBranchState(branchKey);
+            }
+        }
+
+        // Initialize AOS
+        document.addEventListener('DOMContentLoaded', function () {
+            AOS.init({
+                duration: 1000,
+                once: true
+            });
+
+            // Add hover effects to map buttons
+            document.querySelectorAll('[onclick^="centerMap"]').forEach(btn => {
+                btn.addEventListener('mouseenter', function () {
+                    this.style.transform = 'translateY(-2px)';
+                    this.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
+                });
+
+                btn.addEventListener('mouseleave', function () {
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = 'none';
+                });
+            });
+        });
+
+        // Fallback initialization
+        window.addEventListener('load', function () {
+            setTimeout(() => {
+                if (!isMapInitialized) {
+                    console.log('Map initialization taking longer than expected...');
+                }
+            }, 3000);
+        });
+    </script>
+</body>
+
+</html>

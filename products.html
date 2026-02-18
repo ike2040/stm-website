@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Agricultural Products - KEN'S BUSINESS CENTRE</title>
+    <meta name="description"
+        content="Discover our premium range of maize and rice products. Quality agricultural distribution with competitive pricing and reliable delivery.">
+
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Core Libraries -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
+
+    <style>
+        :root {
+            --forest-green: #1B4332;
+            --warm-gold: #D4A574;
+            --professional-navy: #1E3A8A;
+            --soft-cream: #FEF7ED;
+            --charcoal-gray: #374151;
+            --accent-orange: #EA580C;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--soft-cream);
+            color: var(--charcoal-gray);
+        }
+
+        .font-display {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .nav-sticky {
+            backdrop-filter: blur(10px);
+            background: rgba(254, 247, 237, 0.95);
+            border-bottom: 1px solid rgba(27, 67, 50, 0.1);
+        }
+
+        .product-card {
+            transition: all 0.3s ease;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border: 2px solid transparent;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px) rotateX(5deg);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            border-color: var(--warm-gold);
+        }
+
+        .filter-sidebar {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .filter-group {
+            margin-bottom: 2rem;
+        }
+
+        .filter-group h3 {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--forest-green);
+        }
+
+        .filter-checkbox {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+        }
+
+        .filter-checkbox input {
+            margin-right: 0.5rem;
+        }
+
+        .price-range {
+            width: 100%;
+            margin: 1rem 0;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--forest-green), var(--professional-navy));
+            color: white;
+            padding: 12px 32px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(27, 67, 50, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--accent-orange);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 0.875rem;
+        }
+
+        .btn-secondary:hover {
+            background: #dc2626;
+            transform: translateY(-1px);
+        }
+
+        .search-bar {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .search-bar:focus {
+            outline: none;
+            border-color: var(--warm-gold);
+        }
+
+        .sort-select {
+            padding: 8px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 6px;
+            background: white;
+            cursor: pointer;
+        }
+
+        .quality-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .quality-premium {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .quality-standard {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .quality-economy {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .product-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            max-width: 800px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #6b7280;
+        }
+
+        .spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        .spec-table th,
+        .spec-table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .spec-table th {
+            background: #f9fafb;
+            font-weight: 600;
+            color: var(--forest-green);
+        }
+
+        .reveal-element {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .reveal-element.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            font-size: 0.875rem;
+        }
+
+        .breadcrumb a {
+            color: var(--professional-navy);
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .breadcrumb-separator {
+            margin: 0 0.5rem;
+            color: #6b7280;
+        }
+
+        @media (max-width: 768px) {
+            .filter-sidebar {
+                position: static;
+                margin-bottom: 2rem;
+            }
+
+            .modal-content {
+                width: 95%;
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 nav-sticky">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <img src="resources/logo.png" alt="KEN'S BUSINESS CENTRE" class="h-10 w-auto">
+                    <span class="ml-3 font-display text-xl font-bold text-gray-800">KEN'S BUSINESS CENTRE</span>
+                </div>
+
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html"
+                        class="text-gray-600 hover:text-green-700 font-medium transition-colors">Home</a>
+                    <a href="products.html"
+                        class="text-gray-800 hover:text-green-700 font-medium transition-colors">Products</a>
+                    <a href="services.html"
+                        class="text-gray-600 hover:text-green-700 font-medium transition-colors">Services</a>
+                    <a href="contact.html"
+                        class="text-gray-600 hover:text-green-700 font-medium transition-colors">Contact</a>
+                </div>
+
+                <button class="btn-primary">Get Quote</button>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-gray-800 hover:text-green-700">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="index.html" class="block px-3 py-2 text-gray-600 hover:text-gray-800">Home</a>
+                <a href="products.html" class="block px-3 py-2 text-gray-800 font-medium">Products</a>
+                <a href="services.html" class="block px-3 py-2 text-gray-600 hover:text-gray-800">Services</a>
+                <a href="contact.html" class="block px-3 py-2 text-gray-600 hover:text-gray-800">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="pt-24 pb-12 bg-gradient-to-r from-green-50 to-blue-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span class="breadcrumb-separator">/</span>
+                <span class="text-gray-600">Products</span>
+            </div>
+
+            <div class="text-center reveal-element">
+                <h1 class="font-display text-4xl md:text-5xl font-bold text-gray-800 mb-6">
+                    Premium Agricultural Products
+                </h1>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Discover our comprehensive range of high-quality maize and rice varieties,
+                    sourced from the finest agricultural regions and certified for premium quality.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row gap-8">
+                <!-- Filter Sidebar -->
+                <div class="lg:w-1/4">
+                    <div class="filter-sidebar">
+                        <h2 class="font-display text-2xl font-bold text-gray-800 mb-6">Filter Products</h2>
+
+                        <!-- Search -->
+                        <div class="filter-group">
+                            <input type="text" id="product-search" class="search-bar" placeholder="Search products...">
+                        </div>
+
+                        <!-- Product Type -->
+                        <div class="filter-group">
+                            <h3>Product Type</h3>
+                            <div class="filter-checkbox">
+                                <input type="checkbox" id="type-rice" value="rice" checked>
+                                <label for="type-rice">Rice Varieties</label>
+                            </div>
+                            <div class="filter-checkbox">
+                                <input type="checkbox" id="type-maize" value="maize" checked>
+                                <label for="type-maize">Maize/Corn</label>
+                            </div>
+                        </div>
+
+                        <!-- Quality Grade -->
+                        <div class="filter-group">
+                            <h3>Quality Grade</h3>
+                            <div class="filter-checkbox">
+                                <input type="checkbox" id="grade-premium" value="premium" checked>
+                                <label for="grade-premium">Premium Grade</label>
+                            </div>
+                            <div class="filter-checkbox">
+                                <input type="checkbox" id="grade-standard" value="standard" checked>
+                                <label for="grade-standard">Standard Grade</label>
+                            </div>
+                            <div class="filter-checkbox">
+                                <input type="checkbox" id="grade-economy" value="economy" checked>
+                                <label for="grade-economy">Economy Grade</label>
+                            </div>
+                        </div>
+
+                        <!-- Price Range -->
+                        <div class="filter-group">
+                            <h3>Price Range (USD/MT)</h3>
+                            <div class="flex items-center space-x-2 mb-2">
+                                <input type="number" id="price-min" placeholder="Min"
+                                    class="w-full px-3 py-2 border rounded-md" value="200">
+                                <span>-</span>
+                                <input type="number" id="price-max" placeholder="Max"
+                                    class="w-full px-3 py-2 border rounded-md" value="1500">
+                            </div>
+                            <input type="range" id="price-range" class="price-range" min="200" max="1500" value="1500">
+                        </div>
+
+                        <!-- Origin -->
+                        <div class="filter-group">
+                            <h3>Origin</h3>
+                            <div class="filter-checkbox">
+                                <input type="checkbox" id="origin-india" value="india" checked>
+                                <label for="origin-india">India</label>
+                            </div>
+                            <div class="filter-checkbox">
+                                <input type="checkbox" id="origin-thailand" value="thailand" checked>
+                                <label for="origin-thailand">Thailand</label>
+                            </div>
+                            <div class="filter-checkbox">
+                                <input type="checkbox" id="origin-vietnam" value="vietnam" checked>
+                                <label for="origin-vietnam">Vietnam</label>
+                            </div>
+                            <div class="filter-checkbox">
+                                <input type="checkbox" id="origin-usa" value="usa" checked>
+                                <label for="origin-usa">USA</label>
+                            </div>
+                        </div>
+
+                        <button id="clear-filters"
+                            class="w-full mt-4 px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-50 transition-colors">
+                            Clear All Filters
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Products Grid -->
+                <div class="lg:w-3/4">
+                    <!-- Sort and Results -->
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8">
+                        <div>
+                            <h2 class="font-display text-2xl font-bold text-gray-800 mb-2">All Products</h2>
+                            <p id="results-count" class="text-gray-600">Showing 20 products</p>
+                        </div>
+
+                        <div class="flex items-center space-x-4 mt-4 sm:mt-0">
+                            <label for="sort-select" class="text-gray-600">Sort by:</label>
+                            <select id="sort-select" class="sort-select">
+                                <option value="name-asc">Name (A-Z)</option>
+                                <option value="name-desc">Name (Z-A)</option>
+                                <option value="price-asc">Price (Low to High)</option>
+                                <option value="price-desc">Price (High to Low)</option>
+                                <option value="grade">Quality Grade</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Products Grid -->
+                    <div id="products-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                        <!-- Product cards will be generated by JavaScript -->
+                    </div>
+
+                    <!-- Load More Button -->
+                    <div class="text-center mt-12">
+                        <button id="load-more" class="btn-primary">Load More Products</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Detail Modal -->
+    <div id="product-modal" class="product-modal">
+        <div class="modal-content">
+            <button class="modal-close" id="modal-close">&times;</button>
+            <div id="modal-body">
+                <!-- Modal content will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <div class="flex items-center justify-center mb-6">
+                    <img src="resources/logo.png" alt="KEN'S BUSINESS CENTRE"
+                        class="h-10 w-auto filter brightness-0 invert">
+                    <span class="ml-3 font-display text-xl font-bold">KEN'S BUSINESS CENTRE</span>
+                </div>
+
+                <p class="text-gray-400 mb-6 max-w-2xl mx-auto">
+                    Your trusted partner for premium agricultural products and professional printing services.
+                    Quality, reliability, and innovation in every solution.
+                </p>
+
+                <div class="border-t border-gray-700 pt-6">
+                    <p class="text-gray-400 text-sm">
+                        © 2025 KEN'S BUSINESS CENTRE. All rights reserved. | Your Complete Business Solution
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Product data
+        const products = [
+            {
+                id: 1,
+                name: "1121 Basmati Rice",
+                type: "rice",
+                grade: "premium",
+                price: 1200,
+                origin: "india",
+                image: "https://kimi-web-img.moonshot.cn/img/img.freepik.com/145d07a7449ff1ce9a6cce06e4d64b1cb15de8d6.jpg",
+                description: "Premium quality 1121 Basmati rice with extra-long grains and authentic aroma. Perfect for biryani and special occasions.",
+                specifications: {
+                    "Grain Length": "8.4mm (uncooked)",
+                    "Aroma": "Strong natural basmati fragrance",
+                    "Texture": "Fluffy and non-sticky",
+                    "Moisture": "12% max",
+                    "Broken Grains": "2% max",
+                    "Origin": "Punjab, India"
+                }
+            },
+            {
+                id: 2,
+                name: "1509 Pusa Basmati Rice",
+                type: "rice",
+                grade: "premium",
+                price: 1100,
+                origin: "india",
+                image: "https://kimi-web-img.moonshot.cn/img/img.freepik.com/cc1a82820ea7ad74f8117d0699ecd1ac28bbab54.jpg",
+                description: "High-quality 1509 Pusa Basmati rice with excellent cooking properties and natural aroma.",
+                specifications: {
+                    "Grain Length": "7.8mm (uncooked)",
+                    "Aroma": "Natural basmati fragrance",
+                    "Texture": "Separate and fluffy",
+                    "Moisture": "13% max",
+                    "Broken Grains": "3% max",
+                    "Origin": "Haryana, India"
+                }
+            },
+            {
+                id: 3,
+                name: "Sharbati Raw Basmati Rice",
+                type: "rice",
+                grade: "standard",
+                price: 850,
+                origin: "india",
+                image: "https://kimi-web-img.moonshot.cn/img/img.freepik.com/d07f4ca236f66ffe1433727b4b32f6bed5925c43.jpg",
+                description: "Economical Sharbati rice perfect for everyday cooking with good taste and texture.",
+                specifications: {
+                    "Grain Length": "6.8mm (uncooked)",
+                    "Aroma": "Mild fragrance",
+                    "Texture": "Soft and fluffy",
+                    "Moisture": "14% max",
+                    "Broken Grains": "5% max",
+                    "Origin": "Uttar Pradesh, India"
+                }
+            },
+            {
+                id: 4,
+                name: "Premium Golden Maize",
+                type: "maize",
+                grade: "premium",
+                price: 280,
+                origin: "usa",
+                image: "https://kimi-web-img.moonshot.cn/img/so1.360tres.com/9b216ecd6a198be20867cc411e49fca037a9d806.jpg",
+                description: "High-quality golden maize perfect for food processing and animal feed with high nutritional value.",
+                specifications: {
+                    "Moisture": "14% max",
+                    "Protein": "9% min",
+                    "Fat": "4% min",
+                    "Fiber": "2.5% max",
+                    "Aflatoxin": "20 ppb max",
+                    "Origin": "Iowa, USA"
+                }
+            },
+            {
+                id: 5,
+                name: "Yellow Maize Grains",
+                type: "maize",
+                grade: "standard",
+                price: 260,
+                origin: "india",
+                image: "https://kimi-web-img.moonshot.cn/img/www.fsnanrong.com/35bfa2d749e1dcea22f9e1aae98ff8aea4cdb896.jpg",
+                description: "Premium quality yellow maize for animal feed and industrial processing.",
+                specifications: {
+                    "Moisture": "14% max",
+                    "Protein": "8% min",
+                    "Fat": "3.5% min",
+                    "Fiber": "3% max",
+                    "Aflatoxin": "20 ppb max",
+                    "Origin": "Punjab, India"
+                }
+            },
+            {
+                id: 6,
+                name: "Jasmine Rice",
+                type: "rice",
+                grade: "premium",
+                price: 950,
+                origin: "thailand",
+                image: "https://kimi-web-img.moonshot.cn/img/media.istockphoto.com/710199c10fe11c77ff360841225ac598922d5a08.jpg",
+                description: "Authentic Thai Jasmine rice with natural floral aroma and soft texture.",
+                specifications: {
+                    "Grain Length": "7.0mm (uncooked)",
+                    "Aroma": "Natural jasmine fragrance",
+                    "Texture": "Soft and slightly sticky",
+                    "Moisture": "14% max",
+                    "Broken Grains": "4% max",
+                    "Origin": "Thailand"
+                }
+            },
+            {
+                id: 7,
+                name: "White Rice (Long Grain)",
+                type: "rice",
+                grade: "economy",
+                price: 450,
+                origin: "vietnam",
+                image: "https://kimi-web-img.moonshot.cn/img/su.bcebos.com/b084a59c5db23fa773783e7c2ae26d70474853df",
+                description: "Economical long grain white rice suitable for bulk cooking and food service.",
+                specifications: {
+                    "Grain Length": "6.5mm (uncooked)",
+                    "Aroma": "Neutral",
+                    "Texture": "Fluffy when cooked",
+                    "Moisture": "15% max",
+                    "Broken Grains": "8% max",
+                    "Origin": "Vietnam"
+                }
+            },
+            {
+                id: 8,
+                name: "Sweet Corn",
+                type: "maize",
+                grade: "premium",
+                price: 320,
+                origin: "usa",
+                image: "https://kimi-web-img.moonshot.cn/img/5b0988e595225.cdn.sohucs.com/b4b5e46efb30e631331f429144221a8607baa037.png",
+                description: "High-quality sweet corn with natural sweetness, perfect for canning and processing.",
+                specifications: {
+                    "Moisture": "14% max",
+                    "Sugar Content": "High",
+                    "Protein": "10% min",
+                    "Fiber": "2% max",
+                    "Aflatoxin": "10 ppb max",
+                    "Origin": "Illinois, USA"
+                }
+            },
+            {
+                id: 9,
+                name: "Brown Basmati Rice",
+                type: "rice",
+                grade: "standard",
+                price: 750,
+                origin: "india",
+                image: "https://kimi-web-img.moonshot.cn/img/wx3.sinaimg.cn/4651ec13a24b72f9d911595ba1ab447f9dd56756.jpg",
+                description: "Healthy brown basmati rice with bran intact, rich in fiber and nutrients.",
+                specifications: {
+                    "Grain Length": "7.5mm (uncooked)",
+                    "Aroma": "Natural basmati fragrance",
+                    "Texture": "Chewy and nutritious",
+                    "Moisture": "13% max",
+                    "Broken Grains": "4% max",
+                    "Origin": "Punjab, India"
+                }
+            },
+            {
+                id: 10,
+                name: "Parboiled Rice",
+                type: "rice",
+                grade: "standard",
+                price: 580,
+                origin: "thailand",
+                image: "https://kimi-web-img.moonshot.cn/img/bigrigmedia.com.au/063db1621c1ceb0047ab3c2838d1eecdf4385678.jpg",
+                description: "Nutritious parboiled rice with firm texture and excellent cooking properties.",
+                specifications: {
+                    "Grain Length": "6.8mm (uncooked)",
+                    "Aroma": "Mild nutty",
+                    "Texture": "Firm and separate",
+                    "Moisture": "14% max",
+                    "Broken Grains": "5% max",
+                    "Origin": "Thailand"
+                }
+            },
+            {
+                id: 11,
+                name: "Corn Grits",
+                type: "maize",
+                grade: "standard",
+                price: 340,
+                origin: "usa",
+                image: "https://kimi-web-img.moonshot.cn/img/thumbs.dreamstime.com/ec6506fff6c99d29a0db587995c676828aced842.jpg",
+                description: "Coarsely ground corn grits perfect for breakfast cereals and food processing.",
+                specifications: {
+                    "Moisture": "12% max",
+                    "Particle Size": "Various grades available",
+                    "Protein": "8% min",
+                    "Fat": "2% min",
+                    "Fiber": "1.5% max",
+                    "Origin": "USA"
+                }
+            },
+            {
+                id: 12,
+                name: "Sona Masoori Rice",
+                type: "rice",
+                grade: "standard",
+                price: 680,
+                origin: "india",
+                image: "https://kimi-web-img.moonshot.cn/img/www.pusandwichpanel.com/1cac83362b2e0e6d9efa1d686a605197732db3eb.jpg",
+                description: "Light and aromatic medium-grain rice popular in South Indian cuisine.",
+                specifications: {
+                    "Grain Length": "5.5mm (uncooked)",
+                    "Aroma": "Light and pleasant",
+                    "Texture": "Soft and fluffy",
+                    "Moisture": "14% max",
+                    "Broken Grains": "4% max",
+                    "Origin": "Andhra Pradesh, India"
+                }
+            }
+        ];
+
+        // DOM elements
+        const productsGrid = document.getElementById('products-grid');
+        const resultsCount = document.getElementById('results-count');
+        const productModal = document.getElementById('product-modal');
+        const modalClose = document.getElementById('modal-close');
+        const modalBody = document.getElementById('modal-body');
+
+        // Filter elements
+        const productSearch = document.getElementById('product-search');
+        const typeCheckboxes = document.querySelectorAll('input[type="checkbox"][value="rice"], input[type="checkbox"][value="maize"]');
+        const gradeCheckboxes = document.querySelectorAll('input[type="checkbox"][value="premium"], input[type="checkbox"][value="standard"], input[type="checkbox"][value="economy"]');
+        const originCheckboxes = document.querySelectorAll('input[type="checkbox"][value="india"], input[type="checkbox"][value="thailand"], input[type="checkbox"][value="vietnam"], input[type="checkbox"][value="usa"]');
+        const priceMin = document.getElementById('price-min');
+        const priceMax = document.getElementById('price-max');
+        const priceRange = document.getElementById('price-range');
+        const sortSelect = document.getElementById('sort-select');
+        const clearFilters = document.getElementById('clear-filters');
+
+        // Current filtered products
+        let filteredProducts = [...products];
+        let displayedProducts = [];
+        let productsPerPage = 9;
+        let currentPage = 1;
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function () {
+            renderProducts();
+            setupEventListeners();
+            setupScrollAnimations();
+        });
+
+        function setupEventListeners() {
+            // Search
+            productSearch.addEventListener('input', filterProducts);
+
+            // Checkboxes
+            [...typeCheckboxes, ...gradeCheckboxes, ...originCheckboxes].forEach(checkbox => {
+                checkbox.addEventListener('change', filterProducts);
+            });
+
+            // Price filters
+            priceMin.addEventListener('input', filterProducts);
+            priceMax.addEventListener('input', filterProducts);
+            priceRange.addEventListener('input', function () {
+                priceMax.value = this.value;
+                filterProducts();
+            });
+
+            // Sort
+            sortSelect.addEventListener('change', filterProducts);
+
+            // Clear filters
+            clearFilters.addEventListener('click', resetFilters);
+
+            // Modal
+            modalClose.addEventListener('click', closeModal);
+            productModal.addEventListener('click', function (e) {
+                if (e.target === productModal) closeModal();
+            });
+
+            // Load more
+            document.getElementById('load-more').addEventListener('click', loadMoreProducts);
+        }
+
+        function filterProducts() {
+            const searchTerm = productSearch.value.toLowerCase();
+            const selectedTypes = Array.from(typeCheckboxes).filter(cb => cb.checked).map(cb => cb.value);
+            const selectedGrades = Array.from(gradeCheckboxes).filter(cb => cb.checked).map(cb => cb.value);
+            const selectedOrigins = Array.from(originCheckboxes).filter(cb => cb.checked).map(cb => cb.value);
+            const minPrice = parseInt(priceMin.value) || 0;
+            const maxPrice = parseInt(priceMax.value) || 2000;
+
+            filteredProducts = products.filter(product => {
+                const matchesSearch = product.name.toLowerCase().includes(searchTerm) ||
+                    product.description.toLowerCase().includes(searchTerm);
+                const matchesType = selectedTypes.includes(product.type);
+                const matchesGrade = selectedGrades.includes(product.grade);
+                const matchesOrigin = selectedOrigins.includes(product.origin);
+                const matchesPrice = product.price >= minPrice && product.price <= maxPrice;
+
+                return matchesSearch && matchesType && matchesGrade && matchesOrigin && matchesPrice;
+            });
+
+            // Sort products
+            const sortValue = sortSelect.value;
+            filteredProducts.sort((a, b) => {
+                switch (sortValue) {
+                    case 'name-asc':
+                        return a.name.localeCompare(b.name);
+                    case 'name-desc':
+                        return b.name.localeCompare(a.name);
+                    case 'price-asc':
+                        return a.price - b.price;
+                    case 'price-desc':
+                        return b.price - a.price;
+                    case 'grade':
+                        const gradeOrder = { 'premium': 1, 'standard': 2, 'economy': 3 };
+                        return gradeOrder[a.grade] - gradeOrder[b.grade];
+                    default:
+                        return 0;
+                }
+            });
+
+            currentPage = 1;
+            renderProducts();
+        }
+
+        function renderProducts() {
+            const startIndex = 0;
+            const endIndex = currentPage * productsPerPage;
+            displayedProducts = filteredProducts.slice(startIndex, endIndex);
+
+            productsGrid.innerHTML = displayedProducts.map(product => `
+                <div class="product-card reveal-element" data-product-id="${product.id}">
+                    <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-display text-xl font-semibold">${product.name}</h3>
+                            <span class="quality-badge quality-${product.grade}">${product.grade}</span>
+                        </div>
+                        <p class="text-gray-600 mb-4 text-sm">${product.description.substring(0, 100)}...</p>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-2xl font-bold text-green-700">$${product.price}/MT</span>
+                            <span class="text-sm text-gray-500">${product.origin.toUpperCase()}</span>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button class="btn-primary flex-1" onclick="viewProductDetails(${product.id})">View Details</button>
+                            <button class="btn-secondary" onclick="addToQuote(${product.id})">Add to Quote</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            resultsCount.textContent = `Showing ${displayedProducts.length} of ${filteredProducts.length} products`;
+
+            // Update load more button
+            const loadMoreBtn = document.getElementById('load-more');
+            if (displayedProducts.length >= filteredProducts.length) {
+                loadMoreBtn.style.display = 'none';
+            } else {
+                loadMoreBtn.style.display = 'block';
+            }
+
+            // Trigger reveal animations
+            setTimeout(() => {
+                document.querySelectorAll('.reveal-element').forEach(el => {
+                    el.classList.add('revealed');
+                });
+            }, 100);
+        }
+
+        function loadMoreProducts() {
+            currentPage++;
+            renderProducts();
+        }
+
+        function viewProductDetails(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+
+            const specsTable = Object.entries(product.specifications).map(([key, value]) => `
+                <tr>
+                    <th>${key}</th>
+                    <td>${value}</td>
+                </tr>
+            `).join('');
+
+            modalBody.innerHTML = `
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <img src="${product.image}" alt="${product.name}" class="w-full h-64 object-cover rounded-lg">
+                    </div>
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <h2 class="font-display text-3xl font-bold text-gray-800">${product.name}</h2>
+                            <span class="quality-badge quality-${product.grade}">${product.grade}</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">${product.description}</p>
+                        <div class="mb-6">
+                            <span class="text-3xl font-bold text-green-700">$${product.price}/MT</span>
+                            <span class="text-gray-500 ml-4">Origin: ${product.origin.toUpperCase()}</span>
+                        </div>
+                        <button class="btn-primary w-full mb-4" onclick="addToQuote(${product.id})">Add to Quote</button>
+                    </div>
+                </div>
+                
+                <div class="mt-8">
+                    <h3 class="font-display text-xl font-bold text-gray-800 mb-4">Technical Specifications</h3>
+                    <table class="spec-table">
+                        ${specsTable}
+                    </table>
+                </div>
+                
+                <div class="mt-6">
+                    <h3 class="font-display text-xl font-bold text-gray-800 mb-4">Quality Certifications</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">ISO 22000</span>
+                        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">HACCP</span>
+                        <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm">AGMARK</span>
+                        <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm">Organic Certified</span>
+                    </div>
+                </div>
+            `;
+
+            productModal.style.display = 'block';
+        }
+
+        function closeModal() {
+            productModal.style.display = 'none';
+        }
+
+        function addToQuote(productId) {
+            const product = products.find(p => p.id === productId);
+            alert(`${product.name} has been added to your quote request. Visit the Contact page to complete your inquiry.`);
+        }
+
+        function resetFilters() {
+            productSearch.value = '';
+            [...typeCheckboxes, ...gradeCheckboxes, ...originCheckboxes].forEach(checkbox => {
+                checkbox.checked = true;
+            });
+            priceMin.value = '200';
+            priceMax.value = '1500';
+            priceRange.value = '1500';
+            sortSelect.value = 'name-asc';
+            filterProducts();
+        }
+
+        function setupScrollAnimations() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('revealed');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.reveal-element').forEach(el => {
+                observer.observe(el);
+            });
+        }
+    </script>
+    <script src="stm-main.js"></script>
+</body>
+
+</html>

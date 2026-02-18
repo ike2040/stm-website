@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Seekers of the Truth Ministries</title>
+    <meta name="description"
+        content="Learn about Seekers of the Truth Ministries, our mission, vision, and leadership. Meet Apostle Sammy Nkansah and our church leadership team.">
+
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'stm-blue': '#1E40AF',
+                        'stm-navy': '#1E3A8A',
+                        'stm-light': '#3B82F6',
+                        'stm-sky': '#60A5FA',
+                        'stm-gold': '#D4AF37',
+                        'stm-gray': '#F3F4F6',
+                    },
+                    fontFamily: {
+                        'display': ['Playfair Display', 'serif'],
+                        'body': ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .nav-blur {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #1E40AF 0%, #1E3A8A 100%);
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(30, 64, 175, 0.3);
+        }
+
+        .btn-secondary {
+            border: 2px solid #1E40AF;
+            color: #1E40AF;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: #1E40AF;
+            color: white;
+        }
+
+        .scripture-box {
+            border-left: 4px solid #D4AF37;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            background: #1E40AF;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px #1E40AF;
+        }
+
+        .value-card {
+            transition: all 0.3s ease;
+        }
+
+        .value-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(30, 64, 175, 0.15);
+        }
+
+        .leader-card {
+            transition: all 0.3s ease;
+        }
+
+        .leader-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .leader-card:hover .leader-image {
+            transform: scale(1.05);
+        }
+
+        .leader-image {
+            transition: transform 0.5s ease;
+        }
+
+        /* Church Name Animations */
+        .animate-pulse-slow {
+            animation: pulse-slow 3s ease-in-out infinite;
+        }
+
+        .animate-gradient {
+            background: linear-gradient(90deg, #1e40af, #3b82f6, #1e40af);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-shift 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse-slow {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.8;
+                transform: scale(1.02);
+            }
+        }
+
+        @keyframes gradient-shift {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Hover effect for church name */
+        .church-name:hover .animate-pulse-slow {
+            animation-duration: 1.5s;
+        }
+
+        .church-name:hover .animate-gradient {
+            animation-duration: 2s;
+            background: linear-gradient(90deg, #1e40af, #60a5fa, #1e40af);
+            background-size: 200% auto;
+        }
+    </style>
+</head>
+
+<body class="font-body text-gray-700 bg-white">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 nav-blur border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center church-name">
+                        <img src="resources/church logo.jpeg" alt="STM Logo" class="h-12 w-auto">
+                        <div class="ml-3 hidden sm:block">
+                            <span
+                                class="font-display text-lg font-bold text-stm-navy block leading-tight animate-pulse-slow">Seekers
+                                of
+                                the</span>
+                            <span
+                                class="font-display text-lg font-bold text-stm-blue block leading-tight animate-gradient">Truth
+                                Ministries</span>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="hidden lg:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-600 hover:text-stm-blue transition-colors">Home</a>
+                    <a href="about.html"
+                        class="text-stm-navy font-semibold hover:text-stm-blue transition-colors">About</a>
+                    <a href="services.html" class="text-gray-600 hover:text-stm-blue transition-colors">Services</a>
+                    <a href="program.html" class="text-gray-600 hover:text-stm-blue transition-colors">Program</a>
+                    <a href="sermons.html" class="text-gray-600 hover:text-stm-blue transition-colors">Sermons</a>
+                    <a href="testimonies.html"
+                        class="text-gray-600 hover:text-stm-blue transition-colors">Testimonies</a>
+                    <a href="giving.html" class="text-gray-600 hover:text-stm-blue transition-colors">Giving</a>
+                    <a href="fellowships.html"
+                        class="text-gray-600 hover:text-stm-blue transition-colors">Fellowships</a>
+                    <a href="branches.html" class="text-gray-600 hover:text-stm-blue transition-colors">Branches</a>
+                    <a href="contact.html" class="text-gray-600 hover:text-stm-blue transition-colors">Contact</a>
+                </div>
+
+                <div class="hidden lg:block">
+                    <a href="contact.html"
+                        class="btn-primary text-white px-6 py-3 rounded-lg font-semibold inline-block">Join Us</a>
+                </div>
+
+                <button id="mobile-menu-btn" class="lg:hidden text-stm-navy p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t">
+            <div class="px-4 py-4 space-y-3">
+                <a href="index.html" class="block text-gray-600 py-2">Home</a>
+                <a href="about.html" class="block text-stm-navy font-semibold py-2">About</a>
+                <a href="services.html" class="block text-gray-600 py-2">Services</a>
+                <a href="program.html" class="block text-gray-600 py-2">Program</a>
+                <a href="sermons.html" class="block text-gray-600 py-2">Sermons</a>
+                <a href="testimonies.html" class="block text-gray-600 py-2">Testimonies</a>
+                <a href="giving.html" class="block text-gray-600 py-2">Giving</a>
+                <a href="fellowships.html" class="block text-gray-600 py-2">Fellowships</a>
+                <a href="branches.html" class="block text-gray-600 py-2">Branches</a>
+                <a href="contact.html" class="block text-gray-600 py-2">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="pt-32 pb-20 bg-gradient-to-br from-stm-navy to-stm-blue">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-white/70 uppercase tracking-wider mb-4" data-aos="fade-down">Learn More</p>
+            <h1 class="font-display text-4xl md:text-6xl font-bold text-white mb-6" data-aos="fade-up">
+                About Our Ministry
+            </h1>
+            <p class="text-xl text-white/80 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                Discover the heart, mission, and people behind Seekers of the Truth Ministries
+            </p>
+        </div>
+    </section>
+
+    <!-- Mission & Vision -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div data-aos="fade-right">
+                    <p class="text-stm-blue font-semibold uppercase tracking-wider mb-4">Our Purpose</p>
+                    <h2 class="font-display text-4xl font-bold text-stm-navy mb-6">
+                        Mission, Vision & Objectives
+                    </h2>
+
+                    <div class="mb-8">
+                        <h3 class="font-display text-2xl font-bold text-stm-navy mb-3">Mission</h3>
+                        <p class="text-gray-600 text-lg leading-relaxed">
+                            To proclaim the true gospel onto salvation to all souls in the church, community, region and
+                            the world at large, delivering them from all forms of satanic oppressions and bondages,
+                            training and empowering them to become fruitful Disciples of Christ.
+                        </p>
+                        <p class="text-stm-blue font-semibold mt-4 text-sm">
+                            Isaiah 61:1-6, Acts 1:8, Jeremiah 1:7-18, Matthew 28:19-20, Mark 16:15-18, John 15:16.
+                        </p>
+                    </div>
+
+                    <div class="mb-8">
+                        <h3 class="font-display text-2xl font-bold text-stm-navy mb-3">Vision</h3>
+                        <p class="text-gray-600 text-lg leading-relaxed">
+                            To become a worldwide recognised ecclesiastical institution with profound knowledge in the
+                            pure and true word of God, imbued with the incontestable power of the Holy Ghost and blessed
+                            by
+                            God with all spiritual blessings in Christ, and endowed with capable workmen and women in
+                            the
+                            Lord’s vineyard, and a congregation prepared for the second coming of Christ.
+                        </p>
+                        <p class="text-stm-blue font-semibold mt-4 text-sm leading-relaxed">
+                            Ephesians 1:3-23, Acts 1:8, Isaiah 11:2, I Corinthians 1:5-8, II Corinthians 8:7, I
+                            Corinthians
+                            2:12-13, II Corinthians 4:6, II Timothy 2: 20-21, Ephesians 2:10, Colossians 1:9-11,
+                            Jeremiah
+                            32:2-4.
+                        </p>
+                    </div>
+
+                    <div class="scripture-box bg-stm-gray pl-6 py-4 pr-4 rounded-r-lg">
+                        <p class="text-stm-navy font-display text-lg italic">
+                            "Thy word is truth."
+                        </p>
+                        <p class="text-stm-gold font-semibold mt-2">- John 17:17 (KJV)</p>
+                    </div>
+                </div>
+
+                <div data-aos="fade-left" class="relative">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="space-y-4">
+                            <div class="bg-stm-blue rounded-2xl p-8 text-white text-center">
+                                <div class="text-4xl font-bold mb-2">10+</div>
+                                <div class="text-sm">Years of Ministry</div>
+                            </div>
+                            <div class="bg-stm-navy rounded-2xl p-8 text-white text-center">
+                                <div class="text-4xl font-bold mb-2">8+</div>
+                                <div class="text-sm">Church Branches</div>
+                            </div>
+                        </div>
+                        <div class="space-y-4 pt-8">
+                            <div class="bg-stm-light rounded-2xl p-8 text-white text-center">
+                                <div class="text-4xl font-bold mb-2">1000+</div>
+                                <div class="text-sm">Members</div>
+                            </div>
+                            <div class="bg-stm-gold rounded-2xl p-8 text-white text-center">
+                                <div class="text-4xl font-bold mb-2">8+</div>
+                                <div class="text-sm">Fellowships</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Objectives Section -->
+    <section class="py-20 bg-white" id="objectives">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <p class="text-stm-blue font-semibold uppercase tracking-wider mb-4">Our Strategy</p>
+                <h2 class="font-display text-4xl md:text-5xl font-bold text-stm-navy mb-6">
+                    Our Objectives
+                </h2>
+                <div class="w-24 h-1 bg-stm-gold mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 lg:gap-12">
+                <!-- Objective 1 -->
+                <div class="bg-stm-gray/30 p-8 rounded-3xl border border-transparent hover:border-stm-blue/20 hover:bg-white hover:shadow-xl transition-all duration-300"
+                    data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex items-center mb-4">
+                        <span
+                            class="w-10 h-10 bg-stm-blue text-white rounded-full flex items-center justify-center font-bold mr-4 flex-shrink-0">1</span>
+                        <h4 class="font-display text-xl font-bold text-stm-navy">Gospel & Baptism</h4>
+                    </div>
+                    <p class="text-gray-600 mb-4 leading-relaxed">
+                        To proclaim the true gospel of Jesus Christ to all souls and baptizing them in the name of the
+                        Father, and of the Son and of the Holy Ghost.
+                    </p>
+                    <p class="text-stm-blue font-semibold text-sm">
+                        Matthew 28:18-19, Mark 16:15-16, John 3:5
+                    </p>
+                </div>
+
+                <!-- Objective 2 -->
+                <div class="bg-stm-gray/30 p-8 rounded-3xl border border-transparent hover:border-stm-blue/20 hover:bg-white hover:shadow-xl transition-all duration-300"
+                    data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-center mb-4">
+                        <span
+                            class="w-10 h-10 bg-stm-blue text-white rounded-full flex items-center justify-center font-bold mr-4 flex-shrink-0">2</span>
+                        <h4 class="font-display text-xl font-bold text-stm-navy">Soul Winning</h4>
+                    </div>
+                    <p class="text-gray-600 mb-4 leading-relaxed">
+                        To win as many souls as possible onto salvation for the kingdom of God.
+                    </p>
+                    <p class="text-stm-blue font-semibold text-sm">
+                        I Corinthians 9:19-23
+                    </p>
+                </div>
+
+                <!-- Objective 3 -->
+                <div class="bg-stm-gray/30 p-8 rounded-3xl border border-transparent hover:border-stm-blue/20 hover:bg-white hover:shadow-xl transition-all duration-300"
+                    data-aos="fade-up" data-aos-delay="300">
+                    <div class="flex items-center mb-4">
+                        <span
+                            class="w-10 h-10 bg-stm-blue text-white rounded-full flex items-center justify-center font-bold mr-4 flex-shrink-0">3</span>
+                        <h4 class="font-display text-xl font-bold text-stm-navy">Liberation</h4>
+                    </div>
+                    <p class="text-gray-600 mb-4 leading-relaxed">
+                        To liberate freely the oppressed from Satanic bondages.
+                    </p>
+                    <p class="text-stm-blue font-semibold text-sm">
+                        Matthew 10:7-8, Isaiah 42:6-7, Isaiah 61:1-4
+                    </p>
+                </div>
+
+                <!-- Objective 4 -->
+                <div class="bg-stm-gray/30 p-8 rounded-3xl border border-transparent hover:border-stm-blue/20 hover:bg-white hover:shadow-xl transition-all duration-300"
+                    data-aos="fade-up" data-aos-delay="400">
+                    <div class="flex items-center mb-4">
+                        <span
+                            class="w-10 h-10 bg-stm-blue text-white rounded-full flex items-center justify-center font-bold mr-4 flex-shrink-0">4</span>
+                        <h4 class="font-display text-xl font-bold text-stm-navy">Empowerment</h4>
+                    </div>
+                    <p class="text-gray-600 mb-4 leading-relaxed">
+                        To empower those who have believed in Jesus Christ to become disciples of the kingdom of God.
+                    </p>
+                    <p class="text-stm-blue font-semibold text-sm">
+                        Matthew 28:20, John 8:31
+                    </p>
+                </div>
+
+                <!-- Objective 5 -->
+                <div class="bg-stm-gray/30 p-8 rounded-3xl border border-transparent hover:border-stm-blue/20 hover:bg-white hover:shadow-xl transition-all duration-300"
+                    data-aos="fade-up" data-aos-delay="500">
+                    <div class="flex items-center mb-4">
+                        <span
+                            class="w-10 h-10 bg-stm-blue text-white rounded-full flex items-center justify-center font-bold mr-4 flex-shrink-0">5</span>
+                        <h4 class="font-display text-xl font-bold text-stm-navy">Restoration</h4>
+                    </div>
+                    <p class="text-gray-600 mb-4 leading-relaxed">
+                        To restore unto all who believe in Jesus Christ and His resurrection power, the joy and peace of
+                        God’s salvation with a right and renewed spirit.
+                    </p>
+                    <p class="text-stm-blue font-semibold text-sm">
+                        Isaiah 61:3-4, Psalm 51:10-12, Isaiah 57:18-19, Isaiah 51:11, Isaiah 49:6
+                    </p>
+                </div>
+
+                <!-- Objective 6 -->
+                <div class="bg-stm-gray/30 p-8 rounded-3xl border border-transparent hover:border-stm-blue/20 hover:bg-white hover:shadow-xl transition-all duration-300"
+                    data-aos="fade-up" data-aos-delay="600">
+                    <div class="flex items-center mb-4">
+                        <span
+                            class="w-10 h-10 bg-stm-blue text-white rounded-full flex items-center justify-center font-bold mr-4 flex-shrink-0">6</span>
+                        <h4 class="font-display text-xl font-bold text-stm-navy">Model Church</h4>
+                    </div>
+                    <p class="text-gray-600 mb-4 leading-relaxed">
+                        To be a model church that ministers with the genuine love of God to persons in the community and
+                        the world in Jesus’ name.
+                    </p>
+                    <p class="text-stm-blue font-semibold text-sm">
+                        Acts 10:38, Matthew 5:14-16, Acts 10:38
+                    </p>
+                </div>
+
+                <!-- Objective 7 -->
+                <div class="md:col-span-2 bg-stm-navy p-8 rounded-3xl text-white hover:shadow-2xl transition-all duration-300"
+                    data-aos="fade-up" data-aos-delay="700">
+                    <div class="flex items-center mb-4">
+                        <span
+                            class="w-10 h-10 bg-stm-gold text-stm-navy rounded-full flex items-center justify-center font-bold mr-4 flex-shrink-0">7</span>
+                        <h4 class="font-display text-xl font-bold">Total Commitment</h4>
+                    </div>
+                    <p class="text-white/80 mb-4 leading-relaxed text-lg">
+                        To be a church whose purpose is to be Christ-like in our daily living by emphasizing total
+                        obedience, commitment of life, personality, and possessions to the Lordship of Christ.
+                    </p>
+                    <p class="text-stm-sky font-semibold text-sm">
+                        Matthew 11:29, Matthew 5:48, Ephesians 5:1, Joshua 24:24
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Core Values -->
+    <section class="py-20 bg-gradient-to-b from-stm-gray to-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <p class="text-stm-blue font-semibold uppercase tracking-wider mb-4">What We Stand For</p>
+                <h2 class="font-display text-4xl md:text-5xl font-bold text-stm-navy mb-6">
+                    Our Core Values
+                </h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div data-aos="fade-up" data-aos-delay="100"
+                    class="value-card bg-white rounded-2xl p-8 shadow-lg transform transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+                    <div
+                        class="w-16 h-16 bg-stm-blue/10 rounded-xl flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110">
+                        <svg class="w-8 h-8 text-stm-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-stm-navy mb-3">Truth</h3>
+                    <p class="text-gray-600">We are committed to seeking and proclaiming the truth of God's Word in all
+                        we do.</p>
+                </div>
+
+                <div data-aos="fade-up" data-aos-delay="200"
+                    class="value-card bg-white rounded-2xl p-8 shadow-lg transform transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+                    <div
+                        class="w-16 h-16 bg-stm-light/10 rounded-xl flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110">
+                        <svg class="w-8 h-8 text-stm-light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m9.032 4.026a9.001 9.001 0 01-7.432 0m9.032-4.026A9.001 9.001 0 0112 3c-4.474 0-8.268 3.12-9.032 7.326m0 0A9.001 9.001 0 0012 21c4.474 0 8.268-3.12 9.032-7.326">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-stm-navy mb-3">Soul-winning</h3>
+                    <p class="text-gray-600">We are passionate about reaching the lost with the gospel of Jesus Christ
+                        and making disciples of all nations.</p>
+                </div>
+
+                <div data-aos="fade-up" data-aos-delay="300"
+                    class="value-card bg-white rounded-2xl p-8 shadow-lg transform transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+                    <div
+                        class="w-16 h-16 bg-stm-gold/10 rounded-xl flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110">
+                        <svg class="w-8 h-8 text-stm-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-stm-navy mb-3">Discipleship</h3>
+                    <p class="text-gray-600">We are committed to teaching and training believers to grow in their faith
+                        and become mature followers of Christ.</p>
+                </div>
+
+                <div data-aos="fade-up" data-aos-delay="400"
+                    class="value-card bg-white rounded-2xl p-8 shadow-lg transform transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+                    <div
+                        class="w-16 h-16 bg-stm-navy/10 rounded-xl flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110">
+                        <svg class="w-8 h-8 text-stm-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-stm-navy mb-3">Fruitfulness</h3>
+                    <p class="text-gray-600">We believe in bearing spiritual fruit through our lives and ministries,
+                        bringing glory to God and impacting our world.</p>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- Leadership Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <p class="text-stm-blue font-semibold uppercase tracking-wider mb-4">Our Team</p>
+                <h2 class="font-display text-4xl md:text-5xl font-bold text-stm-navy mb-6">
+                    Church Leadership
+                </h2>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto">
+                    Meet the dedicated leaders who guide our ministry with wisdom, faith, and servant hearts.
+                </p>
+            </div>
+
+            <!-- Head Pastor -->
+            <div data-aos="fade-up" class="mb-16">
+                <div
+                    class="leader-card bg-white rounded-3xl overflow-hidden shadow-2xl max-w-4xl mx-auto transform transition-all duration-500 hover:scale-[1.02]">
+                    <div class="grid md:grid-cols-2">
+                        <div class="overflow-hidden group">
+                            <img src="resources/Apostle.jpeg" alt="Apostle Sammy Nkansah"
+                                class="leader-image w-full h-full object-cover min-h-[400px] transition-transform duration-700 group-hover:scale-110">
+                        </div>
+                        <div class="p-8 md:p-12 flex flex-col justify-center">
+                            <p class="text-stm-blue font-semibold uppercase tracking-wider mb-2" data-aos="fade-down"
+                                data-aos-delay="200">Head Pastor</p>
+                            <h3 class="font-display text-3xl font-bold text-stm-navy mb-4" data-aos="fade-right"
+                                data-aos-delay="300">Apostle Sammy Nkansah</h3>
+                            <p class="text-gray-600 mb-6 leading-relaxed" data-aos="fade-up" data-aos-delay="400">
+                                Apostle Sammy Nkansah is the founder and Head Pastor of Seekers of the Truth Ministries.
+                                With over 10 years of ministry experience, he is passionate about teaching God's Word
+                                and equipping believers to live victorious Christian lives.
+                            </p>
+                            <p class="text-gray-600 mb-8 leading-relaxed" data-aos="fade-up" data-aos-delay="500">
+                                Under his leadership, STM has grown from a small gathering to a multi-branch ministry
+                                touching lives across Ghana and beyond. His teaching emphasizes the importance of
+                                knowing and living by God's truth.
+                            </p>
+                            <div class="flex items-center space-x-4">
+                                <a href="tel:+233244703250"
+                                    class="btn-primary text-white px-6 py-3 rounded-lg font-semibold inline-flex items-center hover:scale-105 transition-transform duration-300">
+                                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
+                                        </path>
+                                    </svg>
+                                    Contact
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Senior Pastor -->
+            <div data-aos="fade-up" data-aos-delay="50" class="mb-16">
+                <div class="leader-card bg-white rounded-3xl overflow-hidden shadow-2xl max-w-4xl mx-auto">
+                    <div class="grid md:grid-cols-2">
+                        <div class="overflow-hidden">
+                            <img src="resources/senior pastor.jpeg" alt="Senior Pastor"
+                                class="leader-image w-full h-full object-cover min-h-[400px]">
+                        </div>
+                        <div class="p-8 md:p-12 flex flex-col justify-center">
+                            <p class="text-stm-blue font-semibold uppercase tracking-wider mb-2">Senior Pastor</p>
+                            <h3 class="font-display text-3xl font-bold text-stm-navy mb-4">Senior Pastor</h3>
+                            <p class="text-gray-600 mb-6 leading-relaxed">
+                                The Senior Pastor provides spiritual oversight and guidance to the congregation,
+                                supporting the Head Pastor in fulfilling the vision and mission of Seekers of the Truth
+                                Ministries.
+                            </p>
+                            <p class="text-gray-600 mb-8 leading-relaxed">
+                                With a heart for pastoral care and discipleship, the Senior Pastor plays a vital role in
+                                nurturing the spiritual growth of our members and ensuring the effective operation of
+                                our ministry.
+                            </p>
+                            <div class="flex items-center space-x-4">
+                                <a href="tel:+233244976775"
+                                    class="btn-primary text-white px-6 py-3 rounded-lg font-semibold inline-flex items-center">
+                                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
+                                        </path>
+                                    </svg>
+                                    Contact
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pastor -->
+            <div data-aos="fade-up" data-aos-delay="100" class="mb-16">
+                <div class="leader-card bg-white rounded-3xl overflow-hidden shadow-2xl max-w-4xl mx-auto">
+                    <div class="grid md:grid-cols-2">
+                        <div class="overflow-hidden">
+                            <img src="resources/pastor.jpeg" alt="Pastor"
+                                class="leader-image w-full h-full object-cover min-h-[400px]">
+                        </div>
+                        <div class="p-8 md:p-12 flex flex-col justify-center">
+                            <p class="text-stm-blue font-semibold uppercase tracking-wider mb-2">Pastor</p>
+                            <h3 class="font-display text-3xl font-bold text-stm-navy mb-4">Pastor</h3>
+                            <p class="text-gray-600 mb-6 leading-relaxed">
+                                Our Pastor serves faithfully in various ministry capacities, providing spiritual
+                                guidance, teaching, and pastoral care to the congregation.
+                            </p>
+                            <p class="text-gray-600 mb-8 leading-relaxed">
+                                Committed to the mission of STM, the Pastor works alongside the leadership team to
+                                ensure that every member receives the spiritual nourishment and support needed for their
+                                journey of faith.
+                            </p>
+                            <div class="flex items-center space-x-4">
+                                <a href="tel:+233541141491"
+                                    class="btn-primary text-white px-6 py-3 rounded-lg font-semibold inline-flex items-center">
+                                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
+                                        </path>
+                                    </svg>
+                                    Contact
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Other Leaders -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Church Secretary -->
+                <div data-aos="fade-up" data-aos-delay="100"
+                    class="leader-card bg-white rounded-2xl overflow-hidden shadow-lg">
+                    <div class="h-64 bg-gradient-to-br from-stm-light to-stm-blue flex items-center justify-center">
+                        <div class="w-32 h-32 bg-white/20 rounded-full flex items-center justify-center">
+                            <span class="text-5xl font-bold text-white">ED</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-stm-blue font-semibold text-sm uppercase tracking-wider mb-2">Church Secretary
+                        </p>
+                        <h3 class="font-display text-xl font-bold text-stm-navy mb-3">Deacon Eric Darko</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            Deacon Eric serves as the Church Secretary, overseeing administrative operations and
+                            ensuring the smooth running of church activities.
+                        </p>
+                        <a href="tel:+233541655107"
+                            class="text-stm-blue font-semibold text-sm hover:underline inline-flex items-center">
+                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
+                                </path>
+                            </svg>
+                            +233 54 165 5107
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Men's Fellowship Leader -->
+                <div data-aos="fade-up" data-aos-delay="200"
+                    class="leader-card bg-white rounded-2xl overflow-hidden shadow-lg">
+                    <div class="h-64 bg-gradient-to-br from-stm-navy to-stm-blue flex items-center justify-center">
+                        <div class="w-32 h-32 bg-white/20 rounded-full flex items-center justify-center">
+                            <span class="text-5xl font-bold text-white">IO</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-stm-blue font-semibold text-sm uppercase tracking-wider mb-2">Coordinator</p>
+                        <h3 class="font-display text-xl font-bold text-stm-navy mb-3">Isaac Ofori</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            Isaac coordinates some church activities and also a prayer team member of the
+                            church.
+                        </p>
+                        <a href="tel:+233594844398"
+                            class="text-stm-blue font-semibold text-sm hover:underline inline-flex items-center">
+                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
+                                </path>
+                            </svg>
+                            +233 59 484 4398
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Women's Fellowship Leader -->
+                <div data-aos="fade-up" data-aos-delay="300"
+                    class="leader-card bg-white rounded-2xl overflow-hidden shadow-lg">
+                    <div class="h-64 bg-gradient-to-br from-pink-500 to-purple-600 flex items-center justify-center">
+                        <div class="w-32 h-32 bg-white/20 rounded-full flex items-center justify-center">
+                            <span class="text-5xl font-bold text-white">WF</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-stm-blue font-semibold text-sm uppercase tracking-wider mb-2">Women's Fellowship
+                            Leader</p>
+                        <h3 class="font-display text-xl font-bold text-stm-navy mb-3">Women's Fellowship</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            The Women's Fellowship is led by dedicated women who are passionate about empowering and
+                            supporting women in their spiritual journey.
+                        </p>
+                        <a href="contact.html"
+                            class="text-stm-blue font-semibold text-sm hover:underline inline-flex items-center">
+                            Contact Us
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                                </path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Story / Timeline -->
+    <section class="py-20 bg-gradient-to-b from-stm-gray to-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <p class="text-stm-blue font-semibold uppercase tracking-wider mb-4">Our Journey</p>
+                <h2 class="font-display text-4xl md:text-5xl font-bold text-stm-navy mb-6">
+                    Our Story
+                </h2>
+            </div>
+
+            <div class="relative border-l-2 border-stm-blue/30 ml-4 md:ml-0 md:mx-auto md:max-w-2xl space-y-12">
+                <!-- Timeline Item 1 -->
+                <div data-aos="fade-right" class="timeline-item relative pl-8 md:pl-12">
+                    <div class="bg-white rounded-xl p-6 shadow-lg">
+                        <span class="text-stm-blue font-bold text-lg">2013</span>
+                        <h3 class="font-display text-xl font-bold text-stm-navy mt-2 mb-3">The Beginning</h3>
+                        <p class="text-gray-600">
+                            Seekers of the Truth Ministries was founded by Apostle Sammy Nkansah with a small group of
+                            believers in Tafo, Kumasi, with a vision to seek and proclaim God's truth.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 2 -->
+                <div data-aos="fade-right" data-aos-delay="100" class="timeline-item relative pl-8 md:pl-12">
+                    <div class="bg-white rounded-xl p-6 shadow-lg">
+                        <span class="text-stm-blue font-bold text-lg">2015</span>
+                        <h3 class="font-display text-xl font-bold text-stm-navy mt-2 mb-3">First Branch</h3>
+                        <p class="text-gray-600">
+                            The ministry expanded with the establishment of our first branch in Abetifi, bringing the
+                            message of truth to the Eastern Region.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 3 -->
+                <div data-aos="fade-right" data-aos-delay="200" class="timeline-item relative pl-8 md:pl-12">
+                    <div class="bg-white rounded-xl p-6 shadow-lg">
+                        <span class="text-stm-blue font-bold text-lg">2018</span>
+                        <h3 class="font-display text-xl font-bold text-stm-navy mt-2 mb-3">5 Years of Ministry</h3>
+                        <p class="text-gray-600">
+                            Celebrated five years of God's faithfulness with growing congregations and expanded ministry
+                            impact across Ghana.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 4 -->
+                <div data-aos="fade-right" data-aos-delay="300" class="timeline-item relative pl-8 md:pl-12">
+                    <div class="bg-white rounded-xl p-6 shadow-lg">
+                        <span class="text-stm-blue font-bold text-lg">2020</span>
+                        <h3 class="font-display text-xl font-bold text-stm-navy mt-2 mb-3">Branch Expansion</h3>
+                        <p class="text-gray-600">
+                            Seven additional branches were opened in Kasoa, Kwadoagya, Yeji, Nkwanta ,
+                            Swedru, Atebubu and Diaspora service, extending our reach across Ghana.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 5 -->
+                <div data-aos="fade-right" data-aos-delay="400" class="timeline-item relative pl-8 md:pl-12">
+                    <div class="bg-white rounded-xl p-6 shadow-lg">
+                        <span class="text-stm-blue font-bold text-lg">Today</span>
+                        <h3 class="font-display text-xl font-bold text-stm-navy mt-2 mb-3">Growing Strong</h3>
+                        <p class="text-gray-600">
+                            Today, STM continues to grow with over 1,000 members across all branches, remaining
+                            committed to seeking and sharing God's truth.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statement of Faith -->
+    <section class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <p class="text-stm-blue font-semibold uppercase tracking-wider mb-4">What We Believe</p>
+                <h2 class="font-display text-4xl md:text-5xl font-bold text-stm-navy mb-6">
+                    Statement of Faith
+                </h2>
+            </div>
+
+            <div class="space-y-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="bg-stm-gray rounded-xl p-6">
+                    <h3 class="font-display text-xl font-bold text-stm-navy mb-3">The Bible</h3>
+                    <p class="text-gray-600">
+                        We believe the Bible is the inspired, infallible, and authoritative Word of God, the supreme and
+                        final authority for all Christian faith and life.
+                    </p>
+                </div>
+
+                <div class="bg-stm-gray rounded-xl p-6">
+                    <h3 class="font-display text-xl font-bold text-stm-navy mb-3">God</h3>
+                    <p class="text-gray-600">
+                        We believe in one God, eternally existing in three persons: Father, Son, and Holy Spirit,
+                        co-equal and co-eternal.
+                    </p>
+                </div>
+
+                <div class="bg-stm-gray rounded-xl p-6">
+                    <h3 class="font-display text-xl font-bold text-stm-navy mb-3">Jesus Christ</h3>
+                    <p class="text-gray-600">
+                        We believe in Jesus Christ, the Son of God, who was conceived by the Holy Spirit, born of the
+                        Virgin Mary, lived a sinless life, died on the cross for our sins, rose from the dead, and will
+                        return in glory.
+                    </p>
+                </div>
+
+                <div class="bg-stm-gray rounded-xl p-6">
+                    <h3 class="font-display text-xl font-bold text-stm-navy mb-3">Salvation</h3>
+                    <p class="text-gray-600">
+                        We believe that salvation is by grace through faith in Jesus Christ alone, and that all who
+                        repent and believe in Him are born again by the Holy Spirit and become children of God.
+                    </p>
+                </div>
+
+                <div class="bg-stm-gray rounded-xl p-6">
+                    <h3 class="font-display text-xl font-bold text-stm-navy mb-3">The Holy Spirit</h3>
+                    <p class="text-gray-600">
+                        We believe in the Holy Spirit, who convicts the world of sin, regenerates believers, indwells
+                        and empowers them for godly living and service.
+                    </p>
+                </div>
+
+                <div class="bg-stm-gray rounded-xl p-6">
+                    <h3 class="font-display text-xl font-bold text-stm-navy mb-3">The Church</h3>
+                    <p class="text-gray-600">
+                        We believe in the universal Church, the body of Christ, composed of all believers, and in the
+                        local church as the expression of this body in a particular community.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-gradient-to-r from-stm-navy to-stm-blue">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="font-display text-4xl md:text-5xl font-bold text-white mb-6" data-aos="fade-up">
+                Become Part of Our Family
+            </h2>
+            <p class="text-xl text-white/80 mb-10" data-aos="fade-up" data-aos-delay="100">
+                We'd love to welcome you to Seekers of the Truth Ministries. Join us this and everySaturday!
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center" data-aos="fade-up" data-aos-delay="200">
+                <a href="services.html"
+                    class="bg-white text-stm-navy px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors inline-flex items-center justify-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    Service Times
+                </a>
+                <a href="contact.html"
+                    class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white hover:text-stm-navy transition-colors inline-flex items-center justify-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                        </path>
+                    </svg>
+                    Contact Us
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Developer Section -->
+    <section class="py-20 bg-gradient-to-b from-white to-stm-gray">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <div class="inline-flex items-center justify-center w-20 h-20 bg-stm-blue/10 rounded-full mb-6">
+                    <svg class="w-10 h-10 text-stm-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4">
+                    </svg>
+                </div>
+                <h2 class="font-display text-4xl md:text-5xl font-bold text-stm-navy mb-6">
+                    Website Developer
+                </h2>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto">
+                    Meet the talented developer who brought STM's online presence to life
+                </p>
+            </div>
+
+            <div class="bg-white rounded-3xl shadow-xl p-8 md:p-12" data-aos="fade-up" data-aos-delay="100">
+                <div class="grid lg:grid-cols-3 gap-12 items-center">
+                    <!-- Developer Photo -->
+                    <div class="lg:col-span-1 text-center">
+                        <div class="relative inline-block">
+                            <img src="resources/isaac.jpeg" alt="Isaac Ofori"
+                                class="w-full h-full object-cover rounded-2xl mx-auto shadow-2xl transform transition-all duration-300 hover:scale-105">
+                            <div class="absolute -bottom-4 -right-4 bg-stm-blue text-white rounded-full p-3 shadow-lg">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4">
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Developer Info -->
+                    <div class="lg:col-span-2">
+                        <div class="mb-6">
+                            <h3 class="font-display text-3xl font-bold text-stm-navy mb-2">Isaac Ofori</h3>
+                            <p class="text-stm-blue font-semibold text-lg mb-4">Web Developer & IT Specialist</p>
+                        </div>
+
+                        <div class="space-y-6 text-gray-600 leading-relaxed">
+                            <p>
+                                Isaac Ofori is a passionate and skilled web developer currently pursuing a Bachelor of
+                                Science
+                                in Information Technology Education at the Akenten Appiah Menka University of Skilled
+                                Training
+                                and Entrepreneurial Development (AAMUSTED). With a strong foundation in modern web
+                                technologies
+                                and a keen eye for design, Isaac specializes in creating responsive, user-friendly
+                                websites
+                                that serve as powerful tools for ministry and community engagement.
+                            </p>
+                            <p>
+                                His expertise in web development, combined with his understanding of educational
+                                technology,
+                                enables him to craft digital solutions that not only look impressive but also function
+                                seamlessly
+                                across all devices. Isaac's commitment to excellence and attention to detail is evident
+                                in
+                                every aspect of the STM website, from the elegant animations to the intuitive
+                                navigation.
+                            </p>
+                        </div>
+
+                        <!-- Contact Information -->
+                        <div class="mt-8 space-y-4">
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 bg-stm-blue/10 rounded-lg flex items-center justify-center mr-4">
+                                    <svg class="w-6 h-6 text-stm-blue" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253">
+                                        </path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-stm-navy">Education</p>
+                                    <p class="text-gray-600">BSc. Information Technology Education</p>
+                                    <p class="text-gray-600">AAMUSTED</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+                                    <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
+                                        </path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-stm-navy">Contact</p>
+                                    <div class="flex flex-wrap gap-3">
+                                        <a href="tel:+233594844398"
+                                            class="inline-flex items-center text-stm-blue hover:text-stm-navy transition-colors">
+                                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor"
+                                                viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
+                                                </path>
+                                            </svg>
+                                            Call
+                                        </a>
+                                        <a href="https://wa.me/233594844398" target="_blank"
+                                            class="inline-flex items-center text-green-600 hover:text-green-700 transition-colors">
+                                            <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 24 24">
+                                                <path
+                                                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+                                            </svg>
+                                            WhatsApp
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Skills Badge -->
+                        <div class="mt-8 flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-stm-blue/10 text-stm-blue rounded-full text-sm font-medium">Web
+                                Development</span>
+                            <span class="px-3 py-1 bg-stm-navy/10 text-stm-navy rounded-full text-sm font-medium">IT
+                                Education</span>
+                            <span class="px-3 py-1 bg-stm-gold/10 text-stm-gold rounded-full text-sm font-medium">UI/UX
+                                Design</span>
+                            <span
+                                class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-medium">Responsive
+                                Design</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-stm-navy text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <div>
+                    <img src="resources/church logo.jpeg" alt="STM Logo" class="h-16 w-auto mb-6">
+                    <p class="text-white/70 mb-6">
+                        Seekers of the Truth Ministries is dedicated to spreading God's Word and building a community of
+                        believers.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="https://www.facebook.com/share/1De5bEGP2S/?mibextid=wwXIfr" target="_blank"
+                            class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-stm-blue transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                            </svg>
+                        </a>
+                        <a href="https://www.tiktok.com/@stmghana" target="_blank"
+                            class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-stm-blue transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                            </svg>
+                        </a>
+                        <a href="https://youtube.com/@apostlesammynkansah?si=eWnXuTrvj4nrMnlY" target="_blank"
+                            class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-stm-blue transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.071 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-display text-xl font-bold mb-6">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><a href="about.html" class="text-white/70 hover:text-white transition-colors">About Us</a>
+                        </li>
+                        <li><a href="services.html"
+                                class="text-white/70 hover:text-white transition-colors">Services</a></li>
+                        <li><a href="program.html" class="text-white/70 hover:text-white transition-colors">Program</a>
+                        </li>
+                        <li><a href="sermons.html" class="text-white/70 hover:text-white transition-colors">Sermons</a>
+                        </li>
+                        <li><a href="testimonies.html"
+                                class="text-white/70 hover:text-white transition-colors">Testimonies</a></li>
+                        <li><a href="giving.html" class="text-white/70 hover:text-white transition-colors">Giving</a>
+                        </li>
+                        <li><a href="fellowships.html"
+                                class="text-white/70 hover:text-white transition-colors">Fellowships</a></li>
+                        </li>
+                        <li><a href="branches.html"
+                                class="text-white/70 hover:text-white transition-colors">Branches</a></li>
+                        <li><a href="contact.html" class="text-white/70 hover:text-white transition-colors">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-display text-xl font-bold mb-6">Service Times</h4>
+                    <ul class="space-y-3 text-white/70">
+                        <li><span class="font-semibold text-white">Saturday:</span> Main Service - 9:30 AM</li>
+                        <li><span class="font-semibold text-white">Tuesday:</span> Counselling - 10:00 AM - 2:00 PM</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-display text-xl font-bold mb-6">Contact Us</h4>
+                    <ul class="space-y-3 text-white/70">
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 mr-3 mt-1 text-stm-blue" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                </path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            Tafo, Kumasi, Ghana
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 mr-3 text-stm-blue" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                                </path>
+                            </svg>
+                            <a href="mailto:info.stmghana@gmail.com"
+                                class="hover:text-white transition-colors">info.stmghana@gmail.com</a>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 mr-3 text-stm-blue" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
+                                </path>
+                            </svg>
+                            <a href="tel:+233244703250" class="hover:text-white transition-colors">+233 24 470 3250</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-white/10 pt-8 text-center">
+                <p class="text-white/50">
+                    © 2026 Seekers of the Truth Ministries. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="stm-main.js"></script>
+    <script>
+        // Fallback mobile menu script - ensures it works even if main script fails
+        document.addEventListener('DOMContentLoaded', function () {
+            setTimeout(function () {
+                const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+                const mobileMenu = document.getElementById('mobile-menu');
+
+                if (mobileMenuBtn && mobileMenu) {
+                    // Remove existing listeners
+                    const newBtn = mobileMenuBtn.cloneNode(true);
+                    mobileMenuBtn.parentNode.replaceChild(newBtn, mobileMenuBtn);
+
+                    newBtn.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        mobileMenu.classList.toggle('hidden');
+
+                        const isOpen = !mobileMenu.classList.contains('hidden');
+                        newBtn.innerHTML = isOpen
+                            ? '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>'
+                            : '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>';
+                    });
+
+                    // Close menu on link click
+                    const links = mobileMenu.querySelectorAll('a');
+                    links.forEach(link => {
+                        link.addEventListener('click', function () {
+                            mobileMenu.classList.add('hidden');
+                            newBtn.innerHTML = '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>';
+                        });
+                    });
+                }
+            }, 200);
+        });
+    </script>
+</body>
+
+</html>

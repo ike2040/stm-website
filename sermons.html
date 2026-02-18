@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sermons & Media - Seekers of the Truth Ministries</title>
+    <meta name="description"
+        content="Watch and listen to sermons from Apostle Sammy Nkansah and the Seekers of the Truth Ministries team.">
+
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'stm-blue': '#1E40AF',
+                        'stm-navy': '#1E3A8A',
+                        'stm-light': '#3B82F6',
+                        'stm-sky': '#60A5FA',
+                        'stm-gold': '#D4AF37',
+                        'stm-gray': '#F3F4F6',
+                    },
+                    fontFamily: {
+                        'display': ['Playfair Display', 'serif'],
+                        'body': ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .nav-blur {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #1E40AF 0%, #1E3A8A 100%);
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(30, 64, 175, 0.3);
+        }
+
+        .media-card {
+            transition: all 0.3s ease;
+        }
+
+        .media-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(30, 64, 175, 0.15);
+        }
+
+        .play-button {
+            transition: all 0.3s ease;
+        }
+
+        .media-card:hover .play-button {
+            transform: scale(1.1);
+            background-color: #D4AF37;
+        }
+
+        /* Church Name Animations */
+        .animate-pulse-slow {
+            animation: pulse-slow 3s ease-in-out infinite;
+        }
+
+        .animate-gradient {
+            background: linear-gradient(90deg, #1e40af, #3b82f6, #1e40af);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-shift 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse-slow {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.8;
+                transform: scale(1.02);
+            }
+        }
+
+        @keyframes gradient-shift {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Hover effect for church name */
+        .church-name:hover .animate-pulse-slow {
+            animation-duration: 1.5s;
+        }
+
+        .church-name:hover .animate-gradient {
+            animation-duration: 2s;
+            background: linear-gradient(90deg, #1e40af, #60a5fa, #1e40af);
+            background-size: 200% auto;
+        }
+    </style>
+</head>
+
+<body class="font-body text-gray-700 bg-white">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 nav-blur border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center church-name">
+                        <img src="resources/church logo.jpeg" alt="STM Logo" class="h-12 w-auto">
+                        <div class="ml-3 hidden sm:block">
+                            <span
+                                class="font-display text-lg font-bold text-stm-navy block leading-tight animate-pulse-slow">Seekers
+                                of
+                                the</span>
+                            <span
+                                class="font-display text-lg font-bold text-stm-blue block leading-tight animate-gradient">Truth
+                                Ministries</span>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="hidden lg:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-600 hover:text-stm-blue transition-colors">Home</a>
+                    <a href="about.html" class="text-gray-600 hover:text-stm-blue transition-colors">About</a>
+                    <a href="services.html" class="text-gray-600 hover:text-stm-blue transition-colors">Services</a>
+                    <a href="sermons.html"
+                        class="text-stm-navy font-semibold hover:text-stm-blue transition-colors">Sermons</a>
+                    <a href="fellowships.html"
+                        class="text-gray-600 hover:text-stm-blue transition-colors">Fellowships</a>
+                    <a href="program.html" class="text-gray-600 hover:text-stm-blue transition-colors">Program</a>
+                    <a href="branches.html" class="text-gray-600 hover:text-stm-blue transition-colors">Branches</a>
+                    <a href="contact.html" class="text-gray-600 hover:text-stm-blue transition-colors">Contact</a>
+                </div>
+
+                <div class="hidden lg:block">
+                    <a href="contact.html#membership"
+                        class="btn-primary text-white px-6 py-3 rounded-lg font-semibold inline-block">Join Us</a>
+                </div>
+
+                <button id="mobile-menu-btn" class="lg:hidden text-stm-navy p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t">
+            <div class="px-4 py-4 space-y-3">
+                <a href="index.html" class="block text-gray-600 py-2">Home</a>
+                <a href="about.html" class="block text-gray-600 py-2">About</a>
+                <a href="services.html" class="block text-gray-600 py-2">Services</a>
+                <a href="sermons.html" class="block text-stm-navy font-semibold py-2">Sermons</a>
+                <a href="fellowships.html" class="block text-gray-600 py-2">Fellowships</a>
+                <a href="program.html" class="block text-gray-600 py-2">Program</a>
+                <a href="branches.html" class="block text-gray-600 py-2">Branches</a>
+                <a href="contact.html" class="block text-gray-600 py-2">Contact</a>
+                <a href="contact.html#membership"
+                    class="btn-primary text-white px-6 py-3 rounded-lg font-semibold inline-block mt-4">Join Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="pt-32 pb-20 bg-gradient-to-br from-stm-navy to-stm-blue relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('resources/pattern.png')] opacity-10"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <p class="text-white/70 uppercase tracking-wider mb-4" data-aos="fade-down" data-aos-duration="1000">Media
+                Library</p>
+            <h1 class="font-display text-4xl md:text-6xl font-bold text-white mb-6" data-aos="fade-up"
+                data-aos-duration="1000" data-aos-delay="200">
+                Sermons & Messages
+            </h1>
+            <p class="text-xl text-white/80 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="400">
+                Explore our collection of life-changing messages and teachings. Listen, watch, and be blessed.
+            </p>
+        </div>
+    </section>
+
+    <!-- Featured Sermon -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <p class="text-stm-blue font-semibold uppercase tracking-wider mb-4">Latest Message</p>
+                <h2 class="font-display text-4xl md:text-5xl font-bold text-stm-navy mb-6">
+                    Featured Sermon
+                </h2>
+            </div>
+
+            <div class="bg-white/80 rounded-3xl overflow-hidden shadow-xl transform transition-all duration-500 hover:shadow-2xl hover:scale-[1.01]"
+                data-aos="zoom-in" data-aos-delay="200">
+                <div class="grid lg:grid-cols-2">
+                    <div class="relative h-64 lg:h-auto bg-black group overflow-hidden">
+                        <!-- Placeholder for Video Embed -->
+                        <div class="absolute inset-0 flex items-center justify-center overflow-hidden">
+                            <iframe
+                                class="w-full h-full transform transition-transform duration-700 group-hover:scale-105"
+                                src="https://www.youtube.com/embed/QHiG7MYbnVc" title="Latest Sermon" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
+                        </div>
+                    </div>
+                    <div class="p-8 md:p-12 flex flex-col justify-center">
+                        <div class="flex items-center space-x-2 text-sm text-stm-blue font-semibold mb-4"
+                            data-aos="fade-right" data-aos-delay="300">
+                            <span class="px-3 py-1 bg-stm-blue/10 rounded-full">Latest Service</span>
+                            <span>•</span>
+                            <span>Sabbath Service</span>
+                        </div>
+                        <h3 class="font-display text-3xl font-bold text-stm-navy mb-4 transform transition-all duration-300 hover:text-stm-blue cursor-default"
+                            data-aos="fade-up" data-aos-delay="400">
+                            Latest Message from Apostle Sammy Nkansah
+                        </h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed" data-aos="fade-up" data-aos-delay="500">
+                            Watch the latest powerful message from Apostle Sammy Nkansah. Be blessed as you listen to
+                            the Word of God.
+                        </p>
+                        <div class="flex items-center space-x-4" data-aos="fade-up" data-aos-delay="600">
+                            <a href="https://youtube.com/@apostlesammynkansah" target="_blank"
+                                class="btn-primary text-white px-8 py-3 rounded-lg font-semibold inline-flex items-center hover:scale-105 hover:shadow-lg transition-all duration-300">
+                                <svg class="w-5 h-5 mr-2 animate-pulse" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.071 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                                </svg>
+                                Watch on YouTube
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recent Sermons Grid -->
+    <section class="py-20 bg-gradient-to-b from-stm-gray to-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="font-display text-3xl md:text-4xl font-bold text-stm-navy mb-6">
+                    Recent Messages
+                </h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    Browse our archive of recent teachings and sermons.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Sermon Card 1 -->
+                <div class="media-card bg-white rounded-2xl overflow-hidden shadow-lg transform transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
+                    data-aos="fade-up" data-aos-delay="100">
+                    <div class="relative h-48 bg-gray-200 group cursor-pointer overflow-hidden">
+                        <img src="https://img.youtube.com/vi/i3PPqYFTD1Y/maxresdefault.jpg" alt="Sermon Thumbnail"
+                            class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110">
+                        <div
+                            class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <a href="https://www.youtube.com/watch?v=i3PPqYFTD1Y" target="_blank"
+                                class="play-button w-16 h-16 bg-stm-blue/90 hover:bg-stm-blue rounded-full flex items-center justify-center text-white transform scale-0 group-hover:scale-100 transition-transform duration-300">
+                                <svg class="w-8 h-8 ml-1" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M8 5v14l11-7z" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center text-sm text-gray-500 mb-3">
+                            <span class="bg-stm-blue/10 text-stm-blue px-2 py-1 rounded">Sermon</span>
+                            <span class="mx-2">•</span>
+                            <span>Recently Added</span>
+                        </div>
+                        <h3
+                            class="font-display text-xl font-bold text-stm-navy mb-2 group-hover:text-stm-blue transition-colors">
+                            Remember Your Creator
+                        </h3>
+                        <p class="text-gray-600 text-sm mb-4 line-clamp-2">Watch this powerful sermon by Apostle Sammy
+                            Nkansah. Be blessed as you listen to the Word of God.</p>
+                        <a href="https://www.youtube.com/watch?v=i3PPqYFTD1Y" target="_blank"
+                            class="text-stm-blue font-semibold text-sm hover:underline inline-flex items-center group/link">
+                            Watch Now
+                            <svg class="w-4 h-4 ml-1 transform transition-transform duration-300 group-hover/link:translate-x-1"
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 5l7 7-7 7" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Sermon Card 2 -->
+                <div class="media-card bg-white rounded-2xl overflow-hidden shadow-lg transform transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
+                    data-aos="fade-up" data-aos-delay="200">
+                    <div class="relative h-48 bg-gray-200 group cursor-pointer overflow-hidden">
+                        <img src="resources/Apostle.jpeg" alt="Sermon Thumbnail"
+                            class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110">
+                        <div
+                            class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div
+                                class="play-button w-16 h-16 bg-stm-blue/90 hover:bg-stm-blue rounded-full flex items-center justify-center text-white transform scale-0 group-hover:scale-100 transition-transform duration-300">
+                                <svg class="w-8 h-8 ml-1" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M8 5v14l11-7z" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center text-sm text-gray-500 mb-3">
+                            <span class="bg-stm-gold/10 text-stm-gold px-2 py-1 rounded">Family</span>
+                            <span class="mx-2">•</span>
+                            <span>3 weeks ago</span>
+                        </div>
+                        <h3
+                            class="font-display text-xl font-bold text-stm-navy mb-2 group-hover:text-stm-blue transition-colors">
+                            Building Godly Families</h3>
+                        <p class="text-gray-600 text-sm mb-4 line-clamp-2">Practical biblical wisdom for raising
+                            children and maintaining a healthy marriage in today's world.</p>
+                        <a href="#"
+                            class="text-stm-blue font-semibold text-sm hover:underline inline-flex items-center group/link">
+                            Listen Now
+                            <svg class="w-4 h-4 ml-1 transform transition-transform duration-300 group-hover/link:translate-x-1"
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 5l7 7-7 7" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Sermon Card 3 -->
+                <div class="media-card bg-white rounded-2xl overflow-hidden shadow-lg transform transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
+                    data-aos="fade-up" data-aos-delay="300">
+                    <div class="relative h-48 bg-gray-200 group cursor-pointer overflow-hidden">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-br from-stm-navy to-stm-blue flex items-center justify-center transform transition-transform duration-700 group-hover:scale-110">
+                            <svg class="w-16 h-16 text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                    d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+                            </svg>
+                        </div>
+                        <div
+                            class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div
+                                class="play-button w-16 h-16 bg-stm-blue/90 hover:bg-stm-blue rounded-full flex items-center justify-center text-white transform scale-0 group-hover:scale-100 transition-transform duration-300">
+                                <svg class="w-8 h-8 ml-1" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M8 5v14l11-7z" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center text-sm text-gray-500 mb-3">
+                            <span class="bg-stm-light/10 text-stm-light px-2 py-1 rounded">Prayer</span>
+                            <span class="mx-2">•</span>
+                            <span>1 month ago</span>
+                        </div>
+                        <h3
+                            class="font-display text-xl font-bold text-stm-navy mb-2 group-hover:text-stm-blue transition-colors">
+                            The Secret Place</h3>
+                        <p class="text-gray-600 text-sm mb-4 line-clamp-2">Discovering the intimacy and power found in
+                            private prayer and communion with the Holy Spirit.</p>
+                        <a href="#"
+                            class="text-stm-blue font-semibold text-sm hover:underline inline-flex items-center group/link">
+                            Listen Now
+                            <svg class="w-4 h-4 ml-1 transform transition-transform duration-300 group-hover/link:translate-x-1"
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 5l7 7-7 7" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <a href="https://youtube.com/@apostlesammynkansah" target="_blank"
+                    class="btn-secondary px-8 py-4 rounded-lg font-semibold inline-flex items-center transform transition-all duration-300 hover:scale-105 hover:shadow-lg">
+                    View Full Archive on YouTube
+                    <svg class="w-5 h-5 ml-2 transition-transform duration-300 group-hover:translate-x-1" fill="none"
+                        stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Radio Broadcasts Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <p class="text-stm-blue font-semibold uppercase tracking-wider mb-4">Live Broadcasts</p>
+                <h2 class="font-display text-4xl md:text-5xl font-bold text-stm-navy mb-6">
+                    STM Radio Ministry
+                </h2>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto">
+                    Tune in to our daily radio broadcasts for inspiring messages, worship, and biblical teachings that
+                    transform lives.
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Radio Image -->
+                <div class="relative" data-aos="fade-right" data-aos-delay="200">
+                    <div class="relative rounded-3xl overflow-hidden shadow-2xl group">
+                        <img src="resources/radio.jpeg" alt="STM Radio Ministry"
+                            class="w-full h-auto object-cover transform transition-all duration-700 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+
+                        <!-- Live Badge -->
+                        <div class="absolute top-6 left-6">
+                            <div
+                                class="flex items-center space-x-2 bg-red-600 text-white px-4 py-2 rounded-full animate-pulse">
+                                <div class="w-3 h-3 bg-white rounded-full animate-pulse"></div>
+                                <span class="font-semibold text-sm">LIVE NOW</span>
+                            </div>
+                        </div>
+
+                        <!-- Radio Info Overlay -->
+                        <div class="absolute bottom-0 left-0 right-0 p-8">
+                            <h3 class="font-display text-3xl font-bold text-white mb-3">
+                                Radio Broadcasts
+                            </h3>
+                            <p class="text-white/90 text-lg mb-4">
+                                Join us every Fridays for powerful messages and uplifting worship
+                            </p>
+                            <div class="flex items-center space-x-4">
+                                <div class="flex items-center text-white/80">
+                                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                    <span>Every Fridays: 8:00 PM - 9:00 PM</span>
+                                </div>
+                                <div class="flex items-center text-white/80">
+                                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
+                                        </path>
+                                    </svg>
+                                    <span>FM 95.7 MHz</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Radio Content -->
+                <div data-aos="fade-left" data-aos-delay="300">
+                    <div class="bg-stm-gray rounded-3xl p-8 md:p-12">
+                        <h3 class="font-display text-2xl font-bold text-stm-navy mb-6">
+                            Listen Anytime, Anywhere
+                        </h3>
+
+                        <div class="space-y-6 mb-8">
+                            <div class="flex items-start space-x-4">
+                                <div
+                                    class="w-12 h-12 bg-stm-blue rounded-xl flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z">
+                                        </path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-stm-navy mb-2">Morning Devotions</h4>
+                                    <p class="text-gray-600">Start your day with inspirational messages and prayers to
+                                        strengthen your faith.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start space-x-4">
+                                <div
+                                    class="w-12 h-12 bg-stm-gold rounded-xl flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253">
+                                        </path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-stm-navy mb-2">Bible Teachings</h4>
+                                    <p class="text-gray-600">In-depth biblical teachings covering various topics to help
+                                        you grow spiritually.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start space-x-4">
+                                <div
+                                    class="w-12 h-12 bg-stm-light rounded-xl flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3">
+                                        </path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-stm-navy mb-2">Worship & Praise</h4>
+                                    <p class="text-gray-600">Experience uplifting worship music and praise sessions
+                                        throughout the day.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <a href="https://www.facebook.com/share/1De5bEGP2S/?mibextid=wwXIfr" target="_blank"
+                                class="btn-primary text-white px-6 py-3 rounded-lg font-semibold inline-flex items-center justify-center">
+                                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                                </svg>
+                                Watch Live on Facebook
+                            </a>
+                            <button
+                                class="btn-secondary px-6 py-3 rounded-lg font-semibold inline-flex items-center justify-center">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                                    </path>
+                                </svg>
+                                View Schedule
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-stm-navy text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <div>
+                    <img src="resources/church logo.jpeg" alt="STM Logo" class="h-16 w-auto mb-6">
+                    <p class="text-white/70 mb-6">
+                        Seekers of the Truth Ministries is dedicated to spreading God's Word and building a community of
+                        believers.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="https://www.facebook.com/share/1De5bEGP2S/?mibextid=wwXIfr" target="_blank"
+                            class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-stm-blue transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                            </svg>
+                        </a>
+                        <a href="https://www.tiktok.com/@stmghana" target="_blank"
+                            class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-stm-blue transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                            </svg>
+                        </a>
+                        <a href="https://youtube.com/@apostlesammynkansah?si=eWnXuTrvj4nrMnlY" target="_blank"
+                            class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-stm-blue transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.071 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-display text-xl font-bold mb-6">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><a href="about.html" class="text-white/70 hover:text-white transition-colors">About Us</a>
+                        </li>
+                        <li><a href="services.html"
+                                class="text-white/70 hover:text-white transition-colors">Services</a></li>
+                        <li><a href="sermons.html" class="text-white hover:text-white transition-colors">Sermons</a>
+                        </li>
+                        <li><a href="testimonies.html"
+                                class="text-white/70 hover:text-white transition-colors">Testimonies</a></li>
+                        <li><a href="giving.html" class="text-white/70 hover:text-white transition-colors">Giving</a>
+                        </li>
+                        <li><a href="fellowships.html"
+                                class="text-white/70 hover:text-white transition-colors">Fellowships</a></li>
+                        <li><a href="program.html" class="text-white/70 hover:text-white transition-colors">Program</a>
+                        </li>
+                        <li><a href="branches.html"
+                                class="text-white/70 hover:text-white transition-colors">Branches</a></li>
+                        <li><a href="contact.html" class="text-white/70 hover:text-white transition-colors">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-display text-xl font-bold mb-6">Service Times</h4>
+                    <ul class="space-y-3 text-white/70">
+                        <li><span class="font-semibold text-white">Saturday:</span> Main Service - 9:30 AM</li>
+                        <li><span class="font-semibold text-white">Tuesday:</span> Counselling - 10:00 AM - 2:00 PM</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-display text-xl font-bold mb-6">Contact Us</h4>
+                    <ul class="space-y-3 text-white/70">
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 mr-3 mt-1 text-stm-blue" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                </path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            Tafo, Kumasi, Ghana
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 mr-3 text-stm-blue" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                                </path>
+                            </svg>
+                            <a href="mailto:info.stmghana@gmail.com"
+                                class="hover:text-white transition-colors">info.stmghana@gmail.com</a>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 mr-3 text-stm-blue" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
+                                </path>
+                            </svg>
+                            <a href="tel:+233244703250" class="hover:text-white transition-colors">+233 24 470 3250</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-white/10 pt-8 text-center">
+                <p class="text-white/50">
+                    © 2026 Seekers of the Truth Ministries. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+    </script>
+    <script src="stm-main.js"></script>
+</body>
+
+</html>
