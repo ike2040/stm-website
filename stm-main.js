@@ -13,7 +13,6 @@ document.addEventListener('DOMContentLoaded', function () {
     initSwiper();
     initNavigationHighlight();
     initScrollToTop();
-    initFloatingNav();
     initKeyboardNavigation();
     initBreadcrumbs();
     initAutoUpdate();
@@ -121,11 +120,11 @@ function initFormHandlers() {
 
             // Simulate form submission
             setTimeout(() => {
-                showNotification('Thank you! Your message has been sent. We will get back to you soon.', 'success');
+                window.location.href = 'success.html';
                 contactForm.reset();
                 submitBtn.innerHTML = originalText;
                 submitBtn.disabled = false;
-            }, 1500);
+            }, 1000);
         });
     }
 
@@ -150,11 +149,11 @@ function initFormHandlers() {
 
             // Simulate form submission
             setTimeout(() => {
-                showNotification('Your prayer request has been submitted. Our Prayer Team will intercede for you.', 'success');
+                window.location.href = 'success.html';
                 prayerForm.reset();
                 submitBtn.innerHTML = originalText;
                 submitBtn.disabled = false;
-            }, 1500);
+            }, 1000);
         });
     }
 }
@@ -379,179 +378,6 @@ window.STM = {
     throttle
 };
 
-/**
- * Floating Navigation Menu
- */
-function initFloatingNav() {
-    // Create floating navigation
-    const floatingNav = document.createElement('div');
-    floatingNav.id = 'floating-nav';
-    floatingNav.className = 'fixed bottom-24 right-24 z-40 bg-white rounded-2xl shadow-2xl p-4 transform translate-x-full transition-transform duration-300 max-w-xs';
-    floatingNav.innerHTML = `
-        <div class="flex flex-col space-y-2">
-            <div class="text-center mb-3">
-                <h4 class="font-semibold text-stm-navy text-sm">Quick Navigation</h4>
-            </div>
-            <a href="index.html" class="nav-item flex items-center px-3 py-2 rounded-lg hover:bg-stm-gray transition-colors group">
-                <svg class="w-4 h-4 mr-2 text-stm-blue group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
-                </svg>
-                <span class="text-sm font-medium text-gray-700">Home</span>
-            </a>
-            <a href="about.html" class="nav-item flex items-center px-3 py-2 rounded-lg hover:bg-stm-gray transition-colors group">
-                <svg class="w-4 h-4 mr-2 text-stm-blue group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                </svg>
-                <span class="text-sm font-medium text-gray-700">About</span>
-            </a>
-            <a href="services.html" class="nav-item flex items-center px-3 py-2 rounded-lg hover:bg-stm-gray transition-colors group">
-                <svg class="w-4 h-4 mr-2 text-stm-blue group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
-                </svg>
-                <span class="text-sm font-medium text-gray-700">Services</span>
-            </a>
-            <a href="program.html" class="nav-item flex items-center px-3 py-2 rounded-lg hover:bg-stm-gray transition-colors group">
-                <svg class="w-4 h-4 mr-2 text-stm-blue group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                </svg>
-                <span class="text-sm font-medium text-gray-700">Program</span>
-            </a>
-            <a href="sermons.html" class="nav-item flex items-center px-3 py-2 rounded-lg hover:bg-stm-gray transition-colors group">
-                <svg class="w-4 h-4 mr-2 text-stm-blue group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
-                </svg>
-                <span class="text-sm font-medium text-gray-700">Sermons</span>
-            </a>
-            <a href="testimonies.html" class="nav-item flex items-center px-3 py-2 rounded-lg hover:bg-stm-gray transition-colors group">
-                <svg class="w-4 h-4 mr-2 text-stm-blue group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-                </svg>
-                <span class="text-sm font-medium text-gray-700">Testimonies</span>
-            </a>
-            <a href="giving.html" class="nav-item flex items-center px-3 py-2 rounded-lg hover:bg-stm-gray transition-colors group">
-                <svg class="w-4 h-4 mr-2 text-stm-blue group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
-                </svg>
-                <span class="text-sm font-medium text-gray-700">Giving</span>
-            </a>
-            <a href="fellowships.html" class="nav-item flex items-center px-3 py-2 rounded-lg hover:bg-stm-gray transition-colors group">
-                <svg class="w-4 h-4 mr-2 text-stm-blue group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                </svg>
-                <span class="text-sm font-medium text-gray-700">Fellowships</span>
-            </a>
-            <a href="branches.html" class="nav-item flex items-center px-3 py-2 rounded-lg hover:bg-stm-gray transition-colors group">
-                <svg class="w-4 h-4 mr-2 text-stm-blue group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                </svg>
-                <span class="text-sm font-medium text-gray-700">Branches</span>
-            </a>
-            <a href="contact.html" class="nav-item flex items-center px-3 py-2 rounded-lg hover:bg-stm-gray transition-colors group">
-                <svg class="w-4 h-4 mr-2 text-stm-blue group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                </svg>
-                <span class="text-sm font-medium text-gray-700">Contact</span>
-            </a>
-        </div>
-    `;
-
-    // Create floating nav toggle button
-    const floatingNavToggle = document.createElement('button');
-    floatingNavToggle.id = 'floating-nav-toggle';
-    floatingNavToggle.className = 'fixed bottom-8 right-24 z-40 bg-stm-blue text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center transform transition-all duration-300 hover:bg-stm-navy hover:scale-110';
-    floatingNavToggle.innerHTML = `
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-        </svg>
-    `;
-    floatingNavToggle.setAttribute('aria-label', 'Toggle navigation menu');
-
-    // Add to page
-    document.body.appendChild(floatingNav);
-    document.body.appendChild(floatingNavToggle);
-
-    // Toggle functionality
-    let isOpen = false;
-    floatingNavToggle.addEventListener('click', function () {
-        isOpen = !isOpen;
-        if (isOpen) {
-            floatingNav.classList.remove('translate-x-full');
-            floatingNavToggle.classList.add('rotate-45');
-            floatingNavToggle.innerHTML = `
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                </svg>
-            `;
-        } else {
-            floatingNav.classList.add('translate-x-full');
-            floatingNavToggle.classList.remove('rotate-45');
-            floatingNavToggle.innerHTML = `
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                </svg>
-            `;
-        }
-    });
-
-    // Close when clicking outside
-    document.addEventListener('click', function (e) {
-        if (isOpen && !floatingNav.contains(e.target) && !floatingNavToggle.contains(e.target)) {
-            isOpen = false;
-            floatingNav.classList.add('translate-x-full');
-            floatingNavToggle.classList.remove('rotate-45');
-            floatingNavToggle.innerHTML = `
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                </svg>
-            `;
-        }
-    });
-
-    // Highlight current page
-    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-    const navItems = floatingNav.querySelectorAll('.nav-item');
-    navItems.forEach(item => {
-        const href = item.getAttribute('href');
-        if (href === currentPage || (currentPage === '' && href === 'index.html')) {
-            item.classList.add('bg-stm-blue', 'text-white');
-            item.classList.remove('hover:bg-stm-gray');
-            item.querySelector('span').classList.remove('text-gray-700');
-            item.querySelector('span').classList.add('text-white');
-        }
-    });
-
-    // Show/hide based on scroll position
-    let lastScrollTop = 0;
-    window.addEventListener('scroll', function () {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        const toggle = document.getElementById('floating-nav-toggle');
-
-        if (toggle) {
-            if (scrollTop > 300) {
-                toggle.classList.remove('translate-y-20', 'opacity-0');
-            } else {
-                toggle.classList.add('translate-y-20', 'opacity-0');
-                // Close nav if open when scrolling to top
-                if (isOpen) {
-                    isOpen = false;
-                    floatingNav.classList.add('translate-x-full');
-                    floatingNavToggle.classList.remove('rotate-45');
-                    floatingNavToggle.innerHTML = `
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                        </svg>
-                    `;
-                }
-            }
-        }
-
-        lastScrollTop = scrollTop;
-    });
-
-    // Initially hide the toggle
-    floatingNavToggle.classList.add('translate-y-20', 'opacity-0');
-}
 
 /**
  * Keyboard Navigation Support

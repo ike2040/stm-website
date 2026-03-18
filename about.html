@@ -654,14 +654,14 @@
             </div>
 
             <!-- Other Leaders -->
+            <!-- Other Leaders -->
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Church Secretary -->
                 <div data-aos="fade-up" data-aos-delay="100"
-                    class="leader-card bg-white rounded-2xl overflow-hidden shadow-lg">
-                    <div class="h-64 bg-gradient-to-br from-stm-light to-stm-blue flex items-center justify-center">
-                        <div class="w-32 h-32 bg-white/20 rounded-full flex items-center justify-center">
-                            <span class="text-5xl font-bold text-white">ED</span>
-                        </div>
+                    class="leader-card bg-white rounded-2xl overflow-hidden shadow-lg w-full">
+                    <div class="relative h-80 overflow-hidden group">
+                        <img src="resources/nice.jpeg" alt="Deacon Eric Darko"
+                            class="leader-image w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-110">
                     </div>
                     <div class="p-6">
                         <p class="text-stm-blue font-semibold text-sm uppercase tracking-wider mb-2">Church Secretary
@@ -679,60 +679,6 @@
                                 </path>
                             </svg>
                             +233 54 165 5107
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Men's Fellowship Leader -->
-                <div data-aos="fade-up" data-aos-delay="200"
-                    class="leader-card bg-white rounded-2xl overflow-hidden shadow-lg">
-                    <div class="h-64 bg-gradient-to-br from-stm-navy to-stm-blue flex items-center justify-center">
-                        <div class="w-32 h-32 bg-white/20 rounded-full flex items-center justify-center">
-                            <span class="text-5xl font-bold text-white">IO</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <p class="text-stm-blue font-semibold text-sm uppercase tracking-wider mb-2">Coordinator</p>
-                        <h3 class="font-display text-xl font-bold text-stm-navy mb-3">Isaac Ofori</h3>
-                        <p class="text-gray-600 text-sm mb-4">
-                            Isaac coordinates some church activities and also a prayer team member of the
-                            church.
-                        </p>
-                        <a href="tel:+233594844398"
-                            class="text-stm-blue font-semibold text-sm hover:underline inline-flex items-center">
-                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
-                                </path>
-                            </svg>
-                            +233 59 484 4398
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Women's Fellowship Leader -->
-                <div data-aos="fade-up" data-aos-delay="300"
-                    class="leader-card bg-white rounded-2xl overflow-hidden shadow-lg">
-                    <div class="h-64 bg-gradient-to-br from-pink-500 to-purple-600 flex items-center justify-center">
-                        <div class="w-32 h-32 bg-white/20 rounded-full flex items-center justify-center">
-                            <span class="text-5xl font-bold text-white">WF</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <p class="text-stm-blue font-semibold text-sm uppercase tracking-wider mb-2">Women's Fellowship
-                            Leader</p>
-                        <h3 class="font-display text-xl font-bold text-stm-navy mb-3">Women's Fellowship</h3>
-                        <p class="text-gray-600 text-sm mb-4">
-                            The Women's Fellowship is led by dedicated women who are passionate about empowering and
-                            supporting women in their spiritual journey.
-                        </p>
-                        <a href="contact.html"
-                            class="text-stm-blue font-semibold text-sm hover:underline inline-flex items-center">
-                            Contact Us
-                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
-                                </path>
-                            </svg>
                         </a>
                     </div>
                 </div>
@@ -1159,38 +1105,50 @@
 
     <script src="stm-main.js"></script>
     <script>
-        // Fallback mobile menu script - ensures it works even if main script fails
+        // Mobile menu functionality - Optimized for reliability
+        (function () {
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            if (mobileMenuBtn && mobileMenu) {
+                // Remove any existing click handlers by cloning
+                const newBtn = mobileMenuBtn.cloneNode(true);
+                mobileMenuBtn.parentNode.replaceChild(newBtn, mobileMenuBtn);
+
+                newBtn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const isHidden = mobileMenu.classList.toggle('hidden');
+                    
+                    // Switch icon (hamburger ↔ X)
+                    newBtn.innerHTML = isHidden
+                        ? '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>'
+                        : '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>';
+                });
+
+                // Close menu when clicking any link
+                const menuLinks = mobileMenu.querySelectorAll('a');
+                menuLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.add('hidden');
+                        newBtn.innerHTML = '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>';
+                    });
+                });
+            }
+        })();
+
+        // Fallback for slower devices
         document.addEventListener('DOMContentLoaded', function () {
             setTimeout(function () {
-                const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-                const mobileMenu = document.getElementById('mobile-menu');
-
-                if (mobileMenuBtn && mobileMenu) {
-                    // Remove existing listeners
-                    const newBtn = mobileMenuBtn.cloneNode(true);
-                    mobileMenuBtn.parentNode.replaceChild(newBtn, mobileMenuBtn);
-
-                    newBtn.addEventListener('click', function (e) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        mobileMenu.classList.toggle('hidden');
-
-                        const isOpen = !mobileMenu.classList.contains('hidden');
-                        newBtn.innerHTML = isOpen
-                            ? '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>'
-                            : '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>';
+                const btn = document.getElementById('mobile-menu-btn');
+                const menu = document.getElementById('mobile-menu');
+                if (btn && menu && !btn.onclick && !btn._hasListener) {
+                    btn.addEventListener('click', () => {
+                        menu.classList.toggle('hidden');
                     });
-
-                    // Close menu on link click
-                    const links = mobileMenu.querySelectorAll('a');
-                    links.forEach(link => {
-                        link.addEventListener('click', function () {
-                            mobileMenu.classList.add('hidden');
-                            newBtn.innerHTML = '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>';
-                        });
-                    });
+                    btn._hasListener = true;
                 }
-            }, 200);
+            }, 500);
         });
     </script>
 </body>

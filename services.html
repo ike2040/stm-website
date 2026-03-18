@@ -854,11 +854,50 @@
             offset: 100
         });
 
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
+        // Mobile menu functionality - Optimized for reliability
+        (function () {
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
 
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
+            if (mobileMenuBtn && mobileMenu) {
+                // Remove any existing click handlers by cloning
+                const newBtn = mobileMenuBtn.cloneNode(true);
+                mobileMenuBtn.parentNode.replaceChild(newBtn, mobileMenuBtn);
+
+                newBtn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const isHidden = mobileMenu.classList.toggle('hidden');
+                    
+                    // Switch icon (hamburger ↔ X)
+                    newBtn.innerHTML = isHidden
+                        ? '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>'
+                        : '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>';
+                });
+
+                // Close menu when clicking any link
+                const menuLinks = mobileMenu.querySelectorAll('a');
+                menuLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.add('hidden');
+                        newBtn.innerHTML = '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>';
+                    });
+                });
+            }
+        })();
+
+        // Fallback for slower devices
+        document.addEventListener('DOMContentLoaded', function () {
+            setTimeout(function () {
+                const btn = document.getElementById('mobile-menu-btn');
+                const menu = document.getElementById('mobile-menu');
+                if (btn && menu && !btn.onclick && !btn._hasListener) {
+                    btn.addEventListener('click', () => {
+                        menu.classList.toggle('hidden');
+                    });
+                    btn._hasListener = true;
+                }
+            }, 500);
         });
 
         // Countdown Timer

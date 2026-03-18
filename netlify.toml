@@ -1,0 +1,10 @@
+[build]
+  publish = "."
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[plugins]
+  # Netlify has a built-in "Security Headers" plugin or we can do it via _headers

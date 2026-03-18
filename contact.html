@@ -456,11 +456,11 @@
                 </p>
 
                 <!-- Google Maps Integration -->
-                <div class="mb-8 rounded-2xl overflow-hidden shadow-2xl">
+                <div class="mb-8 rounded-2xl overflow-hidden shadow-2xl relative h-80 md:h-96">
                     <iframe
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d50653.34129078424!2d-1.6394238500000001!3d6.6867296!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfdb46b5c5b5b5b5b%3A0x8b5b5b5b5b5b5b5b!2sTafo%2C%20Kumasi!5e0!3m2!1sen!2sgh!4v1672538400!5m2!1sen!2sgh"
-                        width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade" class="w-full">
+                        style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                        class="absolute inset-0 w-full h-full">
                     </iframe>
                 </div>
 
@@ -1315,7 +1315,9 @@
         }
 
         // Membership form submission
-        document.getElementById('membershipForm').addEventListener('submit', function (e) {
+        const membershipForm = document.getElementById('membershipForm');
+        if (membershipForm) {
+            membershipForm.addEventListener('submit', function (e) {
             e.preventDefault(); // Prevent default form submission
 
             // Show loading notification
@@ -1346,15 +1348,8 @@
             })
                 .then(response => {
                     if (response.ok) {
-                        // Success - show beautiful success message
-                        showMembershipSuccessNotification();
-                        this.reset();
-
-                        // Scroll to top of membership section
-                        document.getElementById('membership').scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
+                        // Success - Redirect to success page
+                        window.location.href = 'success.html';
                     } else {
                         throw new Error('Form submission failed');
                     }
@@ -1368,7 +1363,8 @@
                     submitButton.disabled = false;
                     submitButton.innerHTML = originalButtonText;
                 });
-        });
+                });
+        }
 
         // Custom membership success notification
         function showMembershipSuccessNotification() {
@@ -1445,17 +1441,41 @@
             }, 8000);
         }
 
-        // Contact form submission
-        document.getElementById('contactForm').addEventListener('submit', function () {
-            // Form will be handled by Formspree
-            showNotification('Your message is being sent...', 'info');
-        });
+        // Contact form submission (if it exists)
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                showNotification('Your message is being sent...', 'info');
+                const formData = new FormData(this);
+                fetch(this.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                }).then(response => {
+                    if (response.ok) window.location.href = 'success.html';
+                    else showNotification('Oops! Something went wrong.', 'error');
+                });
+            });
+        }
 
-        // Prayer form submission
-        document.getElementById('prayerForm').addEventListener('submit', function () {
-            // Form will be handled by Formspree
-            showNotification('Your prayer request is being submitted...', 'info');
-        });
+        // Prayer form submission (if it exists)
+        const prayerForm = document.getElementById('prayerForm');
+        if (prayerForm) {
+            prayerForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                showNotification('Your prayer request is being submitted...', 'info');
+                const formData = new FormData(this);
+                fetch(this.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                }).then(response => {
+                    if (response.ok) window.location.href = 'success.html';
+                    else showNotification('Oops! Something went wrong.', 'error');
+                });
+            });
+        }
 
         // Notification function
         function showNotification(message, type = 'info') {
@@ -1593,7 +1613,9 @@
         handleBranchParameter();
 
         // Feedback form submission
-        document.getElementById('feedbackForm').addEventListener('submit', function (e) {
+        const feedbackForm = document.getElementById('feedbackForm');
+        if (feedbackForm) {
+            feedbackForm.addEventListener('submit', function (e) {
             e.preventDefault(); // Prevent default form submission
 
             // Show loading notification
@@ -1624,21 +1646,8 @@
             })
                 .then(response => {
                     if (response.ok) {
-                        // Success - show beautiful success message
-                        showFeedbackSuccessNotification();
-                        this.reset();
-
-                        // Reset visual feedback for feedback type cards
-                        document.querySelectorAll('.feedback-type-card').forEach(card => {
-                            card.classList.remove('border-stm-blue', 'bg-stm-blue/5');
-                            card.classList.add('border-gray-200');
-                        });
-
-                        // Scroll to top of feedback section
-                        document.getElementById('feedback').scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
+                        // Success - Redirect to success page
+                        window.location.href = 'success.html';
                     } else {
                         throw new Error('Form submission failed');
                     }
@@ -1652,10 +1661,13 @@
                     submitButton.disabled = false;
                     submitButton.innerHTML = originalButtonText;
                 });
-        });
+            });
+        }
 
         // Prayer request form submission
-        document.getElementById('prayerRequestForm').addEventListener('submit', function (e) {
+        const prayerRequestForm = document.getElementById('prayerRequestForm');
+        if (prayerRequestForm) {
+            prayerRequestForm.addEventListener('submit', function (e) {
             e.preventDefault(); // Prevent default form submission
 
             // Show loading notification
@@ -1686,15 +1698,8 @@
             })
                 .then(response => {
                     if (response.ok) {
-                        // Success - show beautiful success message
-                        showPrayerSuccessNotification();
-                        this.reset();
-
-                        // Scroll to top of prayer section
-                        document.getElementById('prayer-request').scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
+                        // Success - Redirect to success page
+                        window.location.href = 'success.html';
                     } else {
                         throw new Error('Form submission failed');
                     }
@@ -1708,7 +1713,8 @@
                     submitButton.disabled = false;
                     submitButton.innerHTML = originalButtonText;
                 });
-        });
+            });
+        }
 
         // Custom prayer success notification
         function showPrayerSuccessNotification() {
@@ -1810,80 +1816,50 @@
     </script>
     <script src="stm-main.js"></script>
     <script>
-        // Mobile menu functionality - Direct implementation for contact page
+        // Mobile menu functionality - Optimized for reliability
         (function () {
             const mobileMenuBtn = document.getElementById('mobile-menu-btn');
             const mobileMenu = document.getElementById('mobile-menu');
 
             if (mobileMenuBtn && mobileMenu) {
-                // Remove any existing click handlers
-                mobileMenuBtn.onclick = null;
+                // Remove any existing click handlers by cloning
+                const newBtn = mobileMenuBtn.cloneNode(true);
+                mobileMenuBtn.parentNode.replaceChild(newBtn, mobileMenuBtn);
 
-                // Add fresh click handler
-                mobileMenuBtn.addEventListener('click', function (e) {
+                newBtn.addEventListener('click', function (e) {
                     e.preventDefault();
                     e.stopPropagation();
-
-                    // Toggle hidden class
-                    if (mobileMenu.classList.contains('hidden')) {
-                        mobileMenu.classList.remove('hidden');
-                        // Change to X icon
-                        mobileMenuBtn.innerHTML = '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>';
-                    } else {
-                        mobileMenu.classList.add('hidden');
-                        // Change back to hamburger icon
-                        mobileMenuBtn.innerHTML = '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>';
-                    }
+                    const isHidden = mobileMenu.classList.toggle('hidden');
+                    
+                    // Switch icon (hamburger ↔ X)
+                    newBtn.innerHTML = isHidden
+                        ? '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>'
+                        : '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>';
                 });
 
                 // Close menu when clicking any link
                 const menuLinks = mobileMenu.querySelectorAll('a');
-                menuLinks.forEach(function (link) {
-                    link.addEventListener('click', function () {
+                menuLinks.forEach(link => {
+                    link.addEventListener('click', () => {
                         mobileMenu.classList.add('hidden');
-                        mobileMenuBtn.innerHTML = '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>';
+                        newBtn.innerHTML = '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>';
                     });
                 });
-
-                console.log('Mobile menu initialized successfully on contact page');
-            } else {
-                console.error('Mobile menu elements not found on contact page');
             }
         })();
-    </script>
-    <script>
-        // Fallback mobile menu script - ensures it works even if main script fails
+
+        // Fallback for slower devices
         document.addEventListener('DOMContentLoaded', function () {
             setTimeout(function () {
-                const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-                const mobileMenu = document.getElementById('mobile-menu');
-
-                if (mobileMenuBtn && mobileMenu) {
-                    // Remove existing listeners
-                    const newBtn = mobileMenuBtn.cloneNode(true);
-                    mobileMenuBtn.parentNode.replaceChild(newBtn, mobileMenuBtn);
-
-                    newBtn.addEventListener('click', function (e) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        mobileMenu.classList.toggle('hidden');
-
-                        const isOpen = !mobileMenu.classList.contains('hidden');
-                        newBtn.innerHTML = isOpen
-                            ? '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>'
-                            : '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>';
+                const btn = document.getElementById('mobile-menu-btn');
+                const menu = document.getElementById('mobile-menu');
+                if (btn && menu && !btn.onclick && !btn._hasListener) {
+                    btn.addEventListener('click', () => {
+                        menu.classList.toggle('hidden');
                     });
-
-                    // Close menu on link click
-                    const links = mobileMenu.querySelectorAll('a');
-                    links.forEach(link => {
-                        link.addEventListener('click', function () {
-                            mobileMenu.classList.add('hidden');
-                            newBtn.innerHTML = '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>';
-                        });
-                    });
+                    btn._hasListener = true;
                 }
-            }, 200);
+            }, 500);
         });
     </script>
 </body>

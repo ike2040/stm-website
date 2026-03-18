@@ -562,80 +562,50 @@
 
     <script src="stm-main.js"></script>
     <script>
-            // Direct mobile menu fix - ensures button works immediately
-            (function () {
-                const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-                const mobileMenu = document.getElementById('mobile-menu');
+        // Mobile menu functionality - Optimized for reliability
+        (function () {
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
 
-                if (mobileMenuBtn && mobileMenu) {
-                    // Remove any existing click handlers
-                    mobileMenuBtn.onclick = null;
+            if (mobileMenuBtn && mobileMenu) {
+                // Remove any existing click handlers by cloning
+                const newBtn = mobileMenuBtn.cloneNode(true);
+                mobileMenuBtn.parentNode.replaceChild(newBtn, mobileMenuBtn);
 
-                    // Add fresh click handler
-                    mobileMenuBtn.addEventListener('click', function (e) {
-                        e.preventDefault();
-                        e.stopPropagation();
+                newBtn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const isHidden = mobileMenu.classList.toggle('hidden');
+                    
+                    // Switch icon (hamburger ↔ X)
+                    newBtn.innerHTML = isHidden
+                        ? '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>'
+                        : '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>';
+                });
 
-                        // Toggle hidden class
-                        if (mobileMenu.classList.contains('hidden')) {
-                            mobileMenu.classList.remove('hidden');
-                            // Change to X icon
-                            mobileMenuBtn.innerHTML = '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>';
-                        } else {
-                            mobileMenu.classList.add('hidden');
-                            // Change back to hamburger icon
-                            mobileMenuBtn.innerHTML = '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>';
-                        }
+                // Close menu when clicking any link
+                const menuLinks = mobileMenu.querySelectorAll('a');
+                menuLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.add('hidden');
+                        newBtn.innerHTML = '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>';
                     });
+                });
+            }
+        })();
 
-                    // Close menu when clicking any link
-                    const menuLinks = mobileMenu.querySelectorAll('a');
-                    menuLinks.forEach(function (link) {
-                        link.addEventListener('click', function () {
-                            mobileMenu.classList.add('hidden');
-                            mobileMenuBtn.innerHTML = '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>';
-                        });
-                    });
-
-                    console.log('Mobile menu initialized successfully on testimonies page');
-                } else {
-                    console.error('Mobile menu elements not found on testimonies page');
-                }
-            })();
-    </script>
-    <script>
-        // Fallback mobile menu script - ensures it works even if main script fails
+        // Fallback for slower devices
         document.addEventListener('DOMContentLoaded', function () {
             setTimeout(function () {
-                const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-                const mobileMenu = document.getElementById('mobile-menu');
-
-                if (mobileMenuBtn && mobileMenu) {
-                    // Remove existing listeners
-                    const newBtn = mobileMenuBtn.cloneNode(true);
-                    mobileMenuBtn.parentNode.replaceChild(newBtn, mobileMenuBtn);
-
-                    newBtn.addEventListener('click', function (e) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        mobileMenu.classList.toggle('hidden');
-
-                        const isOpen = !mobileMenu.classList.contains('hidden');
-                        newBtn.innerHTML = isOpen
-                            ? '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>'
-                            : '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>';
+                const btn = document.getElementById('mobile-menu-btn');
+                const menu = document.getElementById('mobile-menu');
+                if (btn && menu && !btn.onclick && !btn._hasListener) {
+                    btn.addEventListener('click', () => {
+                        menu.classList.toggle('hidden');
                     });
-
-                    // Close menu on link click
-                    const links = mobileMenu.querySelectorAll('a');
-                    links.forEach(link => {
-                        link.addEventListener('click', function () {
-                            mobileMenu.classList.add('hidden');
-                            newBtn.innerHTML = '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>';
-                        });
-                    });
+                    btn._hasListener = true;
                 }
-            }, 200);
+            }, 500);
         });
     </script>
     <script>
@@ -709,23 +679,8 @@
                 }
             }).then(response => {
                 if (response.ok) {
-                    // Show beautiful success notification
-                    showTestimonySuccessNotification();
-
-                    // 2. Local Display (only if permission is ticked)
-                    const hasPermission = document.getElementById('permission-share').checked;
-                    if (hasPermission) {
-                        const newTestimony = {
-                            name: formData.get('fullName').split(' ')[0],
-                            branch: formData.get('branch'),
-                            title: formData.get('testimonyTitle'),
-                            content: formData.get('testimony'),
-                            date: new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' }),
-                            timestamp: Date.now()
-                        };
-                        saveAndDisplayTestimony(newTestimony);
-                    }
-                    form.reset();
+                    // Success - Redirect to success page
+                    window.location.href = 'success.html';
                 } else {
                     showNotification('There was a problem. Please try again or contact us directly.', 'error');
                 }
